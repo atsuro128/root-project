@@ -37,7 +37,7 @@ Step 1: 要件定義（成果物作成完了 → 完了条件の確認待ち）
 ## 直近のタスク
 - [x] Step 1: 業務理解の事前資料作成（4資料完成）
 - [x] Step 1: 要件定義本体の作成（requirements.md, usecases.md, workflow.md, rbac.md）
-- [ ] Step 1: 完了条件の確認・root-project整備（prompts/requirement.md, rules/security-policy.md）
+- [x] Step 1: root-project整備（rules/security-policy.md 整備完了、prompts/requirement.md は既存）
 - [ ] Step 2: ドメイン設計の着手
 
 ## 課題・ブロッカー
