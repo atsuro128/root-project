@@ -1,6 +1,9 @@
 # Step 0 査読時の気づき・改善事項
 
-## 1. project/ のディレクトリ構成と技術スタックの不整合
+## 1. project/ のディレクトリ構成と技術スタックの不整合 ✅ 解決済み
+
+- **解決日**: 2026-03-04
+- **解決内容**: `references/project-structure.md` を Rust + React 構成に合わせて修正。`apps/api/package.json` → `Cargo.toml` に置換、`packages/db/` を削除、`packages/` をフロントエンド専用として整理。構成の判断根拠も追記。
 
 ### 問題
 `project/apps/api/` に `package.json` が存在するが、バックエンドは Rust (Actix Web) であり `Cargo.toml` であるべき。現在の `package.json` はスタブだが、Phase 1 のプロジェクト初期化時にこの構造を正しく作り直す必要がある。
