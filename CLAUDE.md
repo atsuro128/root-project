@@ -14,8 +14,11 @@
 - 用語定義: `references/glossary.md`
 
 ## Git 操作
-- Git リポジトリは `project/` 配下にのみ存在する（root-project/ は Git 管理外）
-- git コマンドは `project/` ディレクトリで実行すること
+- Git リポジトリは2つ存在する:
+  - `root-project/` : プロジェクト管理・AI運用基盤（private）
+  - `root-project/project/` : プロダクトコード（public）
+- git コマンドは対象に応じて適切なディレクトリで実行すること
+- ソースコード関連のコミットは `project/` で、設定・ドキュメント関連は `root-project/` で行う
 
 ## コマンド実行
 コマンド実行の許可を求める際に、そのコマンドによって何が起きるかの説明を日本語で行うこと。
@@ -51,8 +54,6 @@ Admin / Approver / Member / Accounting の4ロール。全APIでミドルウェ�
 - 不要なファイル生成（ドキュメント・READMEの自動生成含む）
 
 ## ファイル参照ルール
-必要な作業時のみ参照すること。毎回読む必要はない。
-
 - API一覧・DB定義・テスト戦略等の詳細仕様: PROJECT_SUMMARY.md
 - コーディング規約: rules/coding-standards.md
 - テスト方針: rules/testing.md

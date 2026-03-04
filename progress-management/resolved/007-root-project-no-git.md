@@ -22,7 +22,10 @@ infrastructure
 3. 重要なドキュメントは `deliverables/` → `project/docs/` へ転記する運用で公開リポジトリ側に残す
 
 ## 解決内容
-
+提案1を採用。`root-project/` で `git init` を実施し、独立したローカル Git リポジトリとして管理を開始。
+- `.gitignore` に `project/`（別リポジトリ）等を除外設定
+- 初回コミットで全55ファイルを追加
+- リモートリポジトリ（GitHub private）への接続は必要時に別途実施
 
 ## 解決日
-
+2026-03-04

@@ -1,13 +1,13 @@
 # コミット規約
 
 ## メッセージ形式
-- 言語: 英語
+- 言語: 日本語
 - 形式: Conventional Commits（`feat:`, `fix:`, `chore:` 等）
 
 ## 必須フッター
 全コミットの末尾に必ず付与する:
 ```
-Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
+Co-Authored-By: Claude
 ```
 
 ## 禁止事項
