@@ -20,7 +20,11 @@ project-management
 - `prompts/` → 手動でコピー&ペーストする指示文テンプレート、または skills に昇格する前の下書き
 
 ## 解決内容
-
+- `skills/` を廃止し、カテゴリ構想を `prompts/README.md` に統合
+- `prompts/` の役割を「手動コピペ用テンプレート / `.claude/commands/` 昇格前の下書き」と明確化
+- `.claude/commands/` が Claude Code 公式のスラッシュコマンド機能であることをドキュメントに反映
+- `CLAUDE.md`、`references/directory-structure.md` を更新
 
 ## 解決日
+2026-03-04
 

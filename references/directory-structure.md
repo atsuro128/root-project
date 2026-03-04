@@ -28,14 +28,6 @@ root-project/
 │  │  └─ ui-design/
 │  ├─ resolved/                      # 解決済み課題
 │  └─ step-deliverables/             # ステップ別成果物チェック
-├─ skills/                           # カスタムスキル
-│  ├─ README.md
-│  ├─ architecture/
-│  ├─ backend/
-│  ├─ db/
-│  ├─ frontend/
-│  ├─ release/
-│  └─ security/
 ├─ rules/                            # 規約・ポリシー
 │  ├─ branching.md
 │  ├─ coding-standards.md
@@ -45,7 +37,8 @@ root-project/
 │  ├─ review-checklist.md
 │  ├─ security-policy.md
 │  └─ testing.md
-├─ prompts/                          # 指示文テンプレート
+├─ prompts/                          # 指示文テンプレート（手動コピペ用 / .claude/commands/ 昇格前の下書き）
+│  ├─ README.md
 │  ├─ implementation.md
 │  ├─ refactor.md
 │  └─ requirement.md

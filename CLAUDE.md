@@ -31,7 +31,7 @@
 
 ## ディレクトリ役割
 - root-project/ はAI運用・プロジェクト管理専用ディレクトリ
-  - AIエージェント設定: CLAUDE.md、rules/、prompts/、skills/
+  - AIエージェント設定: CLAUDE.md、rules/、prompts/、.claude/commands/
   - 仕様・内部資料: PROJECT_SUMMARY.md、references/
   - 作業補助: templates/、scripts/、deliverables/
 - 実プロダクト（ソースコード）は project/ 以下に配置
