@@ -59,4 +59,5 @@ Admin / Approver / Member / Accounting の4ロール。全APIでミドルウェ�
 - コーディング規約: rules/coding-standards.md
 - テスト方針: rules/testing.md
 - コミット規約: rules/commit-message.md
-- ディレクトリ構成: references/directory-structure.md
+- ディレクトリ構成（root-project）: references/directory-structure.md
+- ディレクトリ構成（project）: references/project-structure.md

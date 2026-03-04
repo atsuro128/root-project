@@ -1,9 +1,75 @@
-# ディレクトリ構成（予定）
+# root-project ディレクトリ構成
+
+project/ 以下のプロダクト構成は `references/project-structure.md` を参照。
 
 ```
-project/
-  backend/        — Rust API サーバー
-  frontend/       — React SPA
-  migrations/     — SQLマイグレーション
-  docker-compose.yml
+root-project/
+├─ CLAUDE.md                         # Claude Code プロジェクト方針
+├─ PROJECT_SUMMARY.md                # プロジェクト概要・仕様サマリ
+├─ .claude/                          # Claude Code 設定
+│  ├─ commands/                      # カスタムコマンド（review, status）
+│  └─ settings.json
+├─ guide/                            # プロジェクト進行ガイド
+│  ├─ github.md
+│  ├─ implementation-guide.md
+│  └─ portfolio_project_steps.md
+├─ progress-management/              # 進捗・課題管理
+│  ├─ progress.md
+│  ├─ issues/                        # 未解決の課題（カテゴリ別）
+│  │  ├─ architecture/
+│  │  ├─ detail-design/
+│  │  ├─ domain/
+│  │  ├─ implementation/
+│  │  ├─ infrastructure/
+│  │  ├─ project-management/
+│  │  ├─ requirements/
+│  │  ├─ security/
+│  │  ├─ testing/
+│  │  └─ ui-design/
+│  ├─ resolved/                      # 解決済み課題
+│  └─ step-deliverables/             # ステップ別成果物チェック
+├─ skills/                           # カスタムスキル
+│  ├─ README.md
+│  ├─ architecture/
+│  ├─ backend/
+│  ├─ db/
+│  ├─ frontend/
+│  ├─ release/
+│  └─ security/
+├─ rules/                            # 規約・ポリシー
+│  ├─ branching.md
+│  ├─ coding-standards.md
+│  ├─ commit-message.md
+│  ├─ data-handling.md
+│  ├─ github.md
+│  ├─ review-checklist.md
+│  ├─ security-policy.md
+│  └─ testing.md
+├─ prompts/                          # 指示文テンプレート
+│  ├─ implementation.md
+│  ├─ refactor.md
+│  └─ requirement.md
+├─ templates/                        # ドキュメントテンプレート
+│  ├─ ADR-template.md
+│  ├─ issue-template.md
+│  ├─ README-template.md
+│  └─ RFC-template.md
+├─ references/                       # 参照資料
+│  ├─ decisions/
+│  ├─ dev-commands.md
+│  ├─ directory-structure.md         # 本ファイル
+│  ├─ glossary.md
+│  ├─ links.md
+│  ├─ project-structure.md           # project/ の構成
+│  └─ tech-stack-notes/
+├─ scripts/                          # 自動化スクリプト
+│  ├─ db-reset.sh
+│  ├─ lint.sh
+│  └─ setup.sh
+├─ deliverables/                     # 成果物
+│  └─ docs/
+│     ├─ 00_goals.md
+│     ├─ 01_glossary.md
+│     └─ 02_scope.md
+└─ project/                          # プロダクトコード → references/project-structure.md 参照
 ```
