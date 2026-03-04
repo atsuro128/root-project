@@ -21,7 +21,8 @@ Phase 1 着手時にプロジェクト初期化で混乱する可能性がある
 - `packages/` の必要性を再検討（Rust/TS 混在モノレポで npm workspaces をどこまで使うか）
 
 ## 解決内容
-
+`apps/api/package.json` を削除し `Cargo.toml`（expense-api）として初期化済み。
+`packages/` の必要性再検討は issue-008 として分離。
 
 ## 解決日
-
+2026-03-04
