@@ -3,6 +3,8 @@
 ## 作業開始時ルール
 - 作業開始時に必ず `progress-management/progress.md` を確認し、現在のフェーズ・直近タスク・課題を把握すること
 - 作業完了時に `progress-management/progress.md` を更新し、次回セッションに引き継げる状態にすること
+- セッション中に重要な判断・設計決定を行った場合は `logs/YYYY-MM-DD/decisions.md` に追記すること（ファイルがなければ作成する）
+  - 形式: `- [判断内容]（理由: [背景・根拠]）`
 
 ## 作業フロー
 - 全体の進め方・各ステップの成果物・完了条件: `guide/portfolio_project_steps.md`
@@ -26,13 +28,9 @@
 ## コマンド実行
 **【重要】コマンド実行を行う際に、何をする為のコマンドなのかを必ず日本語で明示すること。**
 
-## issue運用ルール
-詳細ルール: `rules/issue-management.md`
-
 ## ディレクトリ
 - ソースコードの新規作成・編集は `project/` 配下のみで行うこと
 - フォルダ追加・削除・移動時は `references/directory-structure.md` または `references/project-structure.md` を更新すること
-- ディレクトリ役割・構成詳細: `references/directory-structure.md`
 
 ## 技術スタック
 Backend: Rust (Actix Web) / Frontend: React (TypeScript, Vite) / DB: PostgreSQL / DB Access: SQLx / Infra: AWS (ECS Fargate, RDS, S3) / CI: GitHub Actions
@@ -45,8 +43,9 @@ Backend: Rust (Actix Web) / Frontend: React (TypeScript, Vite) / DB: PostgreSQL 
 - 不要なファイル生成（ドキュメント・READMEの自動生成含む）
 
 ## ファイル参照ルール
+- issue運用ルール: `rules/issue-management.md`
 - API一覧・DB定義・テスト戦略等の詳細仕様: PROJECT_SUMMARY.md
 - コーディング規約: rules/coding-standards.md
 - テスト方針: rules/testing.md
-- ディレクトリ構成（root-project）: references/directory-structure.md
+- ディレクトリ役割・構成詳細（root-project）: references/directory-structure.md
 - ディレクトリ構成（project）: references/project-structure.md

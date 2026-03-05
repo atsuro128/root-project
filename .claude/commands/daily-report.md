@@ -1,0 +1,25 @@
+今日の作業内容を日報としてまとめてください。
+
+## 手順
+
+1. 今日の日付を確認（YYYY-MM-DD形式）
+2. root-project/ で当日のコミット履歴を取得:
+   `git log --since="YYYY-MM-DD 00:00" --until="YYYY-MM-DD 23:59" --oneline`
+3. project/ で同じコマンドを実行
+4. `logs/YYYY-MM-DD/decisions.md` が存在すれば読み込む
+5. `progress-management/progress.md` を読み、次タスクを確認する
+
+## 出力形式
+
+```
+## YYYY-MM-DD 作業日報
+
+### 実施内容
+（コミット履歴をもとに、何をしたかを箇条書きでまとめる）
+
+### 判断・決定事項
+（decisions.md の内容を整形して記載。なければ「記録なし」）
+
+### 明日以降のタスク
+（progress.md の直近タスクから引用）
+```
