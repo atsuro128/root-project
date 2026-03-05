@@ -20,6 +20,7 @@
 - git コマンドは対象に応じて適切なディレクトリで実行すること
 - ソースコード関連のコミットは `project/` で、設定・ドキュメント関連は `root-project/` で行う
 - **【必須】ユーザーへの最終応答を返す前に、root-project/ 配下のファイルを編集していた場合は必ずコミットすること。コミットせずに作業完了の報告をしてはならない。**
+- コミット規約: rules/commit-message.md
 
 ## コマンド実行
 **【重要】コマンド実行を行う際に、何をする為のコマンドなのかを必ず日本語で明示すること。**
@@ -32,6 +33,9 @@
   - 重要度が低くレビュー不要 → `progress-management/resolved/`
 - レビュー完了後（pending-review 経由の場合）: `progress-management/resolved/` へ移動
 - 連番は `issues/`・`pending-review/`・`resolved/` 横断でグローバル管理
+
+## ディレクトリ構成の更新
+フォルダの追加・削除・移動を行った場合は `references/directory-structure.md`（root-project配下）または `references/project-structure.md`（project配下）を必ず更新すること。
 
 ## ディレクトリ役割
 - root-project/ はAI運用・プロジェクト管理専用ディレクトリ
@@ -62,6 +66,5 @@ Admin / Approver / Member / Accounting の4ロール。全APIでミドルウェ�
 - API一覧・DB定義・テスト戦略等の詳細仕様: PROJECT_SUMMARY.md
 - コーディング規約: rules/coding-standards.md
 - テスト方針: rules/testing.md
-- コミット規約: rules/commit-message.md
 - ディレクトリ構成（root-project）: references/directory-structure.md
 - ディレクトリ構成（project）: references/project-structure.md
