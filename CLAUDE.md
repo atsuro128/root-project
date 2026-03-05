@@ -28,36 +28,17 @@
 
 ## issue運用ルール
 詳細ルール: `rules/issue-management.md`
-- 起票: `progress-management/issues/NNN-kebab-case.md`（テンプレート: `templates/issue-template.md`）
-- 対応完了後: 解決内容・解決日を記入し、移動先をユーザーに確認してから移動する
-  - レビューが必要 → `progress-management/pending-review/`
-  - 重要度が低くレビュー不要 → `progress-management/resolved/`
-- レビュー完了後（pending-review 経由の場合）: `progress-management/resolved/` へ移動
-- 連番は `issues/`・`pending-review/`・`resolved/` 横断でグローバル管理
 
-## ディレクトリ構成の更新
-フォルダの追加・削除・移動を行った場合は `references/directory-structure.md`（root-project配下）または `references/project-structure.md`（project配下）を必ず更新すること。
-
-## ディレクトリ役割
-- root-project/ はAI運用・プロジェクト管理専用ディレクトリ
-  - AIエージェント設定: CLAUDE.md、rules/、prompts/、.claude/commands/
-  - 仕様・内部資料: PROJECT_SUMMARY.md、references/
-  - 作業補助: templates/、scripts/、deliverables/
-- 実プロダクト（ソースコード）は project/ 以下に配置
-- ソースコードの新規作成・編集は project/ 配下のみで行う
+## ディレクトリ
+- ソースコードの新規作成・編集は `project/` 配下のみで行うこと
+- フォルダ追加・削除・移動時は `references/directory-structure.md` または `references/project-structure.md` を更新すること
+- ディレクトリ役割・構成詳細: `references/directory-structure.md`
 
 ## 技術スタック
 Backend: Rust (Actix Web) / Frontend: React (TypeScript, Vite) / DB: PostgreSQL / DB Access: SQLx / Infra: AWS (ECS Fargate, RDS, S3) / CI: GitHub Actions
 
-## アーキテクチャ制約
-- 全テーブル・全クエリに tenant_id 必須。例外なし
-- リポジトリ層で tenant_id を強制（ハンドラで直接SQL禁止）
-- PostgreSQL RLS をテナント分離の二重保証として使用
-- 状態遷移(draft→submitted→approved→paid, submitted→rejected)はドメイン層で一元管理
-- JWT認証(RS256)、パスワードハッシュはArgon2id
-
-## RBAC
-Admin / Approver / Member / Accounting の4ロール。全APIでミドルウェア検証
+## アーキテクチャ・制約
+詳細: `rules/architecture.md`
 
 ## 禁止事項
 - tenant_id なしのクエリ作成

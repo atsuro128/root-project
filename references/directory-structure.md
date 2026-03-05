@@ -25,6 +25,7 @@ root-project/
 │  ├─ commit-message.md
 │  ├─ data-handling.md
 │  ├─ github.md
+│  ├─ architecture.md
 │  ├─ issue-management.md
 │  ├─ review-checklist.md
 │  ├─ security-policy.md
@@ -58,3 +59,14 @@ root-project/
 │     └─ 02_scope.md
 └─ project/                          # プロダクトコード → references/project-structure.md 参照
 ```
+
+## ディレクトリ役割
+
+| ディレクトリ | 役割 |
+|---|---|
+| `CLAUDE.md` / `rules/` / `prompts/` / `.claude/commands/` | AIエージェント設定・規約 |
+| `PROJECT_SUMMARY.md` / `references/` | 仕様・内部資料 |
+| `templates/` / `scripts/` / `deliverables/` | 作業補助・成果物 |
+| `progress-management/` | 進捗・課題管理 |
+| `project/` | 実プロダクト（ソースコード）|
+
