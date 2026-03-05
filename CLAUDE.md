@@ -25,9 +25,11 @@
 **【重要】コマンド実行を行う際に、何をする為のコマンドなのかを必ず日本語で明示すること。**
 
 ## 課題・気づきの管理
-作業中に気づいた課題・改善提案は `progress-management/issues/` 配下の該当カテゴリフォルダにmdファイルを作成すること。
-カテゴリ: requirements / domain / architecture / ui-design / detail-design / testing / implementation / security / infrastructure / project-management
-解決済みは解決内容・解決日を記入してから `progress-management/resolved/` へ移動する。
+詳細ルール: `rules/issue-management.md`
+- 起票: `progress-management/issues/NNN-kebab-case.md`（テンプレート: `templates/issue-template.md`）
+- 対応完了後: 解決内容・解決日を記入し `progress-management/pending-review/` へ移動
+- レビュー完了後: `progress-management/resolved/` へ移動
+- 連番は `issues/`・`pending-review/`・`resolved/` 横断でグローバル管理
 
 ## ディレクトリ役割
 - root-project/ はAI運用・プロジェクト管理専用ディレクトリ

@@ -1,25 +1,27 @@
-# 課題テンプレート
+# （タイトル：問題を一言で）
 
 ## 発見日
 YYYY-MM-DD
 
-## 関連ステップ
-Step X（例: Step 0, Step 2）
-
 ## カテゴリ
-（requirements / domain / architecture / ui-design / detail-design / testing / implementation / security / infrastructure / project-management）
+<!-- requirements / domain / architecture / ui-design / detail-design / testing / implementation / security / infrastructure / project-management -->
+
+## 影響度
+<!-- 高 / 中 / 低 -->
+
+## 関連ステップ
+<!-- 例: Step 2（ドメイン設計）-->
 
 ## 問題
-（何が問題か、どのような矛盾・不整合・懸念があるか）
 
 ## 影響
-（放置した場合に何が起きるか、どの範囲に影響するか）
 
 ## 提案
-（解決案。複数案がある場合は列挙）
+
+---
 
 ## 解決内容
-（解決後に記入。何をどう変更したか）
+<!-- pending-review へ移動する前に記入 -->
 
 ## 解決日
-（解決後に記入）
+<!-- YYYY-MM-DD -->
