@@ -50,6 +50,9 @@ Backend: Rust (Actix Web) / Frontend: React (TypeScript, Vite) / DB: PostgreSQL 
 ## Issue 対応
 - issue に対応する際は必ず `rules/issue-management.md` の手順を順守すること
 
+## レビュー指摘対応
+- レビュー指摘に対応する際は必ず `rules/review-findings.md` の手順を順守すること
+
 ## ファイル参照ルール
 - API一覧・DB定義・テスト戦略等の詳細仕様: PROJECT_SUMMARY.md
 - コーディング規約: rules/coding-standards.md
