@@ -73,7 +73,7 @@ stateDiagram-v2
 |---|--------|--------|--------|--------|---------|---------|
 | T1 | `draft` | `submitted` | 提出 (submit) | 所有者（Member/Approver/Admin） | 明細が1件以上存在すること | 通知発行（Phase 3） |
 | T2 | `submitted` | `approved` | 承認 (approve) | Approver（同テナント） | 自己承認でないこと | 通知発行（Phase 3） |
-| T3 | `submitted` | `rejected` | 却下 (reject) | Approver（同テナント） | 却下理由の入力（必須） | 通知発行（Phase 3） |
+| T3 | `submitted` | `rejected` | 却下 (reject) | Approver（同テナント） | 自己操作でないこと・却下理由の入力（必須） | 通知発行（Phase 3） |
 | T4 | `approved` | `paid` | 支払完了 (mark_as_paid) | Accounting（同テナント） | なし | 通知発行（Phase 3） |
 | T5 | `draft` | (削除) | 削除 (delete) | 所有者（Member/Approver/Admin） | draft 状態であること | 論理削除（明細・添付も連動） |
 
@@ -175,14 +175,14 @@ sequenceDiagram
 
 ---
 
-## 8. 自己承認の禁止
+## 8. 自己操作の禁止（承認・却下共通）
 
 | ルール | 内容 |
 |--------|------|
-| 対象 | Approver ロールを持つユーザーが、自分自身が作成したレポートを承認する操作 |
-| 判断 | **MVP で禁止** |
-| 実装方法 | 承認API実行時に `report.created_by == current_user.id` をチェックし、一致する場合は 403 を返す |
-| 根拠 | 内部統制の基本原則。自分の支出を自分で承認できると、不正のリスクがある |
+| 対象 | Approver ロールを持つユーザーが、自分自身が作成したレポートを承認または却下する操作 |
+| 判断 | **MVP で禁止（approve / reject 両方に適用）** |
+| 実装方法 | 承認API・却下API実行時に `report.created_by == current_user.id` をチェックし、一致する場合は 403 を返す |
+| 根拠 | 内部統制の基本原則。自分の支出を自分で承認・却下できると、不正のリスクがある |
 
 ---
 
