@@ -23,6 +23,12 @@ progress-management/
 
 カテゴリはフォルダで分けず、テンプレートのカテゴリ欄で管理する。
 
+## review-findings について
+
+- `review-findings/` はレビュー指摘の原本であり、Claude Code 側では編集しない
+- issue 対応時に参照はするが、対応結果の追記・更新は行わない
+- 対応結果は `issues/` 内の issue ファイルの「解決内容」欄に記載する
+
 ## ライフサイクル
 
 1. **起票**: `issues/NNN-kebab-case.md` を作成（テンプレート: `templates/issue-template.md`）
