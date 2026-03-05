@@ -15,18 +15,9 @@ root-project/
 │  └─ portfolio_project_steps.md
 ├─ progress-management/              # 進捗・課題管理
 │  ├─ progress.md
-│  ├─ issues/                        # 未解決の課題（カテゴリ別）
-│  │  ├─ architecture/
-│  │  ├─ detail-design/
-│  │  ├─ domain/
-│  │  ├─ implementation/
-│  │  ├─ infrastructure/
-│  │  ├─ project-management/
-│  │  ├─ requirements/
-│  │  ├─ security/
-│  │  ├─ testing/
-│  │  └─ ui-design/
-│  ├─ resolved/                      # 解決済み課題
+│  ├─ issues/                        # 未解決の課題（フラット構造・カテゴリはファイル内で管理）
+│  ├─ pending-review/                # 対応完了・レビュー待ちの課題
+│  ├─ resolved/                      # レビュー完了・クローズ済み課題
 │  └─ step-deliverables/             # ステップ別成果物チェック
 ├─ rules/                            # 規約・ポリシー
 │  ├─ branching.md
@@ -34,6 +25,7 @@ root-project/
 │  ├─ commit-message.md
 │  ├─ data-handling.md
 │  ├─ github.md
+│  ├─ issue-management.md
 │  ├─ review-checklist.md
 │  ├─ security-policy.md
 │  └─ testing.md
