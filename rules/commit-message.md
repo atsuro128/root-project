@@ -7,7 +7,7 @@
 ## 必須フッター
 全コミットの末尾に必ず付与する:
 ```
-Co-Authored-By: Claude
+Co-Authored-By: Claude <noreply@anthropic.com>
 ```
 
 ## 禁止事項
