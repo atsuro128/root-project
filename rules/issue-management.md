@@ -26,7 +26,8 @@ progress-management/
 ## ライフサイクル
 
 1. **起票**: `issues/NNN-kebab-case.md` を作成（テンプレート: `templates/issue-template.md`）
-2. **対応完了**: 解決内容・解決日を記入した後、**ユーザーに確認を行う**
+2. **対応完了**: 解決内容・解決日を記入した後、**【必須】ユーザーに確認を行う**
+   - 確認なしに `pending-review/` / `resolved/` へ移動してはならない
    - レビューが必要 → `pending-review/` へ移動
    - 重要度が低くレビュー不要 → 直接 `resolved/` へ移動
 3. **レビュー後**（pending-review 経由の場合）: `resolved/` へ移動

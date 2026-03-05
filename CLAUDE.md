@@ -47,8 +47,10 @@ Backend: Rust (Actix Web) / Frontend: React (TypeScript, Vite) / DB: PostgreSQL 
 - tenant_id なしのクエリ作成
 - 不要なファイル生成（ドキュメント・READMEの自動生成含む）
 
+## Issue 対応
+- issue に対応する際は必ず `rules/issue-management.md` の手順を順守すること
+
 ## ファイル参照ルール
-- issue運用ルール: `rules/issue-management.md`
 - API一覧・DB定義・テスト戦略等の詳細仕様: PROJECT_SUMMARY.md
 - コーディング規約: rules/coding-standards.md
 - テスト方針: rules/testing.md
