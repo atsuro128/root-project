@@ -27,8 +27,10 @@
 ## 課題・気づきの管理
 詳細ルール: `rules/issue-management.md`
 - 起票: `progress-management/issues/NNN-kebab-case.md`（テンプレート: `templates/issue-template.md`）
-- 対応完了後: 解決内容・解決日を記入し `progress-management/pending-review/` へ移動
-- レビュー完了後: `progress-management/resolved/` へ移動
+- 対応完了後: 解決内容・解決日を記入し、移動先をユーザーに確認してから移動する
+  - レビューが必要 → `progress-management/pending-review/`
+  - 重要度が低くレビュー不要 → `progress-management/resolved/`
+- レビュー完了後（pending-review 経由の場合）: `progress-management/resolved/` へ移動
 - 連番は `issues/`・`pending-review/`・`resolved/` 横断でグローバル管理
 
 ## ディレクトリ役割
