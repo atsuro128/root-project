@@ -26,7 +26,7 @@
 ## コマンド実行
 **【重要】コマンド実行を行う際に、何をする為のコマンドなのかを必ず日本語で明示すること。**
 
-## 課題・気づきの管理
+## issue運用ルール
 詳細ルール: `rules/issue-management.md`
 - 起票: `progress-management/issues/NNN-kebab-case.md`（テンプレート: `templates/issue-template.md`）
 - 対応完了後: 解決内容・解決日を記入し、移動先をユーザーに確認してから移動する
