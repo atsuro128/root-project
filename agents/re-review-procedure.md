@@ -4,18 +4,16 @@
 
 ## Step 1: 再レビュー対象の確認
 
-**`progress-management/pending-review/`** を確認し、再レビュー待ちの issue 一覧を把握する。
+**`review-findings/pending-review/`** を確認し、レビュー待ちの指摘一覧を把握する。
 
 ## Step 2: 対応内容の確認
 
-各 issue に紐付く `review-findings/NNN-kebab-case.md` を参照し、対応内容を確認する。
+各指摘に対して、成果物の修正内容が指摘を解消しているかを確認する。
 
 ## Step 3: レビュー結果の処理
 
-レビュー結果に応じて issue を処理する（`rules/issue-management.md` のライフサイクルに従う）。
-
-- **対応が妥当**: issue を `resolved/` へ移動し、`review-findings/NNN-kebab-case.md` を `review-findings/resolved/` へ移動する。
-- **対応が不十分**: 追加指摘を issue に記載し、`pending-review/` から `issues/` へ差し戻す。
+- **対応が妥当**: `resolved/` へ移動
+- **対応が不十分**: 追加コメントを記載し、`open/` へ差し戻す
 
 ---
 
@@ -23,10 +21,7 @@
 
 ```
 review-findings/
-├── NNN-kebab-case.md      # 対応中・レビュー待ちの指摘詳細
-└── resolved/
-    └── NNN-kebab-case.md  # 再レビュー完了済みの指摘詳細
+├── open/             # 未対応の指摘
+├── pending-review/   # 対応済み・レビュー待ち
+└── resolved/         # 再レビュー完了・クローズ済み
 ```
-
-- `review-findings/` 直下にあるファイル = 未クローズ（対応中 or レビュー待ち）
-- `review-findings/resolved/` にあるファイル = 再レビュー完了・クローズ済み

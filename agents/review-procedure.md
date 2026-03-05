@@ -43,7 +43,9 @@
 
 ## Step 3: 指摘の起票
 
-指摘の起票・ライフサイクルは `rules/issue-management.md` に従う（**1 指摘 = 1 issue**）。
+レビュー指摘は `review-findings/` で管理する（issue とは別管理）。
 
-各 issue には、指摘の詳細を記載した `review-findings/NNN-kebab-case.md`（issue と同名）を作成し、
-issue ファイルの `## 参照` セクションにそのパスを記載する。
+- **1 指摘 = 1 ファイル**: `review-findings/open/NNN-kebab-case.md` を作成
+- 番号体系は `review-findings/` 内（`open/`・`pending-review/`・`resolved/` 横断）で一意の連番
+
+> 指摘のうち、独立した設計判断が必要で対応が大きいものは issue に昇格させる（`rules/issue-management.md` 参照）。
