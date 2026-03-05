@@ -48,3 +48,18 @@
   - 最低限、`requirements.md` 側に「テナント境界越えは 404（存在漏洩防止）」の一文が必要。
 
 結論: 層別分離の意図は理解できるが、文言上の曖昧性が残るため「対応完了」とは判定できない。
+
+---
+
+## 再レビュー結果（2026-03-05 / 2回目）
+対応妥当（クローズ）。
+
+### 確認内容
+- `requirements.md` の `RBC-004` が「同一テナント内の権限不足時は 403」に修正済み
+  - `deliverables/docs/10_requirements/requirements.md:96`
+- `requirements.md` に「テナント境界越えアクセスは 404」を `TNT-006` として追加済み
+  - `deliverables/docs/10_requirements/requirements.md:123`
+- `rbac.md` / `rules/security-policy.md` の 404 方針と整合
+
+### 判定理由
+当初の曖昧性（403の適用範囲未限定）が解消され、要件本体で 403/404 のケース分岐が明文化されたため。
