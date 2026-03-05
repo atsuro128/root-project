@@ -97,7 +97,7 @@
 |---------|------|
 | transportation | 交通費 |
 | accommodation | 宿泊費 |
-| meals | 飲食費 |
+| food | 飲食費 |
 | supplies | 消耗品費 |
 | communication | 通信費 |
 | other | その他 |
@@ -283,7 +283,7 @@ draft → submitted → approved → paid
 | status | VARCHAR(20) | draft / submitted / approved / rejected / paid |
 | period_start | DATE | 対象期間開始 |
 | period_end | DATE | 対象期間終了 |
-| total_amount | DECIMAL(12,2) | 合計金額（明細から算出） |
+| total_amount | INTEGER | 合計金額（明細から算出・円単位・整数） |
 | rejection_reason | TEXT | 却下理由（rejected 時のみ） |
 | submitted_at | TIMESTAMPTZ | 提出日時 |
 | approved_at | TIMESTAMPTZ | 承認日時 |
@@ -299,7 +299,7 @@ draft → submitted → approved → paid
 | tenant_id | UUID (FK → tenants) | テナントID |
 | report_id | UUID (FK → expense_reports) | レポートID |
 | date | DATE | 発生日 |
-| amount | DECIMAL(12,2) | 金額 |
+| amount | INTEGER | 金額（円単位・整数） |
 | category | VARCHAR(50) | カテゴリ |
 | description | TEXT | 摘要 |
 | created_at | TIMESTAMPTZ | |
@@ -422,8 +422,8 @@ draft → submitted → approved → paid
 
 | 項目 | 目標 |
 |------|------|
-| レスポンスタイム | API 95%ile < 200ms |
-| 可用性 | 99.9%（月間ダウンタイム ~43分以内） |
+| レスポンスタイム | API 95%ile < 500ms（一覧取得を含む） |
+| 可用性 | 99.5%（月間ダウンタイム約3.6時間） |
 | 同時テナント数 | 100テナント（MVP） |
 | データ保持 | 監査ログ: 1年、その他: 無期限 |
 | API レート制限 | 認証済み: 100 req/min/user、未認証: 20 req/min/IP |
