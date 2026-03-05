@@ -57,6 +57,8 @@ root-project/
 │     ├─ 00_goals.md
 │     ├─ 01_glossary.md
 │     └─ 02_scope.md
+├─ daily-reports/                     # 作業日報（日付別）
+│  └─ YYYY-MM-DD.md                 # その日の作業日報
 ├─ logs/                             # セッション決定ログ（日付別）
 │  └─ YYYY-MM-DD/
 │     └─ decisions.md               # その日の判断・設計決定の記録
@@ -71,6 +73,7 @@ root-project/
 | `PROJECT_SUMMARY.md` / `references/` | 仕様・内部資料 |
 | `templates/` / `scripts/` / `deliverables/` | 作業補助・成果物 |
 | `progress-management/` | 進捗・課題管理 |
+| `daily-reports/` | 作業日報（日付別） |
 | `logs/` | セッション決定ログ（日付別） |
 | `project/` | 実プロダクト（ソースコード）|
 

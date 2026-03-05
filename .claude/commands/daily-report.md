@@ -1,4 +1,4 @@
-今日の作業内容を日報としてまとめてください。
+今日の作業内容を日報としてまとめ、`daily-reports/YYYY-MM-DD.md` に保存してください。
 
 ## 手順
 
@@ -8,6 +8,8 @@
 3. project/ で同じコマンドを実行
 4. `logs/YYYY-MM-DD/decisions.md` が存在すれば読み込む
 5. `progress-management/progress.md` を読み、次タスクを確認する
+6. 下記の出力形式に従い `daily-reports/YYYY-MM-DD.md` にファイルを作成する
+7. 作成した内容をユーザーにも表示する
 
 ## 出力形式
 
