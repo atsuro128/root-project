@@ -7,7 +7,7 @@ root-project/
 ├─ CLAUDE.md                         # Claude Code プロジェクト方針
 ├─ PROJECT_SUMMARY.md                # プロジェクト概要・仕様サマリ
 ├─ .claude/                          # Claude Code 設定
-│  ├─ commands/                      # カスタムコマンド（review, status）
+│  ├─ commands/                      # カスタムコマンド（daily-report, requirement, review, scope, status）
 │  └─ settings.json
 ├─ guide/                            # プロジェクト進行ガイド
 │  ├─ github.md
@@ -15,6 +15,7 @@ root-project/
 │  └─ portfolio_project_steps.md
 ├─ progress-management/              # 進捗・課題管理
 │  ├─ progress.md
+│  ├─ progress-review.md
 │  ├─ issues/                        # 未解決の課題（フラット構造・カテゴリはファイル内で管理）
 │  ├─ pending-review/                # 対応完了・レビュー待ちの課題
 │  ├─ resolved/                      # レビュー完了・クローズ済み課題
@@ -28,13 +29,12 @@ root-project/
 │  ├─ architecture.md
 │  ├─ issue-management.md
 │  ├─ review-checklist.md
+│  ├─ review-findings.md
 │  ├─ security-policy.md
+│  ├─ session-log.md
 │  └─ testing.md
 ├─ prompts/                          # 指示文テンプレート（手動コピペ用 / .claude/commands/ 昇格前の下書き）
-│  ├─ README.md
-│  ├─ implementation.md
-│  ├─ refactor.md
-│  └─ requirement.md
+│  └─ README.md
 ├─ templates/                        # ドキュメントテンプレート
 │  ├─ ADR-template.md
 │  ├─ issue-template.md
@@ -44,6 +44,7 @@ root-project/
 │  ├─ decisions/
 │  ├─ dev-commands.md
 │  ├─ directory-structure.md         # 本ファイル
+│  ├─ ai-operations.md
 │  ├─ glossary.md
 │  ├─ links.md
 │  ├─ project-structure.md           # project/ の構成
@@ -56,12 +57,22 @@ root-project/
 │  └─ docs/
 │     ├─ 00_goals.md
 │     ├─ 01_glossary.md
-│     └─ 02_scope.md
+│     ├─ 02_scope.md
+│     └─ 10_requirements/           # 要件定義
+│        ├─ requirements.md
+│        ├─ usecases.md
+│        ├─ workflow.md
+│        ├─ rbac.md
+│        └─ preliminary/            # 事前調査
+│           ├─ 01_business-overview.md
+│           ├─ 02_actor-analysis.md
+│           ├─ 03_business-flow.md
+│           └─ 04_business-rules.md
 ├─ daily-reports/                     # 作業日報（日付別）
 │  └─ YYYY-MM-DD.md                 # その日の作業日報
-├─ logs/                             # セッション決定ログ（日付別）
+├─ logs/                             # セッションログ（日付別）
 │  └─ YYYY-MM-DD/
-│     └─ decisions.md               # その日の判断・設計決定の記録
+│     └─ session-log.md             # その日の作業ログ
 └─ project/                          # プロダクトコード → references/project-structure.md 参照
 ```
 
@@ -74,6 +85,6 @@ root-project/
 | `templates/` / `scripts/` / `deliverables/` | 作業補助・成果物 |
 | `progress-management/` | 進捗・課題管理 |
 | `daily-reports/` | 作業日報（日付別） |
-| `logs/` | セッション決定ログ（日付別） |
+| `logs/` | セッションログ（日付別） |
 | `project/` | 実プロダクト（ソースコード）|
 
