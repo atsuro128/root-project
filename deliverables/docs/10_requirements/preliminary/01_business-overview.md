@@ -162,11 +162,11 @@ Member が経費を立替える
     ↓
 Member が経費レポートを作成し、領収書を添付して提出
     ↓
-Approver に通知が届く
+Approver が承認待ち一覧で確認（Phase 3: 通知で受信）
     ↓
 Approver が内容を確認
-    ├─ 問題なし → 承認 → Accounting に通知
-    └─ 不備あり → 却下（理由付き）→ Member に通知
+    ├─ 問題なし → 承認 → Accounting が一覧で確認（Phase 3: 通知）
+    └─ 不備あり → 却下（理由付き）→ Member がステータスで確認（Phase 3: 通知）
                      ↓
                  Member が内容を修正し再申請
     ↓
@@ -174,7 +174,7 @@ Accounting が承認済みレポートを確認
     ↓
 Accounting が支払処理を実行（銀行振込等）
     ↓
-支払完了を記録 → Member に通知
+支払完了を記録 → Member がステータスで確認（Phase 3: 通知）
 ```
 
 ---

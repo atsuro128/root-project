@@ -48,17 +48,17 @@ sequenceDiagram
     Note over M: 複数明細を追加可能
     M->>S: レポート提出
     S->>S: ステータス: draft → submitted
-    S-->>A: 承認依頼通知
+    S-->>A: 承認依頼（Phase 3: 通知機能。MVP では承認待ち一覧で確認）
     A->>S: 承認待ち一覧を確認
     A->>S: レポート内容・領収書を確認
     A->>S: 承認
     S->>S: ステータス: submitted → approved
-    S-->>AC: 承認済み通知
-    S-->>M: 承認通知
+    S-->>AC: 承認済み（Phase 3: 通知。MVP では一覧で確認）
+    S-->>M: 承認（Phase 3: 通知。MVP ではステータス表示で確認）
     AC->>S: 承認済みレポート一覧を確認
     AC->>S: 支払処理実行
     S->>S: ステータス: approved → paid
-    S-->>M: 支払完了通知
+    S-->>M: 支払完了（Phase 3: 通知。MVP ではステータス表示で確認）
     Note over M: 精算完了
 ```
 
@@ -122,7 +122,7 @@ sequenceDiagram
 | 項目 | 内容 |
 |------|------|
 | **実行者** | Approver |
-| **トリガー** | 承認依頼通知を受信、または承認待ち一覧を確認 |
+| **トリガー** | 承認待ち一覧を確認（Phase 3: 通知で受信） |
 | **アクション** | レポートの内容（明細・領収書・合計金額）を確認し、承認または却下 |
 | **判断基準** | 業務関連性、金額妥当性、証跡の有無、カテゴリ正確性、摘要の具体性 |
 | **出力** | 承認 or 却下（却下時は理由必須） |
@@ -135,7 +135,7 @@ sequenceDiagram
 | **トリガー** | 内容に問題がないと判断 |
 | **アクション** | レポートを承認 |
 | **状態遷移** | `submitted` → `approved` |
-| **副作用** | Member と Accounting に通知 |
+| **副作用** | Member と Accounting に通知（Phase 3。MVP ではステータス表示で確認） |
 
 #### Step 8: 支払処理
 
@@ -145,7 +145,7 @@ sequenceDiagram
 | **トリガー** | 承認済みレポートの存在（月次締め処理の一環として） |
 | **アクション** | 承認済みレポートの支払処理を実行 |
 | **状態遷移** | `approved` → `paid` |
-| **副作用** | Member に支払完了通知 |
+| **副作用** | Member に支払完了通知（Phase 3。MVP ではステータス表示で確認） |
 | **備考** | 実務では銀行振込データを作成し、振込実行後にステータスを更新する |
 
 ---
@@ -162,18 +162,18 @@ sequenceDiagram
 
     M->>S: レポート提出
     S->>S: draft → submitted
-    S-->>A: 承認依頼通知
+    S-->>A: 承認依頼（Phase 3: 通知。MVP では一覧で確認）
     A->>S: 内容確認
     Note over A: 不備を発見
     A->>S: 却下（理由: "カテゴリが不正。飲食費を交通費で申請しています"）
     S->>S: submitted → rejected
-    S-->>M: 却下通知（理由付き）
+    S-->>M: 却下（Phase 3: 通知。MVP ではステータス表示で確認）
     M->>S: 却下理由を確認
     M->>S: 新規レポートを作成（元レポートを参照）
     Note over M: 修正内容を反映して再作成
     M->>S: 再申請（提出）
     S->>S: draft → submitted
-    S-->>A: 承認依頼通知
+    S-->>A: 承認依頼（Phase 3: 通知）
     A->>S: 内容確認 → 承認
     S->>S: submitted → approved
 ```
@@ -228,6 +228,8 @@ sequenceDiagram
 
 > **決定事項（2026-03-05）**: 提出後の取消（`submitted` → `draft`）は **MVP 対象外**。
 > 提出ミスの場合は承認者に連絡して却下してもらう運用でカバーする。シンプルさと監査証跡の一貫性を優先した判断。
+>
+> **詰み対策**: Approver が0人のテナントでは提出不可とするバリデーションを設け、却下依頼先が存在しない状況を防止する。
 
 ### 3-4. レポート削除
 
@@ -255,8 +257,8 @@ sequenceDiagram
 stateDiagram-v2
     [*] --> draft: レポート作成
 
-    draft --> submitted: 提出 (Member)
-    draft --> [*]: 削除 (Member, draft のみ)
+    draft --> submitted: 提出 (所有者)
+    draft --> [*]: 削除 (所有者, draft のみ)
 
     submitted --> approved: 承認 (Approver)
     submitted --> rejected: 却下 (Approver)
@@ -289,11 +291,11 @@ stateDiagram-v2
 
 | 遷移 | 遷移元 | 遷移先 | 実行者 | 条件 |
 |------|--------|--------|--------|------|
-| 提出 | draft | submitted | Member（所有者のみ） | 明細が1件以上存在 |
+| 提出 | draft | submitted | 所有者（Member / Approver / Admin） | 明細が1件以上存在 |
 | 承認 | submitted | approved | Approver | - |
 | 却下 | submitted | rejected | Approver | 却下理由の入力が必須 |
 | 支払完了 | approved | paid | Accounting | - |
-| 削除 | draft | (削除) | Member（所有者のみ） | draft 状態のみ |
+| 削除 | draft | (削除) | 所有者（Member / Approver / Admin） | draft 状態のみ |
 
 ### 禁止される遷移（ドメイン層で拒否）
 
