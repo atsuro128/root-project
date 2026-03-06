@@ -7,7 +7,7 @@ root-project/
 ├─ CLAUDE.md                         # Claude Code プロジェクト方針
 ├─ PROJECT_SUMMARY.md                # プロジェクト概要・仕様サマリ
 ├─ .claude/                          # Claude Code 設定
-│  ├─ commands/                      # カスタムコマンド（daily-report, requirement, review, scope, status）
+│  ├─ commands/                      # カスタムコマンド（check-structure, daily-report, requirement, review, scope, status）
 │  └─ settings.json
 ├─ guide/                            # プロジェクト進行ガイド
 │  ├─ github.md
