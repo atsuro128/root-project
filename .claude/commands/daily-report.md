@@ -6,7 +6,7 @@
 2. root-project/ で当日のコミット履歴を取得:
    `git log --since="YYYY-MM-DD 00:00" --until="YYYY-MM-DD 23:59" --oneline`
 3. project/ で同じコマンドを実行
-4. `logs/YYYY-MM-DD/decisions.md` が存在すれば読み込む
+4. `logs/YYYY-MM-DD/session-log.md` が存在すれば読み込む
 5. `progress-management/progress.md` を読み、次タスクを確認する
 6. 下記の出力形式に従い `daily-reports/YYYY-MM-DD.md` にファイルを作成する
 7. 作成した内容をユーザーにも表示する
@@ -20,7 +20,7 @@
 （コミット履歴をもとに、何をしたかを箇条書きでまとめる）
 
 ### 判断・決定事項
-（decisions.md の内容を整形して記載。なければ「記録なし」）
+（session-log.md の `判断:` 行を整形して記載。なければ「記録なし」）
 
 ### 明日以降のタスク
 （progress.md の直近タスクから引用）
