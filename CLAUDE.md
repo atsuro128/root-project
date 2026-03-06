@@ -7,7 +7,6 @@
 ## 作業開始時ルール
 - 作業開始時に必ず `progress-management/progress.md` を確認し、現在のフェーズ・直近タスク・課題を把握すること
 - 作業完了時に `progress-management/progress.md` を更新し、次回セッションに引き継げる状態にすること
-- **【必須】作業完了時に `logs/YYYY-MM-DD/session-log.md` へセッションの作業ログを記録すること（ルール: `rules/session-log.md`）**
 
 ## 作業フロー
 - 全体の進め方・各ステップの成果物・完了条件: `guide/portfolio_project_steps.md`
