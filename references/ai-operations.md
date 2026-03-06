@@ -47,7 +47,7 @@ rules/             ← Claude・人間が共有するプロジェクトルール
 
 ## ワークフロー設計
 
-### issue ライフサイクル
+### issue ライフサイクル(TODO)→issue記載はcodexに全委任するの？
 
 ```
 issues/           → 対応中・未対応

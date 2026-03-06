@@ -3,7 +3,6 @@
 ## メモリ
 - 記憶・知見の保存先は `.claude/memory/MEMORY.md` とする
 - グローバルのメモリパスは使用しない
-- セッション中に記憶すべき事項が生じた場合は `.claude/memory/MEMORY.md` に書き込むこと
 
 ## 作業開始時ルール
 - 作業開始時に必ず `progress-management/progress.md` を確認し、現在のフェーズ・直近タスク・課題を把握すること
