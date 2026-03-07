@@ -150,7 +150,7 @@ Rust バックエンドは `Cargo.toml` で管理するため、以下に差し�
 2. `sqlx migrate run` で全マイグレーション実行
 3. 各テーブルに `tenant_id` が存在することを確認
 
-テーブル定義の根拠: `PROJECT_SUMMARY.md` の「DB 設計（主要テーブル）」セクション
+テーブル定義の根拠: TODO：右記は初期構想のため廃止予定：`PROJECT_SUMMARY.md` の「DB 設計（主要テーブル）」セクション
 
 確認チェックポイント：
 - [ ] `sqlx migrate run` が正常終了
@@ -266,7 +266,7 @@ Rust バックエンドは `Cargo.toml` で管理するため、以下に差し�
    - 全クエリに `WHERE tenant_id = $1` を必ず含める
 3. ハンドラ実装（`handlers/expense_reports.rs`）
 
-エンドポイント: `PROJECT_SUMMARY.md` の「経費レポート」セクション参照
+エンドポイント: TODO：右記は初期構想のため廃止予定：`PROJECT_SUMMARY.md` の「経費レポート」セクション参照
 
 確認チェックポイント：
 - [ ] `draft → approved` のような不正遷移で 422 を返す

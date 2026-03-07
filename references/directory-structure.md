@@ -81,7 +81,7 @@ root-project/
 | ディレクトリ | 役割 |
 |---|---|
 | `CLAUDE.md` / `rules/` / `prompts/` / `.claude/commands/` | AIエージェント設定・規約 |
-| `PROJECT_SUMMARY.md` / `references/` | 仕様・内部資料 |
+| `references/` | 仕様・内部資料 |
 | `templates/` / `scripts/` / `deliverables/` | 作業補助・成果物 |
 | `progress-management/` | 進捗・課題管理 |
 | `daily-reports/` | 作業日報（日付別） |

@@ -25,7 +25,6 @@
 ## 3. 主要参照先
 - 全体の進め方・各ステップの成果物・完了条件: `guide/portfolio_project_steps.md`
 - アーキテクチャ・制約: `rules/architecture.md`
-- API一覧・DB定義・テスト戦略等の詳細仕様: `PROJECT_SUMMARY.md`
 - コーディング規約: `rules/coding-standards.md`
 - テスト方針: `rules/testing.md`
 
