@@ -2,7 +2,6 @@
 ai-dev-framework/
 expense-saas/
 dev-journal/
-project/
 
 # Claude Code ローカル設定
 .claude/settings.local.json
