@@ -1,4 +1,7 @@
-# プロダクトリポジトリ（別Git管理）
+# サブリポジトリ（各自独立Git管理）
+ai-dev-framework/
+expense-saas/
+dev-journal/
 project/
 
 # Claude Code ローカル設定
