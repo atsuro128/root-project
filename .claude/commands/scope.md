@@ -1,4 +1,4 @@
-deliverables/docs/02_scope.md を参照し、以下を判定してください。
+dev-journal/deliverables/docs/02_scope.md を参照し、以下を判定してください。
 
 対象: $ARGUMENTS
 

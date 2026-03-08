@@ -1,12 +1,12 @@
 指定された機能・テーマについて要件定義を行い、成果物を作成してください。
 
 対象: $ARGUMENTS
-（引数がない場合は、progress-management/progress.md の直近タスクから対象を判断する）
+（引数がない場合は、dev-journal/progress-management/progress.md の直近タスクから対象を判断する）
 
 ## 前提の確認
-1. deliverables/docs/02_scope.md を読み、対象機能が MVP スコープ内か確認する
-2. references/glossary.md を読み、用語を統一する
-3. 既存の要件定義成果物（deliverables/docs/10_requirements/）があれば読み、整合性を保つ
+1. dev-journal/deliverables/docs/02_scope.md を読み、対象機能が MVP スコープ内か確認する
+2. dev-journal/references/glossary.md を読み、用語を統一する
+3. 既存の要件定義成果物（dev-journal/deliverables/docs/10_requirements/）があれば読み、整合性を保つ
 4. 他機能との依存関係・連携ポイントを把握する
 
 ## 要件整理の観点
@@ -39,13 +39,13 @@
 - **意思決定の確定状態**: 「検討中」「判断が必要」の項目が残っていないか（残す場合は決定予定日と責任者を明記）
 
 ## 出力形式
-- 成果物は deliverables/docs/10_requirements/ に配置
+- 成果物は dev-journal/deliverables/docs/10_requirements/ に配置
 - 状態遷移がある場合は Mermaid 記法で図を含める
 - RBAC に関わる場合はロール×操作の権限マトリクスを含める
 
 ## 品質チェック
 作成後、以下を自己チェック：
-- [ ] 用語が glossary.md と一致しているか
+- [ ] 用語が dev-journal/references/glossary.md と一致しているか
 - [ ] MVP スコープを逸脱していないか
 - [ ] 「誰が」「何を」「どの順で」が説明できるか
 - [ ] 例外ケース（却下・エラー・権限不足）を網羅しているか

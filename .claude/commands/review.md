@@ -1,4 +1,4 @@
-rules/review-checklist.md を読み込み、そのチェックリストに従ってコードレビューを実施してください。
+ai-dev-framework/rules/review-checklist.md を読み込み、そのチェックリストに従ってコードレビューを実施してください。
 
 手順:
 1. git diff で変更差分を取得
