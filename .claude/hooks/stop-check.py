@@ -3,6 +3,7 @@ import sys
 import json
 import os
 import subprocess
+from datetime import datetime
 
 try:
     data = json.load(sys.stdin)
@@ -26,10 +27,16 @@ try:
 
     if uncommitted:
         repos = ", ".join(uncommitted)
-        print(
-            f"⚠ 未コミットの変更があります（{repos}）。コミット・progress.md更新を確認してください。",
-            file=sys.stderr,
-        )
+        msg = f"⚠ 未コミットの変更があります（{repos}）。コミット・progress.md更新を確認してください。"
+        print(msg, file=sys.stderr)
+
+        # ログファイルに記録
+        log_dir = os.path.join(project_dir, "dev-journal", "logs", "hooks")
+        os.makedirs(log_dir, exist_ok=True)
+        log_file = os.path.join(log_dir, "hook-warnings.log")
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        with open(log_file, "a", encoding="utf-8") as f:
+            f.write(f"[{timestamp}] stop-check: 未コミット変更あり（{repos}）\n")
 except Exception:
     pass
 
