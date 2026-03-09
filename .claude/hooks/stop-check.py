@@ -66,7 +66,7 @@ try:
         sys.exit(0)
     else:
         # ブロック
-        msg = f"未コミットの変更があります（{repos}）。コミットしてください。（{count}/3回目）"
+        msg = f"未コミットの変更があります（{repos}）。ai-dev-framework/rules/commit-message.md を参照し、手順に従ってコミットしてください。（{count}/3回目）"
         print(msg, file=sys.stderr)
         sys.exit(2)
 
