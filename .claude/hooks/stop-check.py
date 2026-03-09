@@ -4,6 +4,7 @@ import io
 import json
 import os
 import subprocess
+import tempfile
 from datetime import datetime
 
 # Windows環境でstderrのUTF-8出力を保証
@@ -15,7 +16,7 @@ try:
     project_dir = os.environ.get("CLAUDE_PROJECT_DIR", os.getcwd())
     log_dir = os.path.join(project_dir, "dev-journal", "logs", "hooks")
     os.makedirs(log_dir, exist_ok=True)
-    counter_file = os.path.join(log_dir, ".stop-check-counter")
+    counter_file = os.path.join(tempfile.gettempdir(), ".claude-stop-check-counter")
     log_file = os.path.join(log_dir, "hook-warnings.log")
 
     # 各リポジトリの未コミット変更を確認
