@@ -1,9 +1,13 @@
 """Stop hook: 未コミットの変更がある場合にブロック（3回連続発火でループ回避）"""
 import sys
+import io
 import json
 import os
 import subprocess
 from datetime import datetime
+
+# Windows環境でstderrのUTF-8出力を保証
+sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8")
 
 try:
     data = json.load(sys.stdin)

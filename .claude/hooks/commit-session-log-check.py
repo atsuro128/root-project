@@ -1,8 +1,12 @@
 """PreToolUse hook: git commit 前にセッションログの存在を確認"""
 import sys
+import io
 import json
 import os
 from datetime import datetime
+
+# Windows環境でstderrのUTF-8出力を保証
+sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8")
 
 try:
     data = json.load(sys.stdin)

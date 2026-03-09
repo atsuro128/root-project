@@ -1,8 +1,12 @@
 """PreToolUse hook: ソースコードが expense-saas/ 外で編集されようとしている場合に警告（ブロックはしない）"""
 import sys
+import io
 import json
 import os
 from datetime import datetime
+
+# Windows環境でstderrのUTF-8出力を保証
+sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8")
 
 try:
     data = json.load(sys.stdin)
