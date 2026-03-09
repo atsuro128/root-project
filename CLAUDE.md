@@ -4,7 +4,6 @@
 - 作業開始時に必ず `dev-journal/progress-management/progress.md` を確認し、現在のフェーズ・直近タスク・課題を把握すること
 - 作業完了時に必ず `dev-journal/progress-management/progress.md` を更新し、次回セッションに引き継げる状態にすること
 - ソースコードの新規作成・編集は `expense-saas/` 配下のみで行うこと
-- ファイルを編集した場合、ユーザーへの最終応答前に必ず`ai-dev-framework/rules/commit-message.md` を参照し、その手順に従うこと
 - コマンド実行時は、何をするためのコマンドなのかを必ず日本語で明示すること
 - tenant_id なしのクエリを作成しないこと
 - 不要なファイルを生成しないこと（ドキュメント・READMEの自動生成を含む）
