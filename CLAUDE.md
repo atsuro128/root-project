@@ -4,7 +4,7 @@
 - 作業開始時に必ず `dev-journal/progress-management/progress.md` を確認し、現在のフェーズ・直近タスク・課題を把握すること
 - 作業完了時に必ず `dev-journal/progress-management/progress.md` を更新し、次回セッションに引き継げる状態にすること
 - ソースコードの新規作成・編集は `expense-saas/` 配下のみで行うこと
-- ファイルを編集した場合、ユーザーへの最終応答前に必ずコミットすること: `ai-dev-framework/rules/commit-message.md`
+- ファイルを編集した場合、ユーザーへの最終応答前に必ずコミットすること（`ai-dev-framework/rules/commit-message.md` を参照）
 - コマンド実行時は、何をするためのコマンドなのかを必ず日本語で明示すること
 - tenant_id なしのクエリを作成しないこと
 - 不要なファイルを生成しないこと（ドキュメント・READMEの自動生成を含む）
@@ -45,16 +45,9 @@
 | `expense-saas/` | プロダクト本体（実装コードのみ） | 独立 |
 | `dev-journal/` | 開発プロセス記録（進捗・日報・ログ・設計成果物・参照資料） | 独立 |
 
-## 7. コミット運用
-- ソースコード関連: `expense-saas/` でコミット
-- AI運用・ルール関連: `ai-dev-framework/` でコミット
-- 進捗・日報・ログ・設計資料関連: `dev-journal/` でコミット
-- メタ設定（CLAUDE.md, .claude/, .gitignore等）: `root-project/` でコミット
-- コミットルール: `ai-dev-framework/rules/commit-message.md`
-
-## 8. 用語統一
+## 7. 用語統一
 - ドキュメント・コード・コミットメッセージで用語を統一すること
 - 用語定義: `dev-journal/references/glossary.md`
 
-## 9. 技術スタック
+## 8. 技術スタック
 Backend: Rust (Actix Web) / Frontend: React (TypeScript, Vite) / DB: PostgreSQL / DB Access: SQLx / Infra: AWS (ECS Fargate, RDS, S3) / CI: GitHub Actions
