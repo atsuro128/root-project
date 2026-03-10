@@ -20,6 +20,7 @@
 4. 実装または修正方針を整理してから変更を行う
 5. 必要なテスト・動作確認を行う
 6. 関連ドキュメントと `dev-journal/progress-management/progress.md` を更新する
+7. Step 成果物の作成・コミットが完了したら、codex レビューを自動実行する: `ai-dev-framework/rules/codex-review.md`
 
 ## 3. 主要参照先
 - 全体の進め方・各ステップの成果物・完了条件: `dev-journal/guide/portfolio_project_steps.md`
