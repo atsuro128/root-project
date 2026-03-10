@@ -5,6 +5,7 @@ dev-journal/
 
 # Claude Code ローカル設定
 .claude/settings.local.json
+.claude/memory/
 
 # OS
 Thumbs.db
