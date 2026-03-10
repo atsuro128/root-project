@@ -8,8 +8,22 @@ description: |
 
 プロジェクトの現在の状況を確認して報告してください。
 
-手順:
-1. git status で作業ツリーの状態を確認
-2. git log --oneline -10 で直近のコミット履歴を表示
-3. 未解決の課題（TODO, FIXME, HACK コメント）をソースコード内から検索
-4. 上記の結果を簡潔にまとめて報告
+## 事前取得データ
+
+### 作業ツリー状態（root-project）
+!`git status --short 2>&1`
+
+### 直近コミット（root-project）
+!`git log --oneline -10 2>&1`
+
+### 作業ツリー状態（expense-saas）
+!`cd expense-saas && git status --short 2>&1 || echo "リポジトリなし"`
+
+### 直近コミット（expense-saas）
+!`cd expense-saas && git log --oneline -5 2>&1 || echo "リポジトリなし"`
+
+## 手順
+
+1. 上記の事前取得データを分析する
+2. 未解決の課題（TODO, FIXME, HACK コメント）をソースコード内から検索
+3. 上記の結果を簡潔にまとめて報告

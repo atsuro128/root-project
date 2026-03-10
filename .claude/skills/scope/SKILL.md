@@ -4,6 +4,7 @@ description: |
   指定された機能がMVPスコープ内かを判定する。
   Use when: ユーザーが「これはスコープ内？」「MVP に含まれる？」「この機能やっていい？」と聞いた時、スコープ判断が必要な時
   DO NOT use when: 既にスコープ確認済みの実装作業中
+argument-hint: "[機能名]"
 ---
 
 dev-journal/deliverables/docs/02_scope.md を参照し、以下を判定してください。
