@@ -32,6 +32,7 @@
 - Issue に対応する場合: `ai-dev-framework/rules/issue-management.md`
 - レビュー指摘に対応する場合: `ai-dev-framework/rules/review-findings.md`
 - フォルダ追加・削除・移動を行う場合: 本ファイルのセクション6「リポジトリ構成」を参照し、対象リポジトリ内で作業すること
+- ミスの指摘を受けた場合・手戻りが発生した場合: `ai-dev-framework/rules/incident-review.md`
 
 ## 5. メモリ運用
 - 記憶・知見の保存先は `.claude/memory/MEMORY.md` とする
