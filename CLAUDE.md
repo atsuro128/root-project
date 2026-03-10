@@ -20,25 +20,18 @@
 4. 実装または修正方針を整理してから変更を行う
 5. 必要なテスト・動作確認を行う
 6. 関連ドキュメントと `dev-journal/progress-management/progress.md` を更新する
-7. Step 成果物の作成・コミットが完了したら、codex レビューを自動実行する: `ai-dev-framework/rules/codex-review.md`
+7. Step 成果物の作成・コミットが完了したら、`/codex-review` スキルを実行する
 
 ## 3. 主要参照先
 - 全体の進め方・各ステップの成果物・完了条件: `dev-journal/guide/portfolio_project_steps.md`
-- アーキテクチャ・制約: `ai-dev-framework/rules/architecture.md`
-- コーディング規約: `ai-dev-framework/rules/coding-standards.md`
-- テスト方針: `ai-dev-framework/rules/testing.md`
+- アーキテクチャ・制約・コーディング規約・テスト方針・セキュリティポリシー: `.claude/rules/` で自動ロード
+- フォルダ追加・削除・移動を行う場合: 本ファイルのセクション5「リポジトリ構成」を参照し、対象リポジトリ内で作業すること
 
-## 4. 条件付き参照ルール
-- Issue に対応する場合: `ai-dev-framework/rules/issue-management.md`
-- レビュー指摘に対応する場合: `ai-dev-framework/rules/review-findings.md`
-- フォルダ追加・削除・移動を行う場合: 本ファイルのセクション6「リポジトリ構成」を参照し、対象リポジトリ内で作業すること
-- ミスの指摘を受けた場合・手戻りが発生した場合: `ai-dev-framework/rules/incident-review.md`
-
-## 5. メモリ運用
+## 4. メモリ運用
 - 記憶・知見の保存先は `.claude/memory/MEMORY.md` とする
 - グローバルのメモリパスは使用しない
 
-## 6. リポジトリ構成
+## 5. リポジトリ構成
 | リポジトリ | 責務 | Git |
 |---|---|---|
 | `root-project/` | メタリポジトリ（CLAUDE.md・.claude/による統括） | 本体 |
@@ -46,9 +39,9 @@
 | `expense-saas/` | プロダクト本体（実装コードのみ） | 独立 |
 | `dev-journal/` | 開発プロセス記録（進捗・日報・ログ・設計成果物・参照資料） | 独立 |
 
-## 7. 用語統一
+## 6. 用語統一
 - ドキュメント・コード・コミットメッセージで用語を統一すること
 - 用語定義: `dev-journal/references/glossary.md`
 
-## 8. 技術スタック
+## 7. 技術スタック
 Backend: Rust (Actix Web) / Frontend: React (TypeScript, Vite) / DB: PostgreSQL / DB Access: SQLx / Infra: AWS (ECS Fargate, RDS, S3) / CI: GitHub Actions

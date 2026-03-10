@@ -29,9 +29,9 @@
 | 全体ステップ（成果物・完了条件） | `dev-journal/guide/portfolio_project_steps.md` |
 | MVP スコープ | `dev-journal/deliverables/docs/02_scope.md` |
 | 用語定義 | `dev-journal/references/glossary.md` |
-| Issue 管理ルール | `ai-dev-framework/rules/issue-management.md` |
+| Issue 管理ルール | `.claude/skills/issue/SKILL.md` |
 | Issue テンプレート | `ai-dev-framework/templates/issue-template.md` |
-| アーキテクチャ制約 | `ai-dev-framework/rules/architecture.md` |
-| コーディング規約 | `ai-dev-framework/rules/coding-standards.md` |
-| テスト方針 | `ai-dev-framework/rules/testing.md` |
-| セキュリティポリシー | `ai-dev-framework/rules/security-policy.md` |
+| アーキテクチャ制約 | `.claude/rules/architecture.md` |
+| コーディング規約 | `.claude/rules/coding-standards.md` |
+| テスト方針 | `.claude/rules/testing.md` |
+| セキュリティポリシー | `.claude/rules/security-policy.md` |

@@ -7,7 +7,7 @@ description: |
 allowed-tools: Read, Grep, Glob, Bash(git *)
 ---
 
-ai-dev-framework/rules/review-checklist.md を読み込み、そのチェックリストに従ってコードレビューを実施してください。
+`.claude/rules/` で自動ロードされるルール（アーキテクチャ制約・コーディング規約・セキュリティポリシー・テスト方針）に基づいてコードレビューを実施してください。
 
 ## レビュー対象の差分
 
@@ -23,6 +23,5 @@ ai-dev-framework/rules/review-checklist.md を読み込み、そのチェック�
 ## 手順
 
 1. 上記の差分を確認する（引数でファイル指定がある場合はそのファイルを読む）
-2. review-checklist.md の各項目に照らして変更を評価
-3. CLAUDE.md のコーディング規約・アーキテクチャ制約への準拠を確認
-4. 問題点・改善提案をチェックリスト項目ごとに報告
+2. `.claude/rules/` の各ルールに照らして変更を評価
+3. 問題点・改善提案をルール項目ごとに報告
