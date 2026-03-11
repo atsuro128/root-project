@@ -4,8 +4,7 @@ ARG TZ
 ENV TZ="$TZ"
 
 ARG CLAUDE_CODE_VERSION=latest
-ARG RUST_VERSION=stable
-ARG SQLX_CLI_VERSION=0.8
+ARG GO_VERSION=1.24.1
 
 # Install basic development tools, iptables/ipset, Python, and PostgreSQL client
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -32,7 +31,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   postgresql-client \
   libpq-dev \
   pkg-config \
-  libssl-dev \
   build-essential \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
@@ -63,19 +61,21 @@ RUN ARCH=$(dpkg --print-architecture) && \
   sudo dpkg -i "git-delta_${GIT_DELTA_VERSION}_${ARCH}.deb" && \
   rm "git-delta_${GIT_DELTA_VERSION}_${ARCH}.deb"
 
+# Install Go toolchain (requires root for /usr/local/go)
+RUN ARCH=$(dpkg --print-architecture) && \
+  wget -q "https://go.dev/dl/go${GO_VERSION}.linux-${ARCH}.tar.gz" && \
+  tar -C /usr/local -xzf "go${GO_VERSION}.linux-${ARCH}.tar.gz" && \
+  rm "go${GO_VERSION}.linux-${ARCH}.tar.gz"
+ENV GOROOT=/usr/local/go
+ENV PATH=$GOROOT/bin:$PATH
+
 # Set up non-root user
 USER node
 
-# Install Rust toolchain (changes less frequently — cached early)
-ENV CARGO_HOME=/home/node/.cargo
-ENV RUSTUP_HOME=/home/node/.rustup
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | \
-  sh -s -- -y --default-toolchain ${RUST_VERSION}
-ENV PATH=$CARGO_HOME/bin:$PATH
-RUN rustup component add clippy rustfmt
-
-# Install sqlx-cli
-RUN cargo install sqlx-cli --version "~${SQLX_CLI_VERSION}" --no-default-features --features rustls,postgres
+# Set up Go workspace for non-root user
+ENV GOPATH=/home/node/go
+ENV PATH=$GOPATH/bin:$PATH
+RUN go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 
 # Install global packages
 ENV NPM_CONFIG_PREFIX=/usr/local/share/npm-global

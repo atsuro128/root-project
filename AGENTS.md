@@ -13,7 +13,7 @@
 
 マルチテナント型 経費精算SaaS のポートフォリオプロジェクト。
 
-- **技術スタック**: Rust (Actix Web) / React (TypeScript, Vite) / PostgreSQL / SQLx / AWS (ECS Fargate, RDS, S3)
+- **技術スタック**: Go / React (TypeScript, Vite) / PostgreSQL / AWS (ECS Fargate, RDS, S3)
 - **リポジトリ構成**:
   - `root-project/`: メタリポジトリ（CLAUDE.md・AGENTS.md・.claude/による統括）
   - `expense-saas/`: プロダクトコード（public）

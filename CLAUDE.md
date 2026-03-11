@@ -1,7 +1,7 @@
 # 経費精算SaaS — Claude Code プロジェクト方針
 
 ## 技術スタック
-Backend: Rust (Actix Web) / Frontend: React (TypeScript, Vite) / DB: PostgreSQL (SQLx) / Infra: AWS (ECS Fargate, RDS, S3) / CI: GitHub Actions
+Backend: Go / Frontend: React (TypeScript, Vite) / DB: PostgreSQL / Infra: AWS (ECS Fargate, RDS, S3) / CI: GitHub Actions
 
 ## リポジトリ構成
 | リポジトリ | 責務 |

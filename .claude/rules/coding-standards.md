@@ -1,15 +1,17 @@
 ---
 paths:
-  - "expense-saas/**/*.rs"
+  - "expense-saas/**/*.go"
   - "expense-saas/**/*.{ts,tsx}"
 ---
 
 # コーディング規約
 
-## Rust
-- 命名: snake_case
-- clippy 警告ゼロを維持
-- `unwrap()` 禁止（テストコード除く）
+## Go
+- フォーマット: `gofmt` 準拠を維持（CI で確認）
+- `go vet` 警告ゼロを維持
+- `golangci-lint run` エラーゼロを維持
+- `panic()` 禁止（テストコード除く）— エラーは `error` 型で返す
+- 命名: Go 標準規約（exported: PascalCase, unexported: camelCase）
 - エラーは構造化 JSON で返す（`code`, `message`, `details`）
 
 ## TypeScript

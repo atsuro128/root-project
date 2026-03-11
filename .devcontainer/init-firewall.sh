@@ -73,10 +73,9 @@ for domain in \
     "marketplace.visualstudio.com" \
     "vscode.blob.core.windows.net" \
     "update.code.visualstudio.com" \
-    "crates.io" \
-    "static.crates.io" \
-    "index.crates.io" \
-    "static.rust-lang.org"; do
+    "proxy.golang.org" \
+    "sum.golang.org" \
+    "storage.googleapis.com"; do
     echo "Resolving $domain..."
     ips=$(dig +noall +answer A "$domain" | awk '$4 == "A" {print $5}')
     if [ -z "$ips" ]; then
@@ -146,12 +145,12 @@ else
     echo "PASS: able to reach https://api.github.com"
 fi
 
-# Verify allowed: crates.io registry
-if ! curl --connect-timeout 5 https://crates.io/api/v1/crates?per_page=1 >/dev/null 2>&1; then
-    echo "ERROR: Firewall verification failed - unable to reach https://crates.io"
+# Verify allowed: Go module proxy
+if ! curl --connect-timeout 5 https://proxy.golang.org/ >/dev/null 2>&1; then
+    echo "ERROR: Firewall verification failed - unable to reach https://proxy.golang.org"
     exit 1
 else
-    echo "PASS: able to reach https://crates.io"
+    echo "PASS: able to reach https://proxy.golang.org"
 fi
 
 echo "All firewall verifications passed"

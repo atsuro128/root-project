@@ -2,7 +2,7 @@
 paths:
   - "expense-saas/**/*.test.*"
   - "expense-saas/**/tests/**"
-  - "expense-saas/**/*_test.rs"
+  - "expense-saas/**/*_test.go"
 ---
 
 # テスト方針
@@ -12,10 +12,10 @@ paths:
 - ハンドラ層は統合テストで検証
 - フロントエンドはコンポーネント単体テスト + E2Eテスト
 
-## Backend (Rust)
-- `#[cfg(test)]` モジュールに単体テストを配置
+## Backend (Go)
+- `*_test.go` ファイルにテストを配置（Go 標準 testing パッケージ）
 - リポジトリ層のテストはテスト用DBに対して実行（インメモリ不可）
-- テストコード内の `unwrap()` は許容
+- テストコード内の `panic()` はテストヘルパーのみ許容（`t.Fatal()` / `t.Fatalf()` を優先）
 
 ## Frontend (TypeScript)
 - Vitest によるコンポーネント・ユーティリティのユニットテスト
