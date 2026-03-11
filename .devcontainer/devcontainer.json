@@ -60,9 +60,9 @@
     "CARGO_HOME": "/home/node/.cargo",
     "RUSTUP_HOME": "/home/node/.rustup"
   },
-  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=delegated",
-  "workspaceFolder": "/workspace",
-  "postCreateCommand": "git config --global core.autocrlf input && git config --global core.fileMode false && git config --global --add safe.directory /workspace && git config --global --add safe.directory /workspace/expense-saas && git config --global --add safe.directory /workspace/dev-journal && git config --global --add safe.directory /workspace/ai-dev-framework",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/root-project,type=bind,consistency=delegated",
+  "workspaceFolder": "/root-project",
+  "postCreateCommand": "git config --global core.autocrlf input && git config --global core.fileMode false && git config --global --add safe.directory /root-project && git config --global --add safe.directory /root-project/expense-saas && git config --global --add safe.directory /root-project/dev-journal && git config --global --add safe.directory /root-project/ai-dev-framework",
   "postStartCommand": "sudo /usr/local/bin/init-firewall.sh || echo '[WARN] Firewall setup failed -- continuing without network restrictions'",
   "waitFor": "postStartCommand"
 }
