@@ -30,7 +30,12 @@ try:
             ["git", "status", "--porcelain"],
             capture_output=True, text=True, cwd=repo,
         )
-        if result.stdout.strip():
+        changed = result.stdout.strip()
+        if changed:
+            # 自身のログファイルだけの変更は無視（再帰ループ防止）
+            lines = [l.strip() for l in changed.splitlines()]
+            if all(l.endswith("logs/hooks/hook-warnings.log") for l in lines):
+                continue
             name = os.path.basename(repo) if sub != "." else "root-project"
             uncommitted.append(name)
 
