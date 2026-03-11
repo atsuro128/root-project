@@ -68,6 +68,8 @@ try:
         # ブロック
         msg = f"未コミットの変更があります（{repos}）。/commit スキルを使用してコミットしてください。（{count}/3回目）"
         print(msg, file=sys.stderr)
+        with open(log_file, "a", encoding="utf-8") as f:
+            f.write(f"[{timestamp}] stop-check: 未コミット変更あり（{repos}）\n")
         sys.exit(2)
 
 except Exception:
