@@ -12,7 +12,7 @@
 
 ## 作業規約
 - コマンド実行時は目的を日本語で明示すること
-- 記憶・知見の保存先は `.claude/memory/MEMORY.md` とすること（グローバルのメモリパス不可）
+- Claude Code の Auto Memory 機能は使用しないこと（Dev Container 環境で揮発するため）
 - ドキュメント・コード・コミットメッセージの用語は統一すること（用語集: `dev-journal/references/glossary.md`）
 
 ## Issue 発掘規約
