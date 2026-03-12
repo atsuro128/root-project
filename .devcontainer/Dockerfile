@@ -99,8 +99,8 @@ RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/
   -a "export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhistory/.bash_history" \
   -x
 
-# Install Claude Code CLI
-RUN npm install -g @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION}
+# Install Claude Code CLI and OpenAI Codex CLI
+RUN npm install -g @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} @openai/codex
 
 # Copy and set up firewall script
 COPY init-firewall.sh /usr/local/bin/

@@ -79,7 +79,8 @@ for domain in \
     "pypi.org" \
     "files.pythonhosted.org" \
     "discord.com" \
-    "gateway.discord.gg"; do
+    "gateway.discord.gg" \
+    "api.openai.com"; do
     echo "Resolving $domain..."
     ips=$(dig +noall +answer A "$domain" | awk '$4 == "A" {print $5}')
     if [ -z "$ips" ]; then
