@@ -12,7 +12,7 @@ Backend: Go / Frontend: React (TypeScript, Vite) / DB: PostgreSQL / Infra: AWS (
 | `ai-dev-framework/` | AI駆動開発フレームワーク（ルール・コマンド・テンプレート・ADR） |
 
 ## 参照先
-- 進め方・完了条件: @dev-journal/guide/portfolio_project_steps.md
+- 進め方・完了条件: @dev-journal/guide/project_steps.md
 - MVP スコープ: @dev-journal/deliverables/docs/02_scope.md
 - 用語集: @dev-journal/references/glossary.md
 - ルール（自動ロード）: `.claude/rules/`

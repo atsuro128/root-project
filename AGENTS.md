@@ -26,7 +26,7 @@
 
 | ドキュメント | パス |
 |---|---|
-| 全体ステップ（成果物・完了条件） | `dev-journal/guide/portfolio_project_steps.md` |
+| 全体ステップ（成果物・完了条件） | `dev-journal/guide/project_steps.md` |
 | MVP スコープ | `dev-journal/deliverables/docs/02_scope.md` |
 | 用語定義 | `dev-journal/references/glossary.md` |
 | Issue 管理ルール | `.claude/skills/issue/SKILL.md` |
