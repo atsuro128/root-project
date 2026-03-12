@@ -75,7 +75,11 @@ for domain in \
     "update.code.visualstudio.com" \
     "proxy.golang.org" \
     "sum.golang.org" \
-    "storage.googleapis.com"; do
+    "storage.googleapis.com" \
+    "pypi.org" \
+    "files.pythonhosted.org" \
+    "discord.com" \
+    "gateway.discord.gg"; do
     echo "Resolving $domain..."
     ips=$(dig +noall +answer A "$domain" | awk '$4 == "A" {print $5}')
     if [ -z "$ips" ]; then
