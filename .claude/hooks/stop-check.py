@@ -32,10 +32,16 @@ try:
         )
         changed = result.stdout.strip()
         if changed:
-            # 自身のログファイルだけの変更は無視（再帰ループ防止）
             lines = [l.strip() for l in changed.splitlines()]
+            # 自身のログファイルだけの変更は無視（再帰ループ防止）
             if all(l.endswith("logs/hooks/hook-warnings.log") for l in lines):
                 continue
+            # root-project ではサブリポジトリの untracked 表示を無視
+            if sub == ".":
+                sub_repos = {"ai-dev-framework/", "expense-saas/", "dev-journal/"}
+                lines = [l for l in lines if not (l.startswith("??") and l.split()[-1] in sub_repos)]
+                if not lines:
+                    continue
             name = os.path.basename(repo) if sub != "." else "root-project"
             uncommitted.append(name)
 
