@@ -11,7 +11,7 @@
 
 ## プロジェクト概要
 
-マルチテナント型 経費精算SaaS のポートフォリオプロジェクト。
+マルチテナント型 経費精算SaaS。
 
 - **技術スタック**: Go / React (TypeScript, Vite) / PostgreSQL / AWS (ECS Fargate, RDS, S3)
 - **リポジトリ構成**:
