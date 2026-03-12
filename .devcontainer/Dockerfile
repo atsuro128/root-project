@@ -27,7 +27,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   nano \
   vim \
   python3 \
-  python3-pip \
   python3-venv \
   python-is-python3 \
   postgresql-client \
