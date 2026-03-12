@@ -1,8 +1,3 @@
-# サブリポジトリ（各自独立Git管理）
-ai-dev-framework/
-expense-saas/
-dev-journal/
-
 # Claude Code ローカル設定
 .claude/settings.local.json
 .claude/memory/
