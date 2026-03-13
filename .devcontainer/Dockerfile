@@ -6,7 +6,7 @@ ENV TZ="$TZ"
 ARG CLAUDE_CODE_VERSION=latest
 ARG GO_VERSION=1.24.1
 
-# Install basic development tools, iptables, squid proxy, Python, and PostgreSQL client
+# Install basic development tools, iptables, squid-openssl (SNI transparent proxy), Python, and PostgreSQL client
 RUN apt-get update && apt-get install -y --no-install-recommends \
   less \
   git \
@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   gnupg2 \
   gh \
   iptables \
-  squid \
+  squid-openssl \
   iproute2 \
   dnsutils \
   jq \
@@ -107,6 +107,11 @@ USER root
 RUN chmod +x /usr/local/bin/init-firewall.sh && \
   echo "node ALL=(root) NOPASSWD: /usr/local/bin/init-firewall.sh" > /etc/sudoers.d/node-firewall && \
   chmod 0440 /etc/sudoers.d/node-firewall && \
-  mkdir -p /var/log/squid /var/spool/squid && \
-  chown -R proxy:proxy /var/log/squid /var/spool/squid
+  mkdir -p /var/log/squid /var/spool/squid /etc/squid/ssl /var/lib/squid/ssl_db && \
+  openssl req -new -newkey rsa:2048 -days 3650 -nodes -x509 \
+    -subj "/CN=Squid Transparent Proxy CA" \
+    -keyout /etc/squid/ssl/squid-ca.pem \
+    -out /etc/squid/ssl/squid-ca.pem 2>/dev/null && \
+  /usr/lib/squid/security_file_certgen -c -s /var/lib/squid/ssl_db -M 4MB && \
+  chown -R proxy:proxy /var/log/squid /var/spool/squid /etc/squid/ssl /var/lib/squid/ssl_db
 USER node
