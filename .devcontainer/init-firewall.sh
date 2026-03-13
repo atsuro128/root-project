@@ -2,19 +2,111 @@
 set -euo pipefail  # Exit on error, undefined vars, and pipeline failures
 IFS=$'\n\t'       # Stricter word splitting
 
-# 1. Extract Docker DNS info BEFORE any flushing
+###############################################################################
+# Step 1: Generate squid.conf
+###############################################################################
+echo "=== Step 1: Generating squid.conf ==="
+
+cat > /etc/squid/squid.conf <<'SQUID_CONF'
+# --- Egress Proxy: FQDN allowlist (CONNECT tunnel mode) ---
+
+# Listen port
+http_port 3128
+
+# Disable caching (pure proxy)
+cache deny all
+
+# DNS: Docker internal resolver + fallback
+dns_nameservers 127.0.0.11 8.8.8.8
+
+# Logging
+access_log /var/log/squid/access.log
+
+# --- ACL: allowed destination domains ---
+acl allowed_domains dstdomain \
+  .github.com \
+  .githubusercontent.com \
+  .githubassets.com \
+  registry.npmjs.org \
+  pypi.org \
+  files.pythonhosted.org \
+  proxy.golang.org \
+  sum.golang.org \
+  storage.googleapis.com \
+  api.anthropic.com \
+  statsig.anthropic.com \
+  sentry.io \
+  statsig.com \
+  .visualstudio.com \
+  vscode.blob.core.windows.net \
+  update.code.visualstudio.com \
+  .openai.com \
+  .auth.openai.com \
+  challenges.cloudflare.com \
+  discord.com \
+  gateway.discord.gg
+
+# SSL ports for CONNECT
+acl SSL_ports port 443
+acl CONNECT method CONNECT
+
+# Allow CONNECT only to SSL ports
+http_access deny CONNECT !SSL_ports
+
+# Allow traffic to permitted domains
+http_access allow allowed_domains
+
+# Deny everything else
+http_access deny all
+SQUID_CONF
+
+echo "squid.conf generated"
+
+###############################################################################
+# Step 2: Start Squid & health check
+###############################################################################
+echo "=== Step 2: Starting Squid ==="
+
+# Initialize cache directories
+squid -z -f /etc/squid/squid.conf 2>/dev/null || true
+
+# Start Squid daemon
+squid -f /etc/squid/squid.conf
+
+# Health check: wait up to 10 seconds for Squid to be ready
+echo "Waiting for Squid to start..."
+SQUID_READY=false
+for i in $(seq 1 10); do
+    if squid -k check -f /etc/squid/squid.conf 2>/dev/null; then
+        SQUID_READY=true
+        break
+    fi
+    sleep 1
+done
+
+if [ "$SQUID_READY" != "true" ]; then
+    echo "ERROR: Squid failed to start within 10 seconds"
+    exit 1
+fi
+echo "Squid is running on port 3128"
+
+###############################################################################
+# Step 3: iptables (safety net — block direct 80/443 except from Squid)
+###############################################################################
+echo "=== Step 3: Configuring iptables ==="
+
+# Extract Docker DNS NAT rules BEFORE flushing
 DOCKER_DNS_RULES=$(iptables-save -t nat | grep "127\.0\.0\.11" || true)
 
-# Flush existing rules and delete existing ipsets
+# Flush existing rules
 iptables -F
 iptables -X
 iptables -t nat -F
 iptables -t nat -X
 iptables -t mangle -F
 iptables -t mangle -X
-ipset destroy allowed-domains 2>/dev/null || true
 
-# 2. Selectively restore ONLY internal Docker DNS resolution
+# Restore Docker DNS NAT rules
 if [ -n "$DOCKER_DNS_RULES" ]; then
     echo "Restoring Docker DNS rules..."
     iptables -t nat -N DOCKER_OUTPUT 2>/dev/null || true
@@ -24,139 +116,117 @@ else
     echo "No Docker DNS rules to restore"
 fi
 
-# First allow DNS and localhost before any restrictions
-# Allow outbound DNS
-iptables -A OUTPUT -p udp --dport 53 -j ACCEPT
-# Allow inbound DNS responses
-iptables -A INPUT -p udp --sport 53 -j ACCEPT
-# Allow outbound SSH
-iptables -A OUTPUT -p tcp --dport 22 -j ACCEPT
-# Allow inbound SSH responses
-iptables -A INPUT -p tcp --sport 22 -m state --state ESTABLISHED -j ACCEPT
-# Allow localhost
+# Allow loopback (required for proxy communication)
 iptables -A INPUT -i lo -j ACCEPT
 iptables -A OUTPUT -o lo -j ACCEPT
 
-# Create ipset with CIDR support
-ipset create allowed-domains hash:net
+# Allow DNS (udp/53)
+iptables -A OUTPUT -p udp --dport 53 -j ACCEPT
+iptables -A INPUT -p udp --sport 53 -j ACCEPT
 
-# Fetch GitHub meta information and aggregate + add their IP ranges
-echo "Fetching GitHub IP ranges..."
-gh_ranges=$(curl -s https://api.github.com/meta)
-if [ -z "$gh_ranges" ]; then
-    echo "ERROR: Failed to fetch GitHub IP ranges"
-    exit 1
-fi
+# Allow SSH (tcp/22)
+iptables -A OUTPUT -p tcp --dport 22 -j ACCEPT
+iptables -A INPUT -p tcp --sport 22 -m state --state ESTABLISHED -j ACCEPT
 
-if ! echo "$gh_ranges" | jq -e '.web and .api and .git' >/dev/null; then
-    echo "ERROR: GitHub API response missing required fields"
-    exit 1
-fi
-
-echo "Processing GitHub IPs..."
-while read -r cidr; do
-    if [[ ! "$cidr" =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}/[0-9]{1,2}$ ]]; then
-        echo "ERROR: Invalid CIDR range from GitHub meta: $cidr"
-        exit 1
-    fi
-    echo "Adding GitHub range $cidr"
-    ipset add allowed-domains "$cidr" -exist
-done < <(echo "$gh_ranges" | jq -r '(.web + .api + .git)[]' | aggregate -q)
-
-# Resolve and add other allowed domains
-for domain in \
-    "registry.npmjs.org" \
-    "api.anthropic.com" \
-    "sentry.io" \
-    "statsig.anthropic.com" \
-    "statsig.com" \
-    "marketplace.visualstudio.com" \
-    "vscode.blob.core.windows.net" \
-    "update.code.visualstudio.com" \
-    "proxy.golang.org" \
-    "sum.golang.org" \
-    "storage.googleapis.com" \
-    "pypi.org" \
-    "files.pythonhosted.org" \
-    "discord.com" \
-    "gateway.discord.gg" \
-    "api.openai.com" \
-    "auth.openai.com"; do
-    echo "Resolving $domain..."
-    ips=$(dig +noall +answer A "$domain" | awk '$4 == "A" {print $5}')
-    if [ -z "$ips" ]; then
-        echo "WARNING: Failed to resolve $domain, trying CNAME chain..."
-        ips=$(dig +noall +answer "$domain" | awk '$4 == "A" {print $5}')
-    fi
-    if [ -z "$ips" ]; then
-        echo "ERROR: Failed to resolve $domain"
-        exit 1
-    fi
-
-    while read -r ip; do
-        if [[ ! "$ip" =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
-            echo "ERROR: Invalid IP from DNS for $domain: $ip"
-            exit 1
-        fi
-        echo "Adding $ip for $domain"
-        ipset add allowed-domains "$ip" -exist || true
-    done < <(echo "$ips" | sort -u)
-done
-
-# Get host IP from default route
+# Allow host network communication
 HOST_IP=$(ip route | grep default | cut -d" " -f3)
 if [ -z "$HOST_IP" ]; then
     echo "ERROR: Failed to detect host IP"
     exit 1
 fi
-
 HOST_NETWORK=$(echo "$HOST_IP" | sed "s/\.[0-9]*$/.0\/24/")
 echo "Host network detected as: $HOST_NETWORK"
-
-# Set up remaining iptables rules
 iptables -A INPUT -s "$HOST_NETWORK" -j ACCEPT
 iptables -A OUTPUT -d "$HOST_NETWORK" -j ACCEPT
 
-# Set default policies to DROP first
+# Allow established/related connections
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -A OUTPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+# Allow Squid (proxy user) to access tcp/80,443 directly
+iptables -A OUTPUT -p tcp --dport 80 -m owner --uid-owner proxy -j ACCEPT
+iptables -A OUTPUT -p tcp --dport 443 -m owner --uid-owner proxy -j ACCEPT
+
+# REJECT direct tcp/80,443 from all other users (forces proxy usage)
+iptables -A OUTPUT -p tcp --dport 80 -j REJECT --reject-with icmp-admin-prohibited
+iptables -A OUTPUT -p tcp --dport 443 -j REJECT --reject-with icmp-admin-prohibited
+
+# Set default policies
 iptables -P INPUT DROP
 iptables -P FORWARD DROP
 iptables -P OUTPUT DROP
 
-# First allow established connections for already approved traffic
-iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
-iptables -A OUTPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
-
-# Then allow only specific outbound traffic to allowed domains
-iptables -A OUTPUT -m set --match-set allowed-domains dst -j ACCEPT
-
-# Explicitly REJECT all other outbound traffic for immediate feedback
+# Final catch-all REJECT for immediate feedback
 iptables -A OUTPUT -j REJECT --reject-with icmp-admin-prohibited
 
-echo "Firewall configuration complete"
-echo "Verifying firewall rules..."
+echo "iptables configured"
 
-# Verify blocked: example.com should be unreachable
-if curl --connect-timeout 5 https://example.com >/dev/null 2>&1; then
-    echo "ERROR: Firewall verification failed - was able to reach https://example.com"
+###############################################################################
+# Step 4: Write proxy environment variables
+###############################################################################
+echo "=== Step 4: Writing proxy environment variables ==="
+
+cat > /etc/profile.d/proxy.sh <<'PROXY_ENV'
+export http_proxy="http://127.0.0.1:3128"
+export https_proxy="http://127.0.0.1:3128"
+export HTTP_PROXY="http://127.0.0.1:3128"
+export HTTPS_PROXY="http://127.0.0.1:3128"
+export no_proxy="localhost,127.0.0.1,127.0.0.11"
+export NO_PROXY="localhost,127.0.0.1,127.0.0.11"
+PROXY_ENV
+
+chmod +r /etc/profile.d/proxy.sh
+
+# Source for current shell session
+export http_proxy="http://127.0.0.1:3128"
+export https_proxy="http://127.0.0.1:3128"
+export HTTP_PROXY="http://127.0.0.1:3128"
+export HTTPS_PROXY="http://127.0.0.1:3128"
+export no_proxy="localhost,127.0.0.1,127.0.0.11"
+export NO_PROXY="localhost,127.0.0.1,127.0.0.11"
+
+echo "Proxy environment variables written to /etc/profile.d/proxy.sh"
+
+###############################################################################
+# Step 5: Verification tests
+###############################################################################
+echo "=== Step 5: Running verification tests ==="
+
+# Test 1: example.com should be BLOCKED via proxy
+echo "Test 1: Verifying example.com is blocked (via proxy)..."
+if curl --proxy http://127.0.0.1:3128 --connect-timeout 5 https://example.com >/dev/null 2>&1; then
+    echo "ERROR: Firewall verification failed - was able to reach https://example.com via proxy"
     exit 1
 else
-    echo "PASS: unable to reach https://example.com (blocked as expected)"
+    echo "PASS: unable to reach https://example.com via proxy (blocked as expected)"
 fi
 
-# Verify allowed: GitHub API
-if ! curl --connect-timeout 5 https://api.github.com/zen >/dev/null 2>&1; then
-    echo "ERROR: Firewall verification failed - unable to reach https://api.github.com"
+# Test 2: api.github.com should be ALLOWED via proxy
+echo "Test 2: Verifying api.github.com is allowed (via proxy)..."
+if ! curl --proxy http://127.0.0.1:3128 --connect-timeout 5 https://api.github.com/zen >/dev/null 2>&1; then
+    echo "ERROR: Firewall verification failed - unable to reach https://api.github.com via proxy"
     exit 1
 else
-    echo "PASS: able to reach https://api.github.com"
+    echo "PASS: able to reach https://api.github.com via proxy"
 fi
 
-# Verify allowed: Go module proxy
-if ! curl --connect-timeout 5 https://proxy.golang.org/ >/dev/null 2>&1; then
-    echo "ERROR: Firewall verification failed - unable to reach https://proxy.golang.org"
+# Test 3: proxy.golang.org should be ALLOWED via proxy
+echo "Test 3: Verifying proxy.golang.org is allowed (via proxy)..."
+if ! curl --proxy http://127.0.0.1:3128 --connect-timeout 5 https://proxy.golang.org/ >/dev/null 2>&1; then
+    echo "ERROR: Firewall verification failed - unable to reach https://proxy.golang.org via proxy"
     exit 1
 else
-    echo "PASS: able to reach https://proxy.golang.org"
+    echo "PASS: able to reach https://proxy.golang.org via proxy"
 fi
 
-echo "All firewall verifications passed"
+# Test 4: Direct access (bypassing proxy) should be BLOCKED by iptables
+echo "Test 4: Verifying direct access is blocked (proxy bypass)..."
+if curl --noproxy '*' --connect-timeout 5 https://api.github.com/zen >/dev/null 2>&1; then
+    echo "ERROR: Firewall verification failed - direct access bypassed proxy"
+    exit 1
+else
+    echo "PASS: direct access blocked by iptables (proxy bypass prevented)"
+fi
+
+echo "=== All verification tests passed ==="
+echo "Egress proxy configuration complete"

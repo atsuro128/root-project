@@ -6,7 +6,7 @@ ENV TZ="$TZ"
 ARG CLAUDE_CODE_VERSION=latest
 ARG GO_VERSION=1.24.1
 
-# Install basic development tools, iptables/ipset, Python, and PostgreSQL client
+# Install basic development tools, iptables, squid proxy, Python, and PostgreSQL client
 RUN apt-get update && apt-get install -y --no-install-recommends \
   less \
   git \
@@ -19,10 +19,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   gnupg2 \
   gh \
   iptables \
-  ipset \
+  squid \
   iproute2 \
   dnsutils \
-  aggregate \
   jq \
   nano \
   vim \
@@ -107,5 +106,7 @@ COPY init-firewall.sh /usr/local/bin/
 USER root
 RUN chmod +x /usr/local/bin/init-firewall.sh && \
   echo "node ALL=(root) NOPASSWD: /usr/local/bin/init-firewall.sh" > /etc/sudoers.d/node-firewall && \
-  chmod 0440 /etc/sudoers.d/node-firewall
+  chmod 0440 /etc/sudoers.d/node-firewall && \
+  mkdir -p /var/log/squid /var/spool/squid && \
+  chown -R proxy:proxy /var/log/squid /var/spool/squid
 USER node
