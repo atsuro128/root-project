@@ -15,8 +15,8 @@ Issue 管理ルールに従って操作を実行してください。
 ## フォルダ構成
 
 ```
-dev-journal/progress-management/
-├── issues/           # 対応中・未対応の issue
+dev-journal/progress-management/issues/
+├── open/             # 未対応・対応中の issue
 ├── pending-review/   # 解決内容を記入済み・レビュー待ち
 └── resolved/         # レビュー完了・クローズ済み
 ```
@@ -27,7 +27,7 @@ dev-journal/progress-management/
 
 ## ライフサイクル
 
-1. **起票**: `issues/NNN-kebab-case.md` を作成（テンプレート: `ai-dev-framework/templates/issue-template.md`）
+1. **起票**: `issues/open/NNN-kebab-case.md` を作成（テンプレート: `ai-dev-framework/templates/issue-template.md`）
 2. **正当性検証**（外部起票・レビュー指摘から昇格した issue の場合）
    - 当該ステップの関連資料を確認する
    - 上流の成果物も確認する
