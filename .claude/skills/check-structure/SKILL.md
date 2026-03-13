@@ -2,7 +2,7 @@
 name: check-structure
 description: |
   ディレクトリ構成ドキュメントと実際のファイル構成を比較し差分を報告する。
-  Use when: ユーザーが「構成チェックして」「ディレクトリ確認して」「ファイル構成の差分を見て」と依頼した時
+  Use when: ユーザーが「構成チェックして」「ディレクトリ確認して」「ツリー構成更新して」と依頼した時
   DO NOT use when: 単にファイルを探している時、実装作業中
 context: fork
 agent: Explore
