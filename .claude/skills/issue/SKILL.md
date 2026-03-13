@@ -53,6 +53,7 @@ dev-journal/progress-management/
 | `security` | セキュリティ上の問題 |
 | `infrastructure` | インフラ・CI/CD・環境の問題 |
 | `project-management` | プロジェクト管理・運用ルールの問題 |
+| `ai-ops` | AI（Claude Code）の運用・操作ミス・改善 |
 
 ## 影響度の基準
 
