@@ -29,9 +29,7 @@ allowed-tools: Read, Write, Edit, Bash(git *), Bash(date *), Bash(pwd), Bash(mkd
 
 1. **セッションログ追記**: `/session-log` スキルの手順に従い、今回の作業内容を記録する
 2. **git add**: 変更ファイルとセッションログをステージする
-3. **ステージ確認**: `git diff --cached --name-only` で意図したファイルがすべて含まれていることを確認する
-4. **git commit**: コミットを実行する
-5. **コミット検証**: `git show --stat` でコミット内容を確認する
+3. **git commit**: コミットを実行する
 
 ## メッセージ形式
 
