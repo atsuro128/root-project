@@ -2,9 +2,9 @@
 name: codex-review
 description: |
   codex CLI を使って Step 成果物のレビューを依頼する。
-  Use when: Step 成果物の作成・コミットが完了した時、再レビューを依頼する時
+  Use when: Step 成果物の作成・コミットが完了した時、再レビューを依頼する時、Issue 解決のレビューを依頼する時
   DO NOT use when: 成果物がまだコミットされていない時、通常のコードレビュー（/review を使う）
-argument-hint: "[Step番号 ステップ名] [初回|再レビュー]"
+argument-hint: "[Step番号 ステップ名] [初回|再レビュー|issue解決レビュー]"
 allowed-tools: Read, Glob, Grep, Bash(codex *), Bash(git *)
 ---
 
@@ -14,10 +14,19 @@ codex レビューを実行してください。
 
 ## トリガー条件
 
+### Step 成果物レビュー（初回・再レビュー）
+
 以下の **すべて** を満たしていることを確認:
 
 1. Step の成果物（`dev-journal/deliverables/docs/` 配下）を新規作成または更新した
 2. 上記を該当リポジトリにコミット済み
+
+### Issue 解決レビュー
+
+以下の **すべて** を満たしていることを確認:
+
+1. `dev-journal/progress-management/issues/pending-review/` に解決済み issue が存在する
+2. issue の解決内容に基づく成果物の修正がコミット済み
 
 ## 実行手順
 
@@ -33,16 +42,32 @@ codex exec "Step N（ステップ名）の初回レビューを実施してく�
 codex exec "Step N の再レビューを実施してください" --full-auto
 ```
 
+### Issue 解決レビュー
+
+```bash
+codex exec "issues/pending-review/ にある Issue の解決レビューを実施してください" --full-auto
+```
+
 - 作業ディレクトリは `root-project/` であること
 - Bash ツールの `run_in_background: true` で実行する（長時間かかるため）
-- 完了通知を受け取ったら、`dev-journal/review-findings/open/` に指摘が起票されているか確認する
+- 完了通知を受け取ったら、結果を確認する
+  - Step 成果物レビュー: `dev-journal/review-findings/open/` に指摘が起票されているか確認
+  - Issue 解決レビュー: `dev-journal/progress-management/issues/pending-review/` の issue が `resolved/` に移動されているか確認
 
 ## 実行後の対応
+
+### Step 成果物レビューの場合
 
 1. codex がレビュー完了したら、`dev-journal/review-findings/open/` の指摘を確認
 2. 指摘がある場合: 成果物を修正し、指摘ファイルを `pending-review/` に移動してコミット
 3. 再レビューを依頼（上記コマンド）
 4. 指摘が全て `resolved/` になったら、`dev-journal/progress-management/progress.md` のステータスを「完了」に更新
+
+### Issue 解決レビューの場合
+
+1. codex がレビュー完了したら、`dev-journal/progress-management/issues/pending-review/` を確認
+2. 解決が妥当と判断された issue: `resolved/` に移動済み
+3. 解決が不十分と判断された issue: `open/` に差し戻し済み（追加コメント付き）
 
 ## progress.md ステータスとの対応
 
