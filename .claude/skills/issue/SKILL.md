@@ -23,11 +23,15 @@ dev-journal/progress-management/issues/
 
 ## ファイル命名規則
 
-`NNN-kebab-case.md`（3桁ゼロ埋めのグローバル連番、3フォルダ横断で一意）
+- プロダクト系: `NNN-kebab-case.md`
+- 運用系: `ops-NNN-kebab-case.md`
+
+番号は3桁ゼロ埋めのグローバル連番（プロダクト系・運用系で共通、3フォルダ横断で一意）。
+カテゴリが `project-management` または `ai-ops` の場合は運用系（`ops-` プレフィクス）とする。
 
 ## ライフサイクル
 
-1. **起票**: `issues/open/NNN-kebab-case.md` を作成（テンプレート: `ai-dev-framework/templates/issue-template.md`）
+1. **起票**: `issues/open/[ops-]NNN-kebab-case.md` を作成（テンプレート: `ai-dev-framework/templates/issue-template.md`）
 2. **正当性検証**（外部起票・レビュー指摘から昇格した issue の場合）
    - 当該ステップの関連資料を確認する
    - 上流の成果物も確認する
