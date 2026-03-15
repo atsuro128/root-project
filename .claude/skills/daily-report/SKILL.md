@@ -22,16 +22,16 @@ $ARGUMENTS
 ## 各リポジトリの本日コミット履歴
 
 ### root-project
-!`git log --since="$(date +%Y-%m-%d) 00:00" --until="$(date +%Y-%m-%d) 23:59" --oneline 2>&1 || echo "コミットなし"`
+!`git log --since=midnight --oneline 2>&1 || echo "コミットなし"`
 
 ### ai-dev-framework
-!`cd ai-dev-framework && git log --since="$(date +%Y-%m-%d) 00:00" --until="$(date +%Y-%m-%d) 23:59" --oneline 2>&1 || echo "コミットなし"`
+!`cd ai-dev-framework && git log --since=midnight --oneline 2>&1 || echo "コミットなし"`
 
 ### expense-saas
-!`cd expense-saas && git log --since="$(date +%Y-%m-%d) 00:00" --until="$(date +%Y-%m-%d) 23:59" --oneline 2>&1 || echo "コミットなし"`
+!`cd expense-saas && git log --since=midnight --oneline 2>&1 || echo "コミットなし"`
 
 ### dev-journal
-!`cd dev-journal && git log --since="$(date +%Y-%m-%d) 00:00" --until="$(date +%Y-%m-%d) 23:59" --oneline 2>&1 || echo "コミットなし"`
+!`cd dev-journal && git log --since=midnight --oneline 2>&1 || echo "コミットなし"`
 
 ## 手順
 
