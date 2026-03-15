@@ -15,10 +15,10 @@ allowed-tools: Read, Grep, Glob, Bash(git *)
 （引数がない場合はステージ済みの変更を対象とする）
 
 ### ステージ済み差分
-!`git diff --cached 2>&1 || echo "ステージ済み差分なし"`
+!`git diff --cached`
 
 ### 未ステージ差分
-!`git diff 2>&1 || echo "未ステージ差分なし"`
+!`git diff`
 
 ## 手順
 

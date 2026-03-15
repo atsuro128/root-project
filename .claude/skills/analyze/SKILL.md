@@ -5,6 +5,7 @@ description: |
   Use when: ユーザーが「分析して」「変遷まとめて」「振り返り資料作って」と依頼した時
   DO NOT use when: 日報作成（/daily-report を使う）、セッションログ記録（/session-log を使う）
 argument-hint: "[期間: YYYY-MM-DD~YYYY-MM-DD | 直近N日] [分析テーマ]"
+allowed-tools: Read, Grep, Glob, Bash(git *), Bash(date *)
 ---
 
 開発プロセスの分析資料を作成してください。

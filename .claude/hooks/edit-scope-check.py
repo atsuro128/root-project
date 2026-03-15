@@ -13,7 +13,7 @@ try:
     file_path = data.get("tool_input", {}).get("file_path", "")
 
     source_extensions = (
-        ".rs", ".ts", ".tsx", ".js", ".jsx",
+        ".go", ".ts", ".tsx", ".js", ".jsx",
         ".css", ".scss", ".html", ".sql",
     )
 

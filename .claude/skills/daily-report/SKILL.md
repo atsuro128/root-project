@@ -6,6 +6,7 @@ description: |
   DO NOT use when: 単に進捗確認をしたい時（statusを使う）
 disable-model-invocation: true
 argument-hint: "[YYYY-MM-DD]"
+allowed-tools: Read, Write, Bash(git *), Bash(git -C *), Bash(date *)
 ---
 
 今日の作業内容を日報としてまとめ、`dev-journal/daily-reports/YYYY-MM-DD.md` に保存してください。
@@ -19,23 +20,23 @@ argument-hint: "[YYYY-MM-DD]"
 $ARGUMENTS
 （引数がない場合は上記の日付を使用する）
 
-## 各リポジトリの本日コミット履歴
+## 各リポジトリの対象日コミット履歴
 
 ### root-project
-!`git log --since=midnight --oneline 2>&1 || echo "コミットなし"`
+!`git log --since=midnight --oneline`
 
 ### ai-dev-framework
-!`cd ai-dev-framework && git log --since=midnight --oneline 2>&1 || echo "コミットなし"`
+!`git -C ai-dev-framework log --since=midnight --oneline`
 
 ### expense-saas
-!`cd expense-saas && git log --since=midnight --oneline 2>&1 || echo "コミットなし"`
+!`git -C expense-saas log --since=midnight --oneline`
 
 ### dev-journal
-!`cd dev-journal && git log --since=midnight --oneline 2>&1 || echo "コミットなし"`
+!`git -C dev-journal log --since=midnight --oneline`
 
 ## 手順
 
-1. 上記の事前取得データを確認する
+1. 上記の事前取得データを確認する（対象日が今日でない場合は Bash ツールで対象日のコミット履歴を個別に取得する）
 2. `dev-journal/logs/YYYY-MM-DD/session-log.md` が存在すれば読み込む（Readツールで絶対パスを使用すること）
 3. `dev-journal/progress-management/progress.md` を読み、次タスクを確認する
 4. 下記の出力形式に従い `dev-journal/daily-reports/YYYY-MM-DD.md` にファイルを作成する
