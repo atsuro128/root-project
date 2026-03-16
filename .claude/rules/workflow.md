@@ -2,6 +2,8 @@
 
 ## セッション管理
 - 作業開始時に `dev-journal/progress-management/progress.md` を確認すること
+- 作業開始時に `dev-journal/progress-management/issues/open/` のブロッカー issue を確認すること
+  - 次 Step の成果物作成に着手する前に、その Step に関連するブロッカー issue を先に解消すること
 - 作業完了時に `dev-journal/progress-management/progress.md` を更新すること
 - Step 成果物の作成・コミットが完了したら `/codex-review` を実行すること
 
