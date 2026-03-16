@@ -50,17 +50,33 @@
   "mounts": [
     "source=claude-code-bashhistory-${devcontainerId},target=/commandhistory,type=volume",
     "source=claude-code-config-${devcontainerId},target=/home/node/.claude,type=volume",
+    "source=codex-config-${devcontainerId},target=/home/node/.codex,type=volume",
     "source=${localEnv:USERPROFILE}/.gitconfig,target=/home/node/.gitconfig.host,type=bind,consistency=cached,readonly"
   ],
   "containerEnv": {
     "NODE_OPTIONS": "--max-old-space-size=4096",
     "CLAUDE_CONFIG_DIR": "/home/node/.claude",
     "POWERLEVEL9K_DISABLE_GITSTATUS": "true",
-    "GOPATH": "/home/node/go"
+    "GOPATH": "/home/node/go",
+    "HTTP_PROXY": "http://127.0.0.1:3127",
+    "HTTPS_PROXY": "http://127.0.0.1:3127",
+    "ALL_PROXY": "http://127.0.0.1:3127",
+    "http_proxy": "http://127.0.0.1:3127",
+    "https_proxy": "http://127.0.0.1:3127",
+    "all_proxy": "http://127.0.0.1:3127",
+    "NO_PROXY": "localhost,127.0.0.1",
+    "no_proxy": "localhost,127.0.0.1",
+    "HOST_GATEWAY_TCP_PORTS": "3000,5432,8080",
+    "UPSTREAM_PROXY_HOST": "${localEnv:UPSTREAM_PROXY_HOST}",
+    "UPSTREAM_PROXY_PORT": "${localEnv:UPSTREAM_PROXY_PORT}",
+    "UPSTREAM_PROXY_USERNAME": "${localEnv:UPSTREAM_PROXY_USERNAME}",
+    "UPSTREAM_PROXY_PASSWORD": "${localEnv:UPSTREAM_PROXY_PASSWORD}",
+    "UPSTREAM_PROXY_PASSWORD_FILE": "${localEnv:UPSTREAM_PROXY_PASSWORD_FILE}"
   },
   "workspaceMount": "source=${localWorkspaceFolder},target=/root-project,type=bind,consistency=delegated",
   "workspaceFolder": "/root-project",
   "postCreateCommand": "cp /home/node/.gitconfig.host /home/node/.gitconfig 2>/dev/null || true && git config --global core.autocrlf input && git config --global core.fileMode false && git config --global --add safe.directory /root-project && git config --global --add safe.directory /root-project/expense-saas && git config --global --add safe.directory /root-project/dev-journal && git config --global --add safe.directory /root-project/ai-dev-framework",
-  "postStartCommand": "sudo /usr/local/bin/init-firewall.sh || echo '[WARN] Firewall setup failed -- continuing without network restrictions'",
+  "postStartCommand": "sudo /usr/local/bin/init-devcontainer.sh",
+  "postAttachCommand": "/usr/local/bin/announce-egress-status.sh",
   "waitFor": "postStartCommand"
 }

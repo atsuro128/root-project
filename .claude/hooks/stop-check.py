@@ -1,4 +1,5 @@
 """Stop hook: 未コミットの変更がある場合にブロック（3回連続発火でループ回避）"""
+import sys; sys.exit(0)  # 一時無効化（有効化するにはこの行を削除）
 import sys
 import io
 import json

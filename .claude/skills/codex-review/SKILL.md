@@ -59,7 +59,7 @@ codex exec "issues/pending-review/ にある Issue の解決レビューを実�
 ### Step 成果物レビューの場合
 
 1. codex がレビュー完了したら、`dev-journal/review-findings/open/` の指摘を確認
-2. 指摘がある場合: 成果物を修正し、指摘ファイルを `pending-review/` に移動してコミット
+2. 指摘がある場合: `/review-findings`スキルに従って成果物を修正し、指摘ファイルを `pending-review/` に移動してコミット
 3. 再レビューを依頼（上記コマンド）
 4. 指摘が全て `resolved/` になったら、`dev-journal/progress-management/progress.md` のステータスを「完了」に更新
 

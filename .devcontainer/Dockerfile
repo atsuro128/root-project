@@ -6,7 +6,7 @@ ENV TZ="$TZ"
 ARG CLAUDE_CODE_VERSION=latest
 ARG GO_VERSION=1.24.1
 
-# Install basic development tools, iptables/ipset, Python, and PostgreSQL client
+# Install basic development tools, firewall/proxy dependencies, Python, and PostgreSQL client
 RUN apt-get update && apt-get install -y --no-install-recommends \
   less \
   git \
@@ -19,13 +19,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   gnupg2 \
   gh \
   iptables \
-  ipset \
   iproute2 \
   dnsutils \
-  aggregate \
   jq \
   nano \
   vim \
+  squid-openssl \
+  openssl \
   python3 \
   python3-venv \
   python-is-python3 \
@@ -51,8 +51,9 @@ RUN SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhisto
 ENV DEVCONTAINER=true
 
 # Create workspace and config directories and set permissions
-RUN mkdir -p /root-project /home/node/.claude && \
-  chown -R node:node /root-project /home/node/.claude
+RUN mkdir -p /root-project /home/node/.claude /home/node/.codex /etc/squid/ssl /var/log/squid /var/spool/squid && \
+  chown -R node:node /root-project /home/node/.claude /home/node/.codex && \
+  chown -R proxy:proxy /etc/squid/ssl /var/log/squid /var/spool/squid
 
 WORKDIR /root-project
 
@@ -102,10 +103,12 @@ RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/
 # Install Claude Code CLI and OpenAI Codex CLI
 RUN npm install -g @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} @openai/codex
 
-# Copy and set up firewall script
-COPY init-firewall.sh /usr/local/bin/
+# Copy and set up container init/firewall/proxy scripts
+COPY proxy-allowlist.txt /usr/local/share/proxy-allowlist.txt
+COPY init-devcontainer.sh render-squid-config.sh verify-egress.sh init-firewall.sh announce-egress-status.sh /usr/local/bin/
 USER root
-RUN chmod +x /usr/local/bin/init-firewall.sh && \
-  echo "node ALL=(root) NOPASSWD: /usr/local/bin/init-firewall.sh" > /etc/sudoers.d/node-firewall && \
+RUN chmod +x /usr/local/bin/init-devcontainer.sh /usr/local/bin/init-firewall.sh /usr/local/bin/render-squid-config.sh /usr/local/bin/verify-egress.sh /usr/local/bin/announce-egress-status.sh && \
+  chmod 0644 /usr/local/share/proxy-allowlist.txt && \
+  echo "node ALL=(root) NOPASSWD: /usr/local/bin/init-devcontainer.sh, /usr/local/bin/init-firewall.sh" > /etc/sudoers.d/node-firewall && \
   chmod 0440 /etc/sudoers.d/node-firewall
 USER node
