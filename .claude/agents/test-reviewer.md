@@ -82,6 +82,15 @@ model: sonnet
 - **incomplete**: テストケースが不完全（一部の条件が未テスト）
 - **incorrect**: テストケースの実装が誤っている
 
+## PR レビュー投稿
+
+PR 番号が指定された場合、レビュー結果を PR に直接投稿する:
+
+1. `gh pr diff <PR番号>` で差分を確認
+2. レビュー実施
+3. `gh pr review <PR番号>` で指摘を投稿（blocker あり: `--request-changes`、なし: `--approve`）
+4. 指揮役には結果のみ返す: `pass` または `fail (blocker: N件)`
+
 ## 制約
 
 - ファイルの編集・作成は行わない（Read-only + テスト実行）

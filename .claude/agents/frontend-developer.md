@@ -80,6 +80,16 @@ React/TypeScript でフロントエンドを実装します。
 - `npm run lint`
 - `npm test`
 
+## 完了手順
+
+実装が完了したら、以下の手順でデリバリーする:
+
+1. 品質チェック（`npm run build` / `npm run lint`）
+2. 変更をコミット
+3. ブランチを push: `git push -u origin <ブランチ名>`
+4. PR を作成: `gh pr create --title "..." --body "..."`
+5. 指揮役に **PR URL** を返す
+
 ## 制約
 
 - `.claude/rules/coding-standards.md`（TypeScript セクション）に準拠

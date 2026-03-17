@@ -87,6 +87,16 @@ Handler → Service → Domain ← Repository
 - `go test ./...`
 - `golangci-lint run`
 
+## 完了手順
+
+実装が完了したら、以下の手順でデリバリーする:
+
+1. 品質チェック（`go build ./...` / `go vet ./...` / `golangci-lint run`）
+2. 変更をコミット
+3. ブランチを push: `git push -u origin <ブランチ名>`
+4. PR を作成: `gh pr create --title "..." --body "..."`
+5. 指揮役に **PR URL** を返す
+
 ## 制約
 
 - `.claude/rules/architecture.md` に準拠（テナント分離、RBAC、状態遷移）

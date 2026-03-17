@@ -71,6 +71,16 @@ isolation: worktree
 - `npm test` — フロントエンドテスト
 - `npx playwright test` — E2E テスト
 
+## 完了手順
+
+実装が完了したら、以下の手順でデリバリーする:
+
+1. テスト実行（`go test ./...` / `npm test`）で全テスト通過を確認
+2. 変更をコミット
+3. ブランチを push: `git push -u origin <ブランチ名>`
+4. PR を作成: `gh pr create --title "..." --body "..."`
+5. 指揮役に **PR URL** を返す
+
 ## 制約
 
 - `test_cases.md` で定義されたテストケースに基づいて実装

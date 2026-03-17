@@ -95,6 +95,16 @@ isolation: worktree
 - 以降は共通基盤に変更が必要になった場合のみ再起動する（機能ごとに呼ばれるわけではない）
 - 機能実装は backend-developer / frontend-developer が基盤の上に積む
 
+## 完了手順
+
+実装が完了したら、以下の手順でデリバリーする:
+
+1. 品質チェック（`go build ./...` / `go vet ./...` / `npm run build`）
+2. 変更をコミット
+3. ブランチを push: `git push -u origin <ブランチ名>`
+4. PR を作成: `gh pr create --title "..." --body "..."`
+5. 指揮役に **PR URL** を返す
+
 ## 制約
 
 - `.claude/rules/` の全ルールに準拠
