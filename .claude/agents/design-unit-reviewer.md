@@ -22,7 +22,10 @@ model: opus
 
 ## レビュー対象
 
-呼び出し時に指定された 1 機能に集中してレビューを行う。
+呼び出し時に指定されたスコープに集中してレビューを行う。
+
+- **Step 4 レビュー**: screens.md（画面一覧・俯瞰）と ui_flow.md の上流整合性。全ユースケースの画面カバー率、ロール別遷移パスの網羅性を検証
+- **Step 5 レビュー**: 1 機能単位で screens/*.md（画面詳細）↔ openapi.yaml ↔ db_schema.md の整合性を検証
 
 ## チェック項目
 
@@ -55,8 +58,9 @@ model: opus
 
 ### 設計成果物
 
-- `dev-journal/deliverables/docs/40_basic_design/screens.md`
-- `dev-journal/deliverables/docs/40_basic_design/ui_flow.md`
+- `dev-journal/deliverables/docs/40_basic_design/screens.md` — 画面一覧（俯瞰）
+- `dev-journal/deliverables/docs/40_basic_design/screens/*.md` — 機能別画面詳細仕様
+- `dev-journal/deliverables/docs/40_basic_design/ui_flow.md` — 画面遷移図
 - `dev-journal/deliverables/docs/50_detail_design/openapi.yaml`
 - `dev-journal/deliverables/docs/50_detail_design/db_schema.md`
 - `dev-journal/deliverables/docs/50_detail_design/authz.md`
