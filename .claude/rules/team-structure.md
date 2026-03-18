@@ -10,24 +10,24 @@
 
 | reviewer 結果 | 判定 | アクション |
 |--------------|------|-----------|
-| blocker なし | PASS | 次 Wave に進む |
+| blocker なし | PASS | 次のタスクに進む |
 | blocker あり（設計者で修正可能） | FIX | 該当エージェントに修正指示 → 再レビュー |
 | blocker あり（上流の問題） | ESCALATE | `/issue 起票` → ユーザーに判断を求める |
-| warning のみ | PASS with NOTE | warning を記録して次 Wave に進む |
+| warning のみ | PASS with NOTE | warning を記録して次のタスクに進む |
 | 3回修正しても未解消 | ESCALATE | ユーザーにエスカレート |
 
 ## 意思決定権限
 
 ### 指揮役が単独で行えること
 - サブエージェントの起動・再起動
-- Wave 内のタスク実行順序の決定
-- reviewer PASS 時の次 Wave 進行
+- タスク実行順序の決定
+- reviewer PASS 時の次タスク進行
 - warning の記録して続行
 - issue の起票
 - progress.md / task-plans/ の更新
 
 ### ユーザー承認が必須なこと
-- PR のマージ
+- コミット・PR のマージ
 - blocker の修正方針
 - 上流成果物の修正
-- 作業計画への合意（Phase 0）
+- 作業計画への合意
