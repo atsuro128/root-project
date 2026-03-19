@@ -5,7 +5,28 @@
 - 作業開始時に `dev-journal/progress-management/issues/open/` のブロッカー issue を確認すること
   - 次 Step の成果物作成に着手する前に、その Step に関連するブロッカー issue を先に解消すること
 - 作業完了時に `dev-journal/progress-management/progress.md` を更新すること
-- Step 成果物の作成・コミットが完了したら `/codex-review` を実行すること
+
+## レビューフロー
+
+Step 成果物の作成時は以下のフローに従う。
+
+```
+1. 内部レビュー（カスタムエージェント）
+   - 各 Step の work-breakdown に指定された reviewer エージェントを起動
+   - 品質ゲート判定（team-structure.md 基準）
+   - blocker があれば修正 → 再レビュー（LGTM まで繰り返す）
+   ↓
+2. ユーザーにコミットを提案
+   ↓
+3. codex レビュー（/codex-review）
+   - コミット後に実行
+   - 指摘は review-findings/open/ に起票される
+   ↓
+4. 指摘対応
+   - review-findings を確認し、issue 化が必要なものは /issue で起票
+   - issue 化したら元の review-findings を削除（二重管理防止）
+   - Step 成果物の修正で対応可能なものは修正 → 再コミット → 再レビュー
+```
 
 ## スコープ制約
 - ソースコードの新規作成・編集は `expense-saas/` 配下のみで行うこと
