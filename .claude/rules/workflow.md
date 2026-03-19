@@ -7,6 +7,31 @@
   - 次 Step の成果物作成に着手する前に、その Step に関連するブロッカー issue を先に解消すること
 - 作業完了時に `dev-journal/progress-management/progress.md` を更新すること
 
+## Step 一覧と作業分解
+
+各 Step の成果物・完了条件・プロセスは work-breakdown を参照。
+
+| Step | 名称 | 作業分解 |
+|------|------|----------|
+| 0 | 事前準備 | `dev-journal/guide/work-breakdown/step0-preparation.md` |
+| 1 | 要件定義 | `dev-journal/guide/work-breakdown/step1-requirements.md` |
+| 2 | ドメイン設計 | `dev-journal/guide/work-breakdown/step2-domain.md` |
+| 3 | アーキテクチャ設計 | `dev-journal/guide/work-breakdown/step3-architecture.md` |
+| 4 | 基本設計 | `dev-journal/guide/work-breakdown/step4-basic-design.md` |
+| 5 | 詳細設計 | `dev-journal/guide/work-breakdown/step5-detail-design.md` |
+| 6 | テスト設計 | `dev-journal/guide/work-breakdown/step6-testing.md` |
+| 7 | 実装・運用 | `dev-journal/guide/work-breakdown/step7-implementation.md` |
+
+### progress.md ステータス定義
+
+| ステータス | 意味 |
+|-----------|------|
+| 未着手 | まだ開始していない |
+| 進行中（成果物作成） | 成果物を作成中 |
+| レビュー待ち | 成果物作成完了。レビュー依頼済み |
+| 指摘対応中 | レビュー指摘への対応中 |
+| 完了 | 完了条件を満たし、レビュー指摘も全て解消 |
+
 ## 成果物作成フロー
 
 Step 成果物の作成時は以下のフローに従う。
