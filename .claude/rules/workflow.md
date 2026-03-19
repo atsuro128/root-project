@@ -2,6 +2,7 @@
 
 ## セッション管理
 - 作業開始時に `dev-journal/progress-management/progress.md` を確認すること
+  - ops セクションに未対応項目がある場合、Step 作業より先に対応を提案すること
 - 作業開始時に `dev-journal/progress-management/issues/open/` のブロッカー issue を確認すること
   - 次 Step の成果物作成に着手する前に、その Step に関連するブロッカー issue を先に解消すること
 - 作業完了時に `dev-journal/progress-management/progress.md` を更新すること
