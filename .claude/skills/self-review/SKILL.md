@@ -17,11 +17,11 @@ allowed-tools: Read, Write, Edit, Glob, Grep
 
 ### 1. 未対応エントリの収集
 
-`ai-dev-framework/knowledge/` 配下の全エントリを読み込み、`## ルール化` が `未対応` のものを抽出する。
+`ai-dev-framework/knowledge/` のトップレベル（`archived/` 以外）の全ファイルを読み込み、`ルール化: 未対応` の項目を抽出する。
 
 ### 2. パターン分析
 
-未対応エントリを分析し、以下を判断する:
+未対応項目を分析し、以下を判断する:
 
 | 判断 | 基準 | アクション |
 |------|------|-----------|
@@ -40,16 +40,24 @@ allowed-tools: Read, Write, Edit, Glob, Grep
 
 ### 4. knowledge エントリの更新
 
-ルール化したエントリの `## ルール化` を更新する:
+ルール化した項目の `ルール化:` を更新する:
 
-```markdown
-## ルール化
-対応済み — {ルールファイル名} に反映（YYYY-MM-DD）
+```
+- **ルール化**: 対応済み — {ルールファイル名} に反映（YYYY-MM-DD）
 ```
 
-### 5. 報告
+### 5. アーカイブ
+
+ファイル内の全項目が「対応済み」または「対応不要」になったら、そのファイルを `ai-dev-framework/knowledge/archived/` に移動する。
+
+```bash
+mv ai-dev-framework/knowledge/YYYY-MM-DD.md ai-dev-framework/knowledge/archived/
+```
+
+### 6. 報告
 
 以下をユーザーに報告する:
 - ルール化した件数と内容
 - 保留した件数と理由
 - 対応不要とした件数と理由
+- アーカイブした件数
