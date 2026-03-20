@@ -3,7 +3,7 @@ name: analyze
 description: |
   開発プロセスや技術判断の変遷を分析し、資料としてまとめる。
   Use when: ユーザーが「分析して」「変遷まとめて」「振り返り資料作って」と依頼した時
-  DO NOT use when: 日報作成（/daily-report を使う）、セッションログ記録（/session-log を使う）
+  DO NOT use when: 日報作成（/daily-report を使う）
 argument-hint: "[期間: YYYY-MM-DD~YYYY-MM-DD | 直近N日] [分析テーマ]"
 allowed-tools: Read, Grep, Glob, Bash(git *), Bash(date *)
 ---
@@ -38,7 +38,7 @@ $ARGUMENTS
 
 | ソース | パス | 用途 |
 |--------|------|------|
-| セッションログ | `dev-journal/logs/YYYY-MM-DD/session-log.md` | 各日の判断・変更の詳細 |
+| 引き継ぎメモ | `dev-journal/progress-management/handoff.md`, `handoff-archive.md` | セッション単位の作業ログ・判断・学び |
 | 日報 | `dev-journal/daily-reports/YYYY-MM-DD.md` | 日ごとの成果サマリー |
 | ADR | `dev-journal/references/decisions/ADR-*.md` | 構造的判断の根拠 |
 | 進捗管理 | `dev-journal/progress-management/progress.md` | Step 進行状況 |

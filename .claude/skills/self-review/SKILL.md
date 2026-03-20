@@ -1,33 +1,36 @@
 ---
 name: self-review
 description: |
-  knowledge を読み込み、ルール化すべきものを .claude/rules/ に反映する。
+  handoff の学び・気づきを分析し、ルール化すべきものを .claude/rules/ に反映する。
   Use when: ユーザーが「自己改善して」「ルール化して」「self-review」と依頼した時
-  DO NOT use when: 振り返り中（/retrospective を使う）、通常の作業中
+  DO NOT use when: 通常の作業中
 allowed-tools: Read, Write, Edit, Glob, Grep
 ---
 
-蓄積された knowledge を分析し、ルール化を実施してください。
+蓄積された学び・気づきを分析し、ルール化を実施してください。
 
 ## 目的
 
-`/root-project/ai-dev-framework/knowledge/` に蓄積された学びを分析し、繰り返し発生するパターンや重要な教訓を `.claude/rules/` のルールファイルに反映する。
+`dev-journal/progress-management/handoff.md` と `handoff-archive.md` に記録された「学び・気づき」セクションを分析し、繰り返し発生するパターンや重要な教訓を `.claude/rules/` のルールファイルに反映する。
 
 ## 手順
 
-### 1. 未対応エントリの収集
+### 1. 学び・気づきの収集
 
-`ai-dev-framework/knowledge/` のトップレベル（`archived/` 以外）の全ファイルを読み込み、`ルール化: 未対応` の項目を抽出する。
+以下を読み込み、「学び・気づき」セクションの内容を抽出する:
+
+1. `dev-journal/progress-management/handoff.md`（直近2セッション分）
+2. `dev-journal/progress-management/handoff-archive.md`（過去セッション分）
 
 ### 2. パターン分析
 
-未対応項目を分析し、以下を判断する:
+抽出した項目を分析し、以下を判断する:
 
 | 判断 | 基準 | アクション |
 |------|------|-----------|
 | ルール化する | 同種の問題が2回以上、または1回でも影響が大きい | rules/ にルール追加・既存ルール修正 |
-| 保留 | まだパターンが見えない、1回限りの問題 | `未対応` のまま残す |
-| 対応不要 | 既にルール化済み、または環境変化で再発しない | `対応不要` に更新 |
+| 保留 | まだパターンが見えない、1回限りの問題 | 何もしない |
+| 対応不要 | 既にルール化済み、または環境変化で再発しない | 何もしない |
 
 ### 3. ルールの作成・更新
 
@@ -38,26 +41,9 @@ allowed-tools: Read, Write, Edit, Glob, Grep
 3. 新規テーマの場合は新しいルールファイルを作成
 4. **ルールは具体的・検証可能に書く**（「注意する」ではなく「〜の後に〜を確認する」）
 
-### 4. knowledge エントリの更新
-
-ルール化した項目の `ルール化:` を更新する:
-
-```
-- **ルール化**: 対応済み — {ルールファイル名} に反映（YYYY-MM-DD）
-```
-
-### 5. アーカイブ
-
-ファイル内の全項目が「対応済み」または「対応不要」になったら、そのファイルを `ai-dev-framework/knowledge/archived/` に移動する。
-
-```bash
-mv ai-dev-framework/knowledge/YYYY-MM-DD.md ai-dev-framework/knowledge/archived/
-```
-
-### 6. 報告
+### 4. 報告
 
 以下をユーザーに報告する:
 - ルール化した件数と内容
 - 保留した件数と理由
 - 対応不要とした件数と理由
-- アーカイブした件数

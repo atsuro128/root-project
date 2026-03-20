@@ -37,7 +37,7 @@ $ARGUMENTS
 ## 手順
 
 1. 上記の事前取得データを確認する（対象日が今日でない場合は Bash ツールで対象日のコミット履歴を個別に取得する）
-2. `dev-journal/logs/YYYY-MM-DD/session-log.md` が存在すれば読み込む（Readツールで絶対パスを使用すること）
+2. `dev-journal/progress-management/handoff.md` を読み、当日のセッション記録を把握する
 3. `dev-journal/progress-management/progress.md` を読み、次タスクを確認する
 4. 下記の出力形式に従い `dev-journal/daily-reports/YYYY-MM-DD.md` にファイルを作成する
 5. 作成した内容をユーザーにも表示する
@@ -63,7 +63,7 @@ $ARGUMENTS
 （同上）
 
 ### 判断・決定事項
-（session-log.md の `判断:` 行を整形して記載。なければ「記録なし」）
+（handoff.md の学び・気づきセクションから引用。なければ「記録なし」）
 
 ### 明日以降のタスク
 （progress.md の直近タスクから引用）

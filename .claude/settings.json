@@ -17,13 +17,13 @@
       "Bash(git add *)",
       "Bash(git commit *)",
       "Bash(git -C *)",
-      "Bash(date *)"
+      "Bash(date *)",
+      "Write(**)",
+      "Edit(**)",
+      "WebSearch",
+      "WebFetch"
     ],
     "deny": [
-      "Read(//)",
-      "Read(~/**)",
-      "Edit(//)",
-      "Edit(~/**)",
       "Bash(git push *)",
       "Bash(git push --force *)"
     ]
@@ -36,17 +36,6 @@
           {
             "type": "command",
             "command": "python \"$CLAUDE_PROJECT_DIR/.claude/hooks/edit-scope-check.py\""
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python \"$CLAUDE_PROJECT_DIR/.claude/hooks/stop-check.py\""
           }
         ]
       }
