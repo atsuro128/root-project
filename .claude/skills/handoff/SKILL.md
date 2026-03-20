@@ -4,7 +4,7 @@ description: |
   セッション終了時に引き継ぎメモを作成する。会話内容を分析し、作業ログと次セッションへの引き継ぎを1ファイルに統合する。
   Use when: ユーザーが「引き継ぎ書いて」「handoff」「終わり」「セッション終了」と依頼した時
   DO NOT use when: セッション途中の作業記録（不要。終了時にまとめて生成する）
-allowed-tools: Read, Write, Edit, Glob, Grep, Bash(date *), Bash(git log *), Bash(git diff *), Bash(wc *)
+allowed-tools: Read, Write, Edit, Glob, Grep, Bash(date *), Bash(git *), Bash(wc *), Bash(pwd)
 ---
 
 セッションの会話内容を分析し、引き継ぎメモを作成してください。
@@ -82,3 +82,14 @@ allowed-tools: Read, Write, Edit, Glob, Grep, Bash(date *), Bash(git log *), Bas
 
 1. `.claude/worktrees/` にディレクトリが残っていれば削除する
 2. `git worktree list` で不要なワークツリーが登録されていれば `git worktree remove` で除去する
+
+## コミット
+
+クリーンアップ完了後、全リポジトリの未コミット変更をコミットする。
+
+1. 各リポジトリ（root-project, dev-journal, ai-dev-framework, expense-saas）で `git status` を確認
+2. 変更があるリポジトリごとに、そのディレクトリで以下を実行:
+   - 変更ファイルをステージ
+   - Conventional Commits 形式（日本語）でコミット
+   - フッター: `Co-Authored-By: Claude <noreply@anthropic.com>`
+3. `git push` はしない

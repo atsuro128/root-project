@@ -3,7 +3,7 @@ name: codex-review
 description: |
   codex CLI を使って Step 成果物のレビューを依頼する。
   Use when: Step 成果物の作成・コミットが完了した時、再レビューを依頼する時、Issue 解決のレビューを依頼する時
-  DO NOT use when: 成果物がまだコミットされていない時、通常のコードレビュー（/review を使う）
+  DO NOT use when: 通常のコードレビュー（/review を使う）
 argument-hint: "[Step番号 ステップ名] [初回|再レビュー|issue解決レビュー]"
 allowed-tools: Read, Glob, Grep, Bash(codex *), Bash(git *)
 ---
@@ -23,10 +23,10 @@ codex レビューを実行してください。
 
 ### Issue 解決レビュー
 
-以下の **すべて** を満たしていることを確認:
+以下の **いずれか** を満たしていることを確認:
 
-1. `dev-journal/progress-management/issues/pending-review/` に解決済み issue が存在する
-2. issue の解決内容に基づく成果物の修正がコミット済み
+- `dev-journal/progress-management/issues/pending-review/` に解決済み issue が存在する
+- issue の解決に関連する未コミットの変更がある（`git diff` で確認可能）
 
 ## 実行手順
 
@@ -42,10 +42,18 @@ codex exec "Step N（ステップ名）の初回レビューを実施してく�
 codex exec "Step N の再レビューを実施してください" --full-auto
 ```
 
-### Issue 解決レビュー
+### Issue 解決レビュー（コミット済み）
 
 ```bash
 codex exec "issues/pending-review/ にある Issue の解決レビューを実施してください" --full-auto
+```
+
+### Issue 解決レビュー（未コミット・差分ベース）
+
+```bash
+# 差分をファイルに出力してからレビューを依頼
+git -C dev-journal diff > /tmp/issue-diff.txt
+codex exec "Issue NNN の解決レビューを実施してください。変更差分は /tmp/issue-diff.txt を参照してください。issue ファイルは dev-journal/progress-management/issues/open/NNN-*.md です" --full-auto
 ```
 
 - 作業ディレクトリは `root-project/` であること
