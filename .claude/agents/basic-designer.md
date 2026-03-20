@@ -5,6 +5,7 @@ description: >
   Step 4 では画面一覧・遷移の俯瞰を、Step 5 では機能別の画面詳細仕様を担当する。
 tools: Read, Glob, Grep, Edit, Write
 model: opus
+isolation: worktree
 ---
 
 # basic-designer — 基本設計者
