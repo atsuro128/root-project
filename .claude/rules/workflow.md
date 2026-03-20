@@ -2,7 +2,6 @@
 
 ## セッション管理
 - 作業開始時に `dev-journal/progress-management/progress.md` を確認すること
-  - ops セクションに未対応項目がある場合、Step 作業より先に対応を提案すること
 - 作業開始時に `dev-journal/progress-management/issues/open/` のブロッカー issue を確認すること
   - 次 Step の成果物作成に着手する前に、その Step に関連するブロッカー issue を先に解消すること
 - 作業完了時に `dev-journal/progress-management/progress.md` を更新すること
@@ -74,9 +73,15 @@ Step 成果物の作成時は以下のフローに従う。
 - Claude Code の Auto Memory 機能は使用しないこと
 - ドキュメント・コード・コミットメッセージの用語は統一すること（用語集: `dev-journal/references/glossary.md`）
 
-## Issue 発掘規約
+## Issue 規約
+
+### 発掘
 
 成果物作成中に設計上の問題を発見した場合、影響度によらず `/issue 起票` で issue 化すること（発見経緯: `proactive`）。
 
 - **即時起票**（作業中断）: 上流成果物との矛盾、ブロッカー、前ステップ成果物の修正が必要な場合
 - **作業継続して起票**: 未決定事項、仕様の曖昧さ、改善アイデアなど作業続行可能なもの
+
+### 対応
+
+issue の対応に着手する際は `/issue 対応` でライフサイクルを確認すること。
