@@ -75,6 +75,10 @@ OWASP Top 10 観点でのチェック:
 - `dev-journal/deliverables/docs/50_detail_design/` — 詳細設計全体
 - `dev-journal/deliverables/docs/60_test/` — テスト設計全体
 
+### レビュー観点
+
+- `dev-journal/guide/work-breakdown/step*` — 該当 Step の「レビュー観点」セクションを必ず確認し、観点に沿ってレビューすること
+
 ### ルールファイル
 
 - `.claude/rules/architecture.md`

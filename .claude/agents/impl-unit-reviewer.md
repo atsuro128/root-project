@@ -62,6 +62,10 @@ model: opus
 - `dev-journal/deliverables/docs/50_detail_design/db_schema.md`
 - `dev-journal/deliverables/docs/50_detail_design/authz.md`
 
+### レビュー観点
+
+- `dev-journal/guide/work-breakdown/step*` — 該当 Step の「レビュー観点」セクションを必ず確認し、観点に沿ってレビューすること
+
 ### ルールファイル
 
 - `.claude/rules/architecture.md`

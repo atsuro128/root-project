@@ -65,6 +65,10 @@ model: opus
 - `dev-journal/deliverables/docs/20_domain/` — ドメイン設計全体
 - `dev-journal/deliverables/docs/30_arch/` — アーキテクチャ設計全体（ADR 含む）
 
+### レビュー観点
+
+- `dev-journal/guide/work-breakdown/step*` — 該当 Step の「レビュー観点」セクションを必ず確認し、観点に沿ってレビューすること
+
 ### レビュー手順
 
 - `ai-dev-framework/agents/review-procedure.md` — 共通観点 + ステップ別追加観点

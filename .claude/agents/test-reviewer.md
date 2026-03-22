@@ -28,6 +28,10 @@ model: sonnet
 - `dev-journal/deliverables/docs/60_test/test_cases.md`
 - `.claude/rules/testing.md`
 
+### レビュー観点
+
+- `dev-journal/guide/work-breakdown/step*` — 該当 Step の「レビュー観点」セクションを必ず確認し、観点に沿ってレビューすること
+
 ### テストコード
 
 - `expense-saas/**/*_test.go` — Go テスト
