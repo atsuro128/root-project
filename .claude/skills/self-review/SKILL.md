@@ -1,7 +1,7 @@
 ---
 name: self-review
 description: |
-  handoff の学び・気づきを分析し、ルール化すべきものを .claude/rules/ に反映する。
+  セッションログの学び・気づきを分析し、ルール化すべきものを .claude/rules/ に反映する。
   Use when: ユーザーが「自己改善して」「ルール化して」「self-review」と依頼した時
   DO NOT use when: 通常の作業中
 allowed-tools: Read, Write, Edit, Glob, Grep
@@ -11,7 +11,7 @@ allowed-tools: Read, Write, Edit, Glob, Grep
 
 ## 目的
 
-`dev-journal/progress-management/handoff.md` と `handoff-archive.md` に記録された「学び・気づき」セクションを分析し、繰り返し発生するパターンや重要な教訓を `.claude/rules/` のルールファイルに反映する。
+`dev-journal/progress-management/session-log.md` と `session-log-archive.md` に記録された「学び・気づき」セクションを分析し、繰り返し発生するパターンや重要な教訓を `.claude/rules/` のルールファイルに反映する。
 
 ## 手順
 
@@ -19,8 +19,8 @@ allowed-tools: Read, Write, Edit, Glob, Grep
 
 以下を読み込み、「学び・気づき」セクションの内容を抽出する:
 
-1. `dev-journal/progress-management/handoff.md`（直近2セッション分）
-2. `dev-journal/progress-management/handoff-archive.md`（過去セッション分）
+1. `dev-journal/progress-management/session-log.md`（直近2セッション分）
+2. `dev-journal/logs/session-log-archive.md`（過去セッション分）
 
 ### 2. パターン分析
 

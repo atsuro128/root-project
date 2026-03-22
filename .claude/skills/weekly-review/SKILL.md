@@ -39,7 +39,7 @@ $ARGUMENTS
 
 | ソース | パス | 用途 |
 |--------|------|------|
-| 引き継ぎメモ | `dev-journal/progress-management/handoff.md`, `handoff-archive.md` | セッション単位の作業ログ・判断・学び |
+| セッションログ | `dev-journal/progress-management/session-log.md`, `dev-journal/logs/session-log-archive.md` | セッション単位の作業ログ・判断・学び |
 | 日報 | `dev-journal/daily-reports/YYYY-MM-DD.md` | 日ごとの成果サマリー |
 | ADR | `dev-journal/references/decisions/ADR-*.md` | 期間内に作成・変更されたもの |
 | 進捗管理 | `dev-journal/progress-management/progress.md` | Step 進行状況 |

@@ -30,14 +30,14 @@
 ## セッション管理
 
 ### 開始時
-1. `dev-journal/progress-management/handoff.md` を確認し、前回セッションの引き継ぎを把握する
+1. `dev-journal/progress-management/session-log.md` を確認し、前回セッションの引き継ぎを把握する
 2. `dev-journal/progress-management/progress.md` を確認する
 3. `dev-journal/progress-management/issues/open/` のブロッカー issue を確認する
    - 次 Step の成果物作成に着手する前に、その Step に関連するブロッカー issue を先に解消すること
 4. セッションのゴールを決める — 何をどこまでやるかをユーザーと合意してから作業に入ること
 
 ### 終了時
-- 作業がひと段落したら `/handoff` の実行を提案すること（次セッションへの引き継ぎ）
+- 作業がひと段落したら `/session-log` の実行を提案すること（次セッションへの引き継ぎ）
 - `dev-journal/progress-management/progress.md` を更新すること
 
 ## Step 一覧と作業分解

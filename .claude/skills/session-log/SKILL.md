@@ -1,17 +1,17 @@
 ---
-name: handoff
+name: session-log
 description: |
-  セッション終了時に引き継ぎメモを作成する。会話内容を分析し、作業ログと次セッションへの引き継ぎを1ファイルに統合する。
-  Use when: ユーザーが「引き継ぎ書いて」「handoff」「終わり」「セッション終了」と依頼した時
+  セッション終了時にセッションログを作成する。会話内容を分析し、作業ログと次セッションへの引き継ぎを1ファイルに統合する。
+  Use when: ユーザーが「引き継ぎ書いて」「handoff」「session-log」「終わり」「セッション終了」と依頼した時
   DO NOT use when: セッション途中の作業記録（不要。終了時にまとめて生成する）
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash(date *), Bash(git *), Bash(wc *), Bash(pwd)
 ---
 
-セッションの会話内容を分析し、引き継ぎメモを作成してください。
+セッションの会話内容を分析し、セッションログを作成してください。
 
 ## 出力先
 
-`dev-journal/progress-management/handoff.md`（直近2セッション分を保持）
+`dev-journal/progress-management/session-log.md`（直近2セッション分を保持）
 
 ## 出力形式
 
@@ -41,7 +41,7 @@ allowed-tools: Read, Write, Edit, Glob, Grep, Bash(date *), Bash(git *), Bash(wc
 - 手戻り・判断ミス・手順漏れ・良い判断を簡潔に記録
 - なければ「特になし」（無理に捻り出さない）
 
-### コンテキスト
+### 意思決定ログ
 - 次セッションで知っておくべき背景情報
 - 議論の経緯で重要なもの
 
@@ -57,24 +57,24 @@ allowed-tools: Read, Write, Edit, Glob, Grep, Bash(date *), Bash(git *), Bash(wc
 1. `date` コマンドで現在時刻を取得する
 2. `progress.md` の現在のフェーズを確認する
 3. セッションの会話内容を分析する
-4. 既存の `handoff.md` を読み込む
+4. 既存の `session-log.md` を読み込む
 5. アーカイブ処理を行う（後述）
-6. 新しいセッション分を先頭に、前回セッション分を「前回」として残す形で `handoff.md` を書き出す
+6. 新しいセッション分を先頭に、前回セッション分を「前回」として残す形で `session-log.md` を書き出す
 7. ユーザーに内容を提示し、修正があれば反映する
 
 ## アーカイブ処理
 
-`handoff.md` には直近2セッション分のみ保持する。3セッション以上のデータがある場合、古いものをアーカイブに退避する。
+`session-log.md` には直近2セッション分のみ保持する。3セッション以上のデータがある場合、古いものをアーカイブに退避する。
 
-1. 既存の `handoff.md` に2セッション分が既にある場合:
-   - 「前回」セッション（古い方）のブロックを `handoff-archive.md` の末尾に追記する
+1. 既存の `session-log.md` に2セッション分が既にある場合:
+   - 「前回」セッション（古い方）のブロックを `logs/session-log-archive.md` の末尾に追記する
    - 現在の「最新」セッションを「前回」に繰り下げる
    - 新しいセッション分を「最新」として書く
-2. 既存の `handoff.md` に1セッション分しかない場合:
+2. 既存の `session-log.md` に1セッション分しかない場合:
    - そのセッションを「前回」としてそのまま残す
    - 新しいセッション分を「最新」として書く
 
-アーカイブ先: `dev-journal/progress-management/handoff-archive.md`
+アーカイブ先: `dev-journal/logs/session-log-archive.md`
 
 ## クリーンアップ
 
