@@ -48,7 +48,7 @@ paths:
 | 分離方式 | 共有DB + tenant_id による論理分離 |
 | アプリ層 | リポジトリ層で全クエリに WHERE tenant_id = ? を強制 |
 | DB層 | PostgreSQL RLS でテナント分離を二重保証 |
-| S3 | オブジェクトキーにテナントIDを含む（`{tenant_id}/{report_id}/{file_id}`） |
+| S3 | オブジェクトキーにテナントIDを含む（`{tenant_id}/{report_id}/{attachment_id}`） |
 
 ### 禁止事項
 - tenant_id なしの SELECT / INSERT / UPDATE / DELETE
