@@ -29,7 +29,7 @@ isolation: worktree
 
 - `dev-journal/deliverables/docs/40_basic_design/screens.md` — 画面一覧（Step 4）
 - `dev-journal/deliverables/docs/40_basic_design/ui_flow.md` — Mermaid 画面遷移図（Step 4）
-- `dev-journal/deliverables/docs/40_basic_design/screens/*.md` — 機能別画面詳細仕様（Step 5）
+- `dev-journal/deliverables/docs/50_detail_design/screens/*.md` — 機能別画面詳細仕様（Step 5）
 
 ## 必須参照ファイル（入力）
 

@@ -59,7 +59,7 @@ model: opus
 ### 設計成果物
 
 - `dev-journal/deliverables/docs/40_basic_design/screens.md` — 画面一覧（俯瞰）
-- `dev-journal/deliverables/docs/40_basic_design/screens/*.md` — 機能別画面詳細仕様
+- `dev-journal/deliverables/docs/50_detail_design/screens/*.md` — 機能別画面詳細仕様
 - `dev-journal/deliverables/docs/40_basic_design/ui_flow.md` — 画面遷移図
 - `dev-journal/deliverables/docs/50_detail_design/openapi.yaml`
 - `dev-journal/deliverables/docs/50_detail_design/db_schema.md`
