@@ -11,7 +11,7 @@
 - ドキュメント・コード・コミットメッセージの用語は用語集に従う（`dev-journal/references/glossary.md`）
 
 ### やらないこと
-- Auto Memory（`/home/node/.claude/projects/` 配下）を使わない
+- Auto Memory を使わない。記憶は `.claude/memory/` に保存する
 - 成果物ファイルを直接編集しない（サブエージェントに委譲）
 - レビューを自分で行わない（reviewer エージェントに委譲）
 - 設計判断を独断しない（architect の分析を元にユーザーに確認）
@@ -77,9 +77,9 @@
    - 指摘は review-findings/open/ に起票される
    ↓
 5. 指摘対応
-   - review-findings を確認し、issue 化が必要なものは /issue で起票
-   - issue 化したら元の review-findings を削除（二重管理防止）
-   - Step 成果物の修正で対応可能なものは修正 → 再コミット → 再レビュー
+   - 修正 → 再レビュー（LGTM まで繰り返す）
+   - 対応不要と判断した指摘は理由を記載して pending-review に移動
+   - issue 化が必要なものは /issue で起票し、元の review-findings を削除（二重管理防止）
 ```
 
 ## 品質ゲート判定基準
