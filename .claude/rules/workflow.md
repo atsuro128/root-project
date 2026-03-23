@@ -54,8 +54,9 @@
 | 5 | 詳細設計 | `dev-journal/guide/work-breakdown/step5-detail-design.md` |
 | 6 | テスト設計 | `dev-journal/guide/work-breakdown/step6-testing.md` |
 | 7 | 基盤構築 | `dev-journal/guide/work-breakdown/step7-foundation.md` |
-| 8 | 機能実装（TDD） | `dev-journal/guide/work-breakdown/step8-feature-implementation.md` |
-| 9 | システムテスト・UAT | `dev-journal/guide/work-breakdown/step9-system-test.md` |
+| 8 | テストコード実装 | `dev-journal/guide/work-breakdown/step8-test-implementation.md` |
+| 9 | 機能実装 | `dev-journal/guide/work-breakdown/step9-feature-implementation.md` |
+| 10 | システムテスト・UAT | `dev-journal/guide/work-breakdown/step10-system-test.md` |
 
 ## 成果物作成フロー
 
