@@ -25,7 +25,7 @@ model: sonnet
 ### テスト設計
 
 - `dev-journal/deliverables/docs/60_test/test_strategy.md`
-- `dev-journal/deliverables/docs/60_test/test_cases.md`
+- `dev-journal/deliverables/docs/60_test/test_cases/*.md`
 - `.claude/rules/testing.md`
 
 ### レビュー観点
@@ -64,7 +64,7 @@ model: sonnet
 
 ### 4. テスト設計書との整合性
 
-- `test_cases.md` で定義された全テストケースが実装されているか
+- `test_cases/*.md` で定義された全テストケースが実装されているか
 - テストの期待結果がテスト設計と一致しているか
 
 ## Bash の使用方針

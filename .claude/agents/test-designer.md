@@ -23,7 +23,14 @@ isolation: worktree
 ## 出力先
 
 - `dev-journal/deliverables/docs/60_test/test_strategy.md` — テスト戦略
-- `dev-journal/deliverables/docs/60_test/test_cases.md` — テストケース一覧
+- `dev-journal/deliverables/docs/60_test/test_cases/auth.md` — 認証テストケース
+- `dev-journal/deliverables/docs/60_test/test_cases/reports.md` — レポートテストケース
+- `dev-journal/deliverables/docs/60_test/test_cases/items.md` — 明細テストケース
+- `dev-journal/deliverables/docs/60_test/test_cases/attachments.md` — 添付テストケース
+- `dev-journal/deliverables/docs/60_test/test_cases/workflow.md` — ワークフローテストケース
+- `dev-journal/deliverables/docs/60_test/test_cases/dashboard.md` — ダッシュボード・カテゴリテストケース
+- `dev-journal/deliverables/docs/60_test/test_cases/tenant.md` — テナント管理テストケース
+- `dev-journal/deliverables/docs/60_test/test_cases/cross-cutting.md` — 横断テストケース
 
 ## 必須参照ファイル（入力）
 
@@ -57,8 +64,8 @@ isolation: worktree
 
 各テストケースに以下を定義:
 
-| テストID | カテゴリ | テスト種別 | 対象機能 | テスト内容 | 期待結果 | 優先度 |
-|---------|---------|----------|---------|----------|---------|--------|
+| テストID | テストレベル | レイヤー | テスト関数名候補 | 入力（前提条件含む） | 期待結果 |
+|---------|------------|--------|---------------|-------------------|---------|
 
 ### 実装者向けガイド
 
