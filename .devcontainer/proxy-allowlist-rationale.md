@@ -42,7 +42,6 @@
 | `api.github.com` | GitHub API | `gh`, 一部 `git` | PR・認証・API 操作に必要 | GitHub API を使わない場合 | 必須 |
 | `raw.githubusercontent.com` | 生ファイル取得 | `curl`, 一部ツール | GitHub 上の raw ファイル取得に使う | raw 取得を使わない場合 | 要確認 |
 | `objects.githubusercontent.com` | GitHub オブジェクト配信 | `git`, `gh` | GitHub 配下のオブジェクト取得で必要になる | GitHub 利用をやめる場合 | 必須 |
-| `githubusercontent.com` | GitHub 配下コンテンツ配信 | `gh`, ブラウザ, 一部ダウンロード | 広すぎるため用途を絞れていない | `objects` / `raw` 等で代替できると確認した場合 | 削除候補 |
 | `codeload.github.com` | GitHub アーカイブ取得 | `gh`, zip/tarball 取得 | リポジトリのアーカイブ取得で使われる | アーカイブ取得を使わない場合 | 要確認 |
 | `uploads.github.com` | GitHub アップロード API | `gh` | Release asset や一部 API で必要になる可能性がある | その用途を使わないと確認した場合 | 要確認 |
 | `github-releases.githubusercontent.com` | GitHub release 配布 | `gh`, 各種 CLI | GitHub release バイナリ取得で使われる | release 配布物を取得しない場合 | 要確認 |
@@ -61,7 +60,6 @@
 - `statsig.anthropic.com`
 - `statsig.com`
 - `update.code.visualstudio.com`
-- `githubusercontent.com`
 - `storage.googleapis.com`
 - `chatgpt.com`
 - `platform.claude.com`
