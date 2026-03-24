@@ -75,7 +75,7 @@
   },
   "workspaceMount": "source=${localWorkspaceFolder},target=/root-project,type=bind,consistency=delegated",
   "workspaceFolder": "/root-project",
-  "postCreateCommand": "cp /home/node/.gitconfig.host /home/node/.gitconfig 2>/dev/null || true && git config --global core.autocrlf input && git config --global core.fileMode false && git config --global --add safe.directory /root-project && git config --global --add safe.directory /root-project/expense-saas && git config --global --add safe.directory /root-project/dev-journal && git config --global --add safe.directory /root-project/ai-dev-framework",
+  "postCreateCommand": "cp /home/node/.gitconfig.host /home/node/.gitconfig 2>/dev/null || true && git config --global core.autocrlf input && git config --global core.fileMode false && git config --global --add safe.directory /root-project && git config --global --add safe.directory /root-project/expense-saas && git config --global --add safe.directory /root-project/dev-journal && git config --global --add safe.directory /root-project/ai-dev-framework && echo \"alias cc='claude --dangerously-skip-permissions'\" >> /home/node/.zshrc",
   "postStartCommand": "sudo /usr/local/bin/init-devcontainer.sh",
   "postAttachCommand": "/usr/local/bin/announce-egress-status.sh",
   "waitFor": "postStartCommand"
