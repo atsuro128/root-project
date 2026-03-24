@@ -45,6 +45,7 @@ host gateway からの inbound は、`HOST_GATEWAY_TCP_PORTS` で明示したポ
 - `verify-egress.sh` で `auth.openai.com` と `api.openai.com` が proxy 経由で到達できること
 - proxy を使わない `https://api.openai.com` への直接通信が失敗すること
 - `example.com` が proxy 経由でも拒否されること
+- 許可ドメインの理由は `proxy-allowlist-rationale.md` に記録し、`proxy-allowlist.txt` と同期すること
 
 ## volume の扱い
 

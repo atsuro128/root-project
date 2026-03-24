@@ -87,6 +87,10 @@ echo "[INFO] Checking required Anthropic endpoints"
 check_reachable "api.anthropic.com"
 check_reachable "platform.claude.com"
 
+echo "[INFO] Checking required GitHub endpoints"
+check_reachable "github.com"
+check_reachable "api.github.com"
+
 echo "[INFO] Checking direct egress is fail-closed"
 check_direct_blocked "https://api.openai.com"
 
