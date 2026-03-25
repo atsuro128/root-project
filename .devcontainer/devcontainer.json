@@ -4,16 +4,19 @@
     "dockerfile": "Dockerfile",
     "args": {
       "TZ": "Asia/Tokyo",
-      "CLAUDE_CODE_VERSION": "latest",
+      "CLAUDE_CODE_VERSION": "2.1.76",
+      "CODEX_VERSION": "0.116.0",
       "GIT_DELTA_VERSION": "0.18.2",
       "ZSH_IN_DOCKER_VERSION": "1.2.0",
-      "GO_VERSION": "1.24.1"
+      "GO_VERSION": "1.24.1",
+      "GOLANGCI_LINT_VERSION": "v1.64.8"
     }
   },
   "runArgs": [
     "--cap-add=NET_ADMIN",
-    "--cap-add=NET_RAW"
+    "--security-opt=no-new-privileges:true"
   ],
+  "overrideCommand": false,
   "customizations": {
     "vscode": {
       "extensions": [
@@ -45,7 +48,7 @@
       }
     }
   },
-  "forwardPorts": [5432, 3000, 8080],
+  "forwardPorts": [3000, 8080],
   "remoteUser": "node",
   "mounts": [
     "source=claude-code-bashhistory-${devcontainerId},target=/commandhistory,type=volume",
@@ -66,7 +69,7 @@
     "all_proxy": "http://127.0.0.1:3127",
     "NO_PROXY": "localhost,127.0.0.1",
     "no_proxy": "localhost,127.0.0.1",
-    "HOST_GATEWAY_TCP_PORTS": "3000,5432,8080",
+    "HOST_GATEWAY_TCP_PORTS": "3000,8080",
     "UPSTREAM_PROXY_HOST": "${localEnv:UPSTREAM_PROXY_HOST}",
     "UPSTREAM_PROXY_PORT": "${localEnv:UPSTREAM_PROXY_PORT}",
     "UPSTREAM_PROXY_USERNAME": "${localEnv:UPSTREAM_PROXY_USERNAME}",
@@ -75,8 +78,6 @@
   },
   "workspaceMount": "source=${localWorkspaceFolder},target=/root-project,type=bind,consistency=delegated",
   "workspaceFolder": "/root-project",
-  "postCreateCommand": "cp /home/node/.gitconfig.host /home/node/.gitconfig 2>/dev/null || true && git config --global core.autocrlf input && git config --global core.fileMode false && git config --global --add safe.directory /root-project && git config --global --add safe.directory /root-project/expense-saas && git config --global --add safe.directory /root-project/dev-journal && git config --global --add safe.directory /root-project/ai-dev-framework && echo \"alias cc='claude --dangerously-skip-permissions'\" >> /home/node/.zshrc",
-  "postStartCommand": "sudo /usr/local/bin/init-devcontainer.sh",
-  "postAttachCommand": "/usr/local/bin/announce-egress-status.sh",
-  "waitFor": "postStartCommand"
+  "postCreateCommand": "cp /home/node/.gitconfig.host /home/node/.gitconfig 2>/dev/null || true && git config --global core.autocrlf input && git config --global core.fileMode false && git config --global --add safe.directory /root-project && git config --global --add safe.directory /root-project/expense-saas && git config --global --add safe.directory /root-project/dev-journal && git config --global --add safe.directory /root-project/ai-dev-framework && echo \"alias cc='claude --dangerously-skip-permissions'\" >> /home/node/.zshrc && echo \"alias cx='codex --dangerously-bypass-approvals-and-sandbox'\" >> /home/node/.zshrc",
+  "postAttachCommand": "/usr/local/bin/announce-egress-status.sh"
 }

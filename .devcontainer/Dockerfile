@@ -1,10 +1,12 @@
-FROM node:20
+FROM node:20-bookworm
 
 ARG TZ
 ENV TZ="$TZ"
 
-ARG CLAUDE_CODE_VERSION=latest
+ARG CLAUDE_CODE_VERSION=2.1.76
+ARG CODEX_VERSION=0.116.0
 ARG GO_VERSION=1.24.1
+ARG GOLANGCI_LINT_VERSION=v1.64.8
 
 # Install basic development tools, firewall/proxy dependencies, Python, and PostgreSQL client
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -21,6 +23,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   iptables \
   iproute2 \
   dnsutils \
+  curl \
   jq \
   nano \
   vim \
@@ -77,7 +80,7 @@ USER node
 # Set up Go workspace for non-root user
 ENV GOPATH=/home/node/go
 ENV PATH=$GOPATH/bin:$PATH
-RUN go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+RUN go install github.com/golangci/golangci-lint/cmd/golangci-lint@${GOLANGCI_LINT_VERSION}
 
 # Install global packages
 ENV NPM_CONFIG_PREFIX=/usr/local/share/npm-global
@@ -100,15 +103,14 @@ RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/
   -a "export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhistory/.bash_history" \
   -x
 
-# Install Claude Code CLI and OpenAI Codex CLI
-RUN npm install -g @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} @openai/codex
+# Install Claude Code CLI and OpenAI Codex CLI with pinned versions.
+RUN npm install -g @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} @openai/codex@${CODEX_VERSION}
 
 # Copy and set up container init/firewall/proxy scripts
 COPY proxy-allowlist.txt /usr/local/share/proxy-allowlist.txt
-COPY init-devcontainer.sh render-squid-config.sh verify-egress.sh init-firewall.sh announce-egress-status.sh /usr/local/bin/
+COPY init-devcontainer.sh render-squid-config.sh verify-egress.sh init-firewall.sh announce-egress-status.sh devcontainer-entrypoint.sh /usr/local/bin/
 USER root
-RUN chmod +x /usr/local/bin/init-devcontainer.sh /usr/local/bin/init-firewall.sh /usr/local/bin/render-squid-config.sh /usr/local/bin/verify-egress.sh /usr/local/bin/announce-egress-status.sh && \
-  chmod 0644 /usr/local/share/proxy-allowlist.txt && \
-  echo "node ALL=(root) NOPASSWD: /usr/local/bin/init-devcontainer.sh, /usr/local/bin/init-firewall.sh" > /etc/sudoers.d/node-firewall && \
-  chmod 0440 /etc/sudoers.d/node-firewall
-USER node
+RUN chmod +x /usr/local/bin/init-devcontainer.sh /usr/local/bin/init-firewall.sh /usr/local/bin/render-squid-config.sh /usr/local/bin/verify-egress.sh /usr/local/bin/announce-egress-status.sh /usr/local/bin/devcontainer-entrypoint.sh && \
+  chmod 0644 /usr/local/share/proxy-allowlist.txt
+ENTRYPOINT ["/usr/local/bin/devcontainer-entrypoint.sh"]
+CMD ["sleep", "infinity"]

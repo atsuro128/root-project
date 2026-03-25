@@ -41,7 +41,7 @@ host gateway からの inbound は、`HOST_GATEWAY_TCP_PORTS` で明示したポ
 
 ## 運用メモ
 
-- 変更後は `postStartCommand` で `init-firewall.sh` が成功すること
+- 変更後は起動時 bootstrap で `init-devcontainer.sh` / `init-firewall.sh` が成功すること
 - `verify-egress.sh` で `auth.openai.com` と `api.openai.com` が proxy 経由で到達できること
 - proxy を使わない `https://api.openai.com` への直接通信が失敗すること
 - `example.com` が proxy 経由でも拒否されること
