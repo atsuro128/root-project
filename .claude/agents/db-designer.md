@@ -30,7 +30,7 @@ PostgreSQL スキーマ設計、RLS ポリシー、インデックス戦略、�
 - `dev-journal/deliverables/docs/20_domain/domain_model.md` — ドメインモデル
 - `dev-journal/deliverables/docs/20_domain/state_machine.md` — 状態遷移
 - `dev-journal/deliverables/docs/30_arch/adr/` — ADR（特に 0002-multi-tenant, 0003-rls-tenant-isolation）
-- `dev-journal/references/glossary.md` — 用語集
+- `dev-journal/deliverables/docs/01_glossary.md` — 用語集
 - `.claude/rules/architecture.md` — アーキテクチャ制約
 
 ## 作業方針

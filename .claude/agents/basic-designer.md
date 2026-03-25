@@ -38,7 +38,7 @@ isolation: worktree
 - `dev-journal/deliverables/docs/10_requirements/rbac.md` — RBAC 定義
 - `dev-journal/deliverables/docs/10_requirements/workflow.md` — ワークフロー
 - `dev-journal/deliverables/docs/30_arch/architecture.md` — アーキテクチャ（§5.1 エンドポイント一覧）
-- `dev-journal/references/glossary.md` — 用語集
+- `dev-journal/deliverables/docs/01_glossary.md` — 用語集
 - `dev-journal/deliverables/docs/02_scope.md` — MVP スコープ
 
 ## 作業方針

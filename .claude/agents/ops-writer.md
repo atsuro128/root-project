@@ -34,4 +34,4 @@ model: sonnet
 
 - 必ず対象ファイルを Read してから Edit する
 - issue ファイルの移動時は `/issue` スキルのライフサイクル（open → pending-review → resolved）に従う
-- 用語は `dev-journal/references/glossary.md` に準拠する
+- 用語は `dev-journal/deliverables/docs/01_glossary.md` に準拠する

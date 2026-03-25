@@ -46,7 +46,7 @@ Step 5 の全体を俯瞰し、タスク分解・依存関係整理・受け入�
 1. `dev-journal/guide/work-breakdown/` — 該当 Step の作業分解
 2. `dev-journal/guide/work-breakdown/step*.md` — 該当 Step の完了条件・レビュー観点
 3. `dev-journal/deliverables/docs/02_scope.md` — MVP スコープ
-4. `dev-journal/references/glossary.md` — 用語集
+4. `dev-journal/deliverables/docs/01_glossary.md` — 用語集
 
 ### エージェント構成
 

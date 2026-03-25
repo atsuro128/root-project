@@ -8,7 +8,7 @@
 - コミット前にユーザーに提案し、承認を得てから `/commit` で実行する
 - 成果物作成中に設計上の問題を発見したら `/issue 起票` する
 - コマンド実行時は目的を**日本語**で明示する
-- ドキュメント・コード・コミットメッセージの用語は用語集に従う（`dev-journal/references/glossary.md`）
+- ドキュメント・コード・コミットメッセージの用語は用語集に従う（`dev-journal/deliverables/docs/01_glossary.md`）
 
 ### やらないこと
 - Auto Memory を使わない。記憶は `.claude/memory/` に保存する

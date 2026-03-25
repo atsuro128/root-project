@@ -35,7 +35,7 @@ API 設計（OpenAPI）、セキュリティ設計、監視設計、ファイル
 - `dev-journal/deliverables/docs/20_domain/domain_model.md` — ドメインモデル
 - `dev-journal/deliverables/docs/20_domain/state_machine.md` — 状態遷移
 - `dev-journal/deliverables/docs/40_basic_design/screens.md` — 画面一覧（basic-designer の出力）
-- `dev-journal/references/glossary.md` — 用語集
+- `dev-journal/deliverables/docs/01_glossary.md` — 用語集
 - `.claude/rules/security-policy.md` — セキュリティポリシー
 
 ## 作業方針

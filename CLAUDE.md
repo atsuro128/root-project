@@ -13,4 +13,4 @@ Backend: Go / Frontend: React (TypeScript, Vite) / DB: PostgreSQL / Infra: AWS (
 
 ## 参照先
 - MVP スコープ: dev-journal/deliverables/docs/02_scope.md
-- 用語集: dev-journal/references/glossary.md
+- 用語集: dev-journal/deliverables/docs/01_glossary.md

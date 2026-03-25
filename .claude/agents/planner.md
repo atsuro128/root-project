@@ -55,5 +55,5 @@ model: opus
 
 - `dev-journal/progress-management/progress.md` — 現在のフェーズ
 - `dev-journal/progress-management/issues/open/` — オープン issue
-- `dev-journal/references/glossary.md` — 用語集
+- `dev-journal/deliverables/docs/01_glossary.md` — 用語集
 - `dev-journal/deliverables/docs/02_scope.md` — MVP スコープ
