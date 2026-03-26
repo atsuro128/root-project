@@ -5,7 +5,6 @@ description: |
   Use when: ユーザーが「Issue起票して」「Issue対応して」「Issue確認して」と依頼した時、作業中に設計上の問題を発見した時
   DO NOT use when: レビュー指摘への対応（/review-findings を使う）、単なるバグ修正
 argument-hint: "[操作: 起票|対応|一覧] [対象]"
-allowed-tools: Read, Write, Edit, Glob, Grep, Bash(git *), Bash(mv *)
 ---
 
 Issue 管理ルールに従って操作を実行してください。
@@ -15,7 +14,7 @@ Issue 管理ルールに従って操作を実行してください。
 ## フォルダ構成
 
 ```
-dev-journal/progress-management/issues/
+dev-journal/issues/
 ├── open/             # 未対応・対応中の issue
 ├── pending-review/   # 解決内容を記入済み・レビュー待ち
 └── resolved/         # レビュー完了・クローズ済み

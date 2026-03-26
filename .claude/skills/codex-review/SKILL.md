@@ -5,7 +5,6 @@ description: |
   Use when: Step 成果物の作成・コミットが完了した時、再レビューを依頼する時、Issue 解決のレビューを依頼する時
   DO NOT use when: 通常のコードレビュー（/review を使う）
 argument-hint: "[Step番号 ステップ名] [初回|再レビュー|issue解決レビュー]"
-allowed-tools: Read, Glob, Grep, Bash(codex *), Bash(git *)
 ---
 
 codex レビューを実行してください。
@@ -25,7 +24,7 @@ codex レビューを実行してください。
 
 以下の **いずれか** を満たしていることを確認:
 
-- `dev-journal/progress-management/issues/pending-review/` に解決済み issue が存在する
+- `dev-journal/issues/pending-review/` に解決済み issue が存在する
 - issue の解決に関連する未コミットの変更がある（`git diff` で確認可能）
 
 ## 実行手順
@@ -53,14 +52,14 @@ codex exec "issues/pending-review/ にある Issue の解決レビューを実�
 ```bash
 # 差分をファイルに出力してからレビューを依頼
 git -C dev-journal diff > /tmp/issue-diff.txt
-codex exec "Issue NNN の解決レビューを実施してください。変更差分は /tmp/issue-diff.txt を参照してください。issue ファイルは dev-journal/progress-management/issues/open/NNN-*.md です" --full-auto
+codex exec "Issue NNN の解決レビューを実施してください。変更差分は /tmp/issue-diff.txt を参照してください。issue ファイルは dev-journal/issues/open/NNN-*.md です" --full-auto
 ```
 
 - 作業ディレクトリは `root-project/` であること
 - Bash ツールの `run_in_background: true` で実行する（長時間かかるため）
 - 完了通知を受け取ったら、結果を確認する
   - Step 成果物レビュー: `dev-journal/review-findings/open/` に指摘が起票されているか確認
-  - Issue 解決レビュー: `dev-journal/progress-management/issues/pending-review/` の issue が `resolved/` に移動されているか確認
+  - Issue 解決レビュー: `dev-journal/issues/pending-review/` の issue が `resolved/` に移動されているか確認
 
 ## 実行後の対応
 
@@ -73,7 +72,7 @@ codex exec "Issue NNN の解決レビューを実施してください。変更�
 
 ### Issue 解決レビューの場合
 
-1. codex がレビュー完了したら、`dev-journal/progress-management/issues/pending-review/` を確認
+1. codex がレビュー完了したら、`dev-journal/issues/pending-review/` を確認
 2. 解決が妥当と判断された issue: `resolved/` に移動済み
 3. 解決が不十分と判断された issue: `open/` に差し戻し済み（追加コメント付き）
 

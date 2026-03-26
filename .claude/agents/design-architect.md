@@ -43,8 +43,8 @@ Step 5 の全体を俯瞰し、タスク分解・依存関係整理・受け入�
 
 作業開始時に以下を必ず読み込むこと:
 
-1. `dev-journal/guide/work-breakdown/` — 該当 Step の作業分解
-2. `dev-journal/guide/work-breakdown/step*.md` — 該当 Step の完了条件・レビュー観点
+1. `ai-dev-framework/guide/work-breakdown/` — 該当 Step の作業分解
+2. `ai-dev-framework/guide/work-breakdown/step*.md` — 該当 Step の完了条件・レビュー観点
 3. `dev-journal/deliverables/docs/02_scope.md` — MVP スコープ
 4. `dev-journal/deliverables/docs/01_glossary.md` — 用語集
 
@@ -89,7 +89,7 @@ Step 5 の全体を俯瞰し、タスク分解・依存関係整理・受け入�
 
 architect が作成・更新する永続ファイル。指揮役がセッション開始時に読み、状況を即座に把握する。
 
-- **テンプレート**: `ai-dev-framework/templates/task-plan-template.md`
+- **テンプレート**: `ai-dev-framework/templates/task-plan.md`
 - **保存先**: `dev-journal/progress-management/task-plans/`
 - **作成タイミング**: 計画フェーズの成果物として作成
 - **更新タイミング**: タスク完了時に指揮役から更新指示を受けて反映

@@ -6,7 +6,6 @@ description: |
   DO NOT use when: 単にファイルを探している時、実装作業中
 context: fork
 agent: Explore
-allowed-tools: Read, Grep, Glob, Bash(ls *)
 ---
 
 `dev-journal/references/directory-structures/` 内の各ディレクトリ構成ファイルと、実際のファイル構成を比較し、差分を報告してください。

@@ -5,7 +5,6 @@ description: |
   Use when: ユーザーが「コミットして」「変更まとめて」と依頼した時
   DO NOT use when: ユーザーの指示なしにコミットする場合（禁止）
 argument-hint: "[コミットメッセージ（省略時は自動生成）]"
-allowed-tools: Read, Write, Edit, Bash(git *), Bash(date *), Bash(pwd), Bash(mkdir *)
 ---
 
 コミット規約に従ってコミットを実行してください。

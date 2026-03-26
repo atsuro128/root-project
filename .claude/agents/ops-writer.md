@@ -16,10 +16,10 @@ model: sonnet
 ## 担当範囲
 
 - `dev-journal/progress-management/` — progress.md、issue ファイルの移動・更新
-- `dev-journal/logs/` — セッションログ
-- `dev-journal/daily-reports/` — 日報
-- `dev-journal/guide/` — work-breakdown、プロジェクトステップ
-- `dev-journal/ai-operations/` — サブエージェント設計資料、ワークフロー
+- `dev-journal/archives/session-logs/` — セッションログ
+- `dev-journal/archives/daily-reports/` — 日報
+- `ai-dev-framework/guide/` — work-breakdown、プロジェクトステップ
+- `ai-dev-framework/operations/` — サブエージェント設計資料、ワークフロー
 - `dev-journal/references/` — 用語集、ディレクトリ構成
 - `ai-dev-framework/` — テンプレート、ルール、エージェント手順書
 

@@ -5,7 +5,6 @@ description: |
   Use when: ユーザーが「指摘対応して」「レビュー指摘見て」と依頼した時、レビュー指摘に対応する場合
   DO NOT use when: Issue 対応（/issue を使う）、コードレビューの実施（/review を使う）
 argument-hint: "[対象の指摘ファイル名]"
-allowed-tools: Read, Write, Edit, Glob, Grep, Bash(git *), Bash(mv *)
 ---
 
 レビュー指摘対応ルールに従って操作を実行してください。

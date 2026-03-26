@@ -32,7 +32,7 @@
 ### 開始時
 1. `dev-journal/progress-management/session-log.md` を確認し、前回セッションの引き継ぎを把握する
 2. `dev-journal/progress-management/progress.md` を確認する
-3. `dev-journal/progress-management/issues/open/` のブロッカー issue を確認する
+3. `dev-journal/issues/open/` のブロッカー issue を確認する
    - 次 Step の成果物作成に着手する前に、その Step に関連するブロッカー issue を先に解消すること
 4. セッションのゴールを決める — 何をどこまでやるかをユーザーと合意してから作業に入ること
 
@@ -46,17 +46,17 @@
 
 | Step | 名称 | 作業分解 |
 |------|------|----------|
-| 0 | 事前準備 | `dev-journal/guide/work-breakdown/step0-preparation.md` |
-| 1 | 要件定義 | `dev-journal/guide/work-breakdown/step1-requirements.md` |
-| 2 | ドメイン設計 | `dev-journal/guide/work-breakdown/step2-domain.md` |
-| 3 | アーキテクチャ設計 | `dev-journal/guide/work-breakdown/step3-architecture.md` |
-| 4 | 基本設計 | `dev-journal/guide/work-breakdown/step4-basic-design.md` |
-| 5 | 詳細設計 | `dev-journal/guide/work-breakdown/step5-detail-design.md` |
-| 6 | テスト設計 | `dev-journal/guide/work-breakdown/step6-testing.md` |
-| 7 | 基盤構築 | `dev-journal/guide/work-breakdown/step7-foundation.md` |
-| 8 | テストコード実装 | `dev-journal/guide/work-breakdown/step8-test-implementation.md` |
-| 9 | 機能実装 | `dev-journal/guide/work-breakdown/step9-feature-implementation.md` |
-| 10 | システムテスト・UAT | `dev-journal/guide/work-breakdown/step10-system-test.md` |
+| 0 | 事前準備 | `ai-dev-framework/guide/work-breakdown/step0-preparation.md` |
+| 1 | 要件定義 | `ai-dev-framework/guide/work-breakdown/step1-requirements.md` |
+| 2 | ドメイン設計 | `ai-dev-framework/guide/work-breakdown/step2-domain.md` |
+| 3 | アーキテクチャ設計 | `ai-dev-framework/guide/work-breakdown/step3-architecture.md` |
+| 4 | 基本設計 | `ai-dev-framework/guide/work-breakdown/step4-basic-design.md` |
+| 5 | 詳細設計 | `ai-dev-framework/guide/work-breakdown/step5-detail-design.md` |
+| 6 | テスト設計 | `ai-dev-framework/guide/work-breakdown/step6-testing.md` |
+| 7 | 基盤構築 | `ai-dev-framework/guide/work-breakdown/step7-foundation.md` |
+| 8 | テストコード実装 | `ai-dev-framework/guide/work-breakdown/step8-test-implementation.md` |
+| 9 | 機能実装 | `ai-dev-framework/guide/work-breakdown/step9-feature-implementation.md` |
+| 10 | システムテスト・UAT | `ai-dev-framework/guide/work-breakdown/step10-system-test.md` |
 
 ## 成果物作成フロー
 

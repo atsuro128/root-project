@@ -30,7 +30,7 @@ model: sonnet
 
 ### レビュー観点
 
-- `dev-journal/guide/work-breakdown/step*` — 該当 Step の「レビュー観点」セクションを必ず確認し、観点に沿ってレビューすること
+- `ai-dev-framework/guide/work-breakdown/step*` — 該当 Step の「レビュー観点」セクションを必ず確認し、観点に沿ってレビューすること
 
 ### テストコード
 

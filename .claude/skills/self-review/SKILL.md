@@ -4,7 +4,6 @@ description: |
   セッションログの学び・気づきを分析し、ルール化すべきものを .claude/rules/ に反映する。
   Use when: ユーザーが「自己改善して」「ルール化して」「self-review」と依頼した時
   DO NOT use when: 通常の作業中
-allowed-tools: Read, Write, Edit, Glob, Grep
 ---
 
 蓄積された学び・気づきを分析し、ルール化を実施してください。
@@ -20,7 +19,7 @@ allowed-tools: Read, Write, Edit, Glob, Grep
 以下を読み込み、「学び・気づき」セクションの内容を抽出する:
 
 1. `dev-journal/progress-management/session-log.md`（直近2セッション分）
-2. `dev-journal/logs/session-log-archive.md`（過去セッション分）
+2. `dev-journal/archives/session-logs/session-log-archive.md`（過去セッション分）
 
 ### 2. パターン分析
 

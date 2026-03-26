@@ -4,7 +4,6 @@ description: |
   セッション終了時にセッションログを作成する。会話内容を分析し、作業ログと次セッションへの引き継ぎを1ファイルに統合する。
   Use when: ユーザーが「引き継ぎ書いて」「handoff」「session-log」「終わり」「セッション終了」と依頼した時
   DO NOT use when: セッション途中の作業記録（不要。終了時にまとめて生成する）
-allowed-tools: Read, Write, Edit, Glob, Grep, Bash(date *), Bash(git *), Bash(wc *), Bash(pwd)
 ---
 
 セッションの会話内容を分析し、セッションログを作成してください。
@@ -74,7 +73,7 @@ allowed-tools: Read, Write, Edit, Glob, Grep, Bash(date *), Bash(git *), Bash(wc
    - そのセッションを「前回」としてそのまま残す
    - 新しいセッション分を「最新」として書く
 
-アーカイブ先: `dev-journal/logs/session-log-archive.md`
+アーカイブ先: `dev-journal/archives/session-logs/session-log-archive.md`
 
 ## クリーンアップ
 

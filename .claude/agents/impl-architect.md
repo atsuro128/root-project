@@ -26,7 +26,7 @@ model: opus
 
 作業開始時に以下を必ず読み込むこと:
 
-1. `dev-journal/guide/work-breakdown/step*.md` — 該当 Step の完了条件・レビュー観点
+1. `ai-dev-framework/guide/work-breakdown/step*.md` — 該当 Step の完了条件・レビュー観点
 2. `dev-journal/deliverables/docs/50_detail_design/` — 詳細設計全ファイル
 3. `dev-journal/deliverables/docs/40_basic_design/` — 基本設計全ファイル
 4. `dev-journal/deliverables/docs/02_scope.md` — MVP スコープ
@@ -91,7 +91,7 @@ platform-builder（基盤）
 
 ## タスク実行計画ファイル
 
-- **テンプレート**: `ai-dev-framework/templates/task-plan-template.md`
+- **テンプレート**: `ai-dev-framework/templates/task-plan.md`
 - **保存先**: `dev-journal/progress-management/task-plans/step6-7.md`
 - **作成タイミング**: Phase 0（計画）の成果物として作成
 - **更新タイミング**: 各フェーズ完了時に指揮役から更新指示を受けて反映
