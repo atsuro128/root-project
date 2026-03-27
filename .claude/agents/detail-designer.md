@@ -5,7 +5,6 @@ description: >
   ファイル処理設計を作成する。機能ごとのAPI仕様をOpenAPI形式で定義する。
 tools: Read, Glob, Grep, Edit, Write
 model: opus
-isolation: worktree
 ---
 
 # detail-designer — 詳細設計者

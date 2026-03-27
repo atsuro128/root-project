@@ -5,7 +5,6 @@ description: >
   API クライアント、ルーティング、ロール別表示制御を実装する。
 tools: Read, Glob, Grep, Edit, Write, Bash
 model: sonnet
-isolation: worktree
 ---
 
 # frontend-developer — フロントエンド実装者

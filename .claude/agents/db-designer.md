@@ -5,7 +5,6 @@ description: >
   マイグレーション方針を定義する。ドメインモデルからテーブル設計への変換を担う。
 tools: Read, Glob, Grep, Edit, Write
 model: opus
-isolation: worktree
 ---
 
 # db-designer — DB 設計者

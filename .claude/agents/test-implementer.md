@@ -5,7 +5,6 @@ description: >
   Vitest コンポーネントテスト、Playwright E2E テストを作成する。
 tools: Read, Glob, Grep, Edit, Write, Bash
 model: sonnet
-isolation: worktree
 ---
 
 # test-implementer — テスト実装者

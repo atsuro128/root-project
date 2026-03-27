@@ -5,7 +5,6 @@ description: >
   テナント分離・RBAC・状態遷移・ドメイン不変条件のテスト網羅性を担保する。
 tools: Read, Glob, Grep, Edit, Write
 model: sonnet
-isolation: worktree
 ---
 
 # test-designer — テスト設計者
