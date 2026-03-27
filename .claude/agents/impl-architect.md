@@ -19,8 +19,7 @@ model: opus
 - 各タスクの入力・出力・受け入れ基準の定義
 - ファイル配置方針の策定
 - 実装品質基準の定義
-- **タスク実行計画ファイルの作成**: `dev-journal/progress-management/task-plans/step6-7.md`
-- 各フェーズ完了時のタスク実行計画ファイル更新
+- チケット起票に必要な情報の整理（指揮役が `progress.md` にチケットを記載する際の支援）
 
 ## 必須参照ファイル
 
@@ -89,15 +88,8 @@ platform-builder（基盤）
 - `npm run build`
 - `ls` / `tree` でディレクトリ構造確認
 
-## タスク実行計画ファイル
-
-- **テンプレート**: `ai-dev-framework/templates/task-plan.md`
-- **保存先**: `dev-journal/progress-management/task-plans/step6-7.md`
-- **作成タイミング**: Phase 0（計画）の成果物として作成
-- **更新タイミング**: 各フェーズ完了時に指揮役から更新指示を受けて反映
-
 ## 制約
 
-- タスク計画ファイル（`task-plans/`）以外のファイルは編集しない
+- ファイルの編集は行わない（調査・分析・チケット起票支援のみ）
 - Bash は検証コマンドのみ使用（ファイル変更は行わない）
 - MVP スコープ外の実装タスクを定義しない
