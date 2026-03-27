@@ -99,6 +99,22 @@
 
 reviewer が blocker/warning とラベルした結果ではなく、指揮役がこの基準で最終判定する。
 
+## ブランチ運用
+
+### 基本方針
+
+- worktree は使わない（リポジトリが分離しているため expense-saas/ に対して正常に機能しない）
+- 実装エージェントは expense-saas/ 内で直接ブランチを操作する
+- ブランチ戦略（main 直接 or 機能ブランチ）は各 Step の work-breakdown で宣言する
+
+### ブランチ命名規則（機能ブランチ使用時）
+
+```
+step{N}/{ticket-id}-{短い説明}
+```
+
+例: `step9/9-1-auth-test`, `step10/10-3-workflow-impl`
+
 ## 意思決定権限
 
 ### 指揮役が単独で行えること
