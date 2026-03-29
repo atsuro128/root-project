@@ -60,10 +60,11 @@
 | 4 | 基本設計 | `ai-dev-framework/guide/work-breakdown/step4-basic-design.md` |
 | 5 | 詳細設計 | `ai-dev-framework/guide/work-breakdown/step5-detail-design.md` |
 | 6 | テスト設計 | `ai-dev-framework/guide/work-breakdown/step6-testing.md` |
-| 7 | 基盤構築 | `ai-dev-framework/guide/work-breakdown/step7-foundation.md` |
-| 8 | テストコード実装 | `ai-dev-framework/guide/work-breakdown/step8-test-implementation.md` |
-| 9 | 機能実装 | `ai-dev-framework/guide/work-breakdown/step9-feature-implementation.md` |
-| 10 | システムテスト・UAT | `ai-dev-framework/guide/work-breakdown/step10-system-test.md` |
+| 7 | 運用設計 | `ai-dev-framework/guide/work-breakdown/step7-operations.md` |
+| 8 | 基盤構築 | `ai-dev-framework/guide/work-breakdown/step8-foundation.md` |
+| 9 | テストコード実装 | `ai-dev-framework/guide/work-breakdown/step9-test-implementation.md` |
+| 10 | 機能実装 | `ai-dev-framework/guide/work-breakdown/step10-feature-implementation.md` |
+| 11 | システムテスト・UAT | `ai-dev-framework/guide/work-breakdown/step11-system-test.md` |
 
 ## 成果物作成フロー
 
