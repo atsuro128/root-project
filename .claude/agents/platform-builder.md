@@ -96,13 +96,8 @@ model: sonnet
 
 ## 完了手順
 
-実装が完了したら、以下の手順でデリバリーする:
-
-1. 品質チェック（`go build ./...` / `go vet ./...` / `npm run build`）
-2. 変更をコミット
-3. ブランチを push: `git push -u origin <ブランチ名>`
-4. PR を作成: `gh pr create --title "..." --body "..."`
-5. 指揮役に **PR URL** を返す
+1. 品質チェック: `go build ./...` / `go vet ./...` / `npm run build`
+2. デリバリー手順に従い納品
 
 ## 制約
 
