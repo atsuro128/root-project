@@ -77,7 +77,7 @@ dev-journal/issues/
 
 ## 成果物作成中の即時起票フロー
 
-Issue 発掘規約（`.claude/rules/workflow.md`）の即時起票条件を満たす場合:
+Issue 発掘規約（`ai-dev-framework/guide/workflow.md`）の即時起票条件を満たす場合:
 
 1. **中断**: 現在の作業を中断し、発見した問題をユーザーに報告する
 2. **判断**: ユーザーの判断を仰ぐ（起票する / 懸念として記録 / 対応不要）
