@@ -30,8 +30,6 @@ model: sonnet
 
 - `dev-journal/deliverables/docs/60_test/test_cases.md` — テストケース一覧
 - `dev-journal/deliverables/docs/60_test/test_strategy.md` — テスト戦略
-- `.claude/rules/testing.md` — テスト方針
-- `.claude/rules/coding-standards.md` — コーディング規約
 
 ## 作業方針
 
@@ -78,5 +76,3 @@ model: sonnet
 ## 制約
 
 - `test_cases.md` で定義されたテストケースに基づいて実装
-- `.claude/rules/coding-standards.md` に準拠
-- `.claude/rules/testing.md` のテスト方針に従う

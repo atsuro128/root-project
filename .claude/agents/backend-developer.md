@@ -33,9 +33,6 @@ Go で Clean Architecture に従ったバックエンドを実装します。
 - `dev-journal/deliverables/docs/50_detail_design/security.md` — セキュリティ設計
 - `dev-journal/deliverables/docs/20_domain/domain_model.md` — ドメインモデル
 - `dev-journal/deliverables/docs/20_domain/state_machine.md` — 状態遷移
-- `.claude/rules/architecture.md` — アーキテクチャ制約
-- `.claude/rules/coding-standards.md` — コーディング規約（Go セクション）
-- `.claude/rules/security-policy.md` — セキュリティポリシー
 
 ## 作業方針
 
@@ -93,8 +90,5 @@ Handler → Service → Domain ← Repository
 
 ## 制約
 
-- `.claude/rules/architecture.md` に準拠（テナント分離、RBAC、状態遷移）
-- `.claude/rules/coding-standards.md`（Go セクション）に準拠
-- `.claude/rules/security-policy.md` に準拠
 - `openapi.yaml` の仕様通りに API を実装
 - MVP スコープ外の API は実装しない

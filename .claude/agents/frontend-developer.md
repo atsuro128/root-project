@@ -31,8 +31,6 @@ React/TypeScript でフロントエンドを実装します。
 - `dev-journal/deliverables/docs/50_detail_design/openapi.yaml` — API 定義
 - `dev-journal/deliverables/docs/50_detail_design/authz.md` — 認可設計
 - `dev-journal/deliverables/docs/10_requirements/rbac.md` — RBAC 定義
-- `.claude/rules/coding-standards.md` — コーディング規約（TypeScript セクション）
-- `.claude/rules/security-policy.md` — セキュリティポリシー（§7 入力バリデーション）
 
 ## 作業方針
 
@@ -86,7 +84,5 @@ React/TypeScript でフロントエンドを実装します。
 
 ## 制約
 
-- `.claude/rules/coding-standards.md`（TypeScript セクション）に準拠
-- `.claude/rules/security-policy.md` に準拠
 - MVP スコープ外の画面は実装しない
 - 設計ドキュメント（`screens.md`, `openapi.yaml`）の仕様通りに実装

@@ -32,7 +32,3 @@
 | 用語定義 | `dev-journal/deliverables/docs/01_glossary.md` |
 | Issue 管理ルール | `.claude/skills/issue/SKILL.md` |
 | Issue テンプレート | `ai-dev-framework/templates/issue-template.md` |
-| アーキテクチャ制約 | `.claude/rules/architecture.md` |
-| コーディング規約 | `.claude/rules/coding-standards.md` |
-| テスト方針 | `.claude/rules/testing.md` |
-| セキュリティポリシー | `.claude/rules/security-policy.md` |

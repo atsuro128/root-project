@@ -32,10 +32,6 @@ model: sonnet
 - `dev-journal/deliverables/docs/50_detail_design/db_schema.md` — DB スキーマ
 - `dev-journal/deliverables/docs/50_detail_design/security.md` — セキュリティ設計
 - `dev-journal/deliverables/docs/50_detail_design/monitoring.md` — 監視・ログ設計
-- `.claude/rules/architecture.md` — アーキテクチャ制約
-- `.claude/rules/coding-standards.md` — コーディング規約
-- `.claude/rules/security-policy.md` — セキュリティポリシー
-- `.claude/rules/testing.md` — テスト方針
 
 ## 作業方針
 
@@ -101,6 +97,4 @@ model: sonnet
 
 ## 制約
 
-- `.claude/rules/` の全ルールに準拠
-- `security-policy.md` のセキュリティ要件を満たす
 - MVP スコープ外の基盤は構築しない
