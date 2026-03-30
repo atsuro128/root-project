@@ -37,7 +37,7 @@ $ARGUMENTS
 
 1. 上記の事前取得データを確認する（対象日が今日でない場合は Bash ツールで対象日のコミット履歴を個別に取得する）
 2. `dev-journal/progress-management/session-log.md` を読み、当日のセッション記録を把握する
-3. `dev-journal/archives/session-logs/session-log-archive.md` を読み、当日のアーカイブ済みセッション記録も把握する
+3. `dev-journal/archives/session-logs/YYYY-MM-DD.md`（対象日のファイル）を読み、アーカイブ済みセッション記録も把握する
 4. `dev-journal/progress-management/progress.md` を読み、次タスクを確認する
 5. 下記の出力形式に従い `dev-journal/archives/daily-reports/YYYY-MM-DD.md` にファイルを作成する
 6. 作成した内容をユーザーにも表示する

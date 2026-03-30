@@ -66,14 +66,15 @@ description: |
 `session-log.md` には直近2セッション分のみ保持する。3セッション以上のデータがある場合、古いものをアーカイブに退避する。
 
 1. 既存の `session-log.md` に2セッション分が既にある場合:
-   - 「前回」セッション（古い方）のブロックを `logs/session-log-archive.md` の末尾に追記する
+   - 「前回」セッション（古い方）のブロックを日付フォルダにアーカイブする
    - 現在の「最新」セッションを「前回」に繰り下げる
    - 新しいセッション分を「最新」として書く
 2. 既存の `session-log.md` に1セッション分しかない場合:
    - そのセッションを「前回」としてそのまま残す
    - 新しいセッション分を「最新」として書く
 
-アーカイブ先: `dev-journal/archives/session-logs/session-log-archive.md`
+アーカイブ先: `dev-journal/archives/session-logs/YYYY-MM-DD.md`
+- 同日に複数セッションがある場合は同一ファイルに追記する
 
 ## クリーンアップ
 

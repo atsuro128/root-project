@@ -10,7 +10,7 @@ description: |
 
 ## 目的
 
-`dev-journal/progress-management/session-log.md` と `session-log-archive.md` に記録された「学び・気づき」セクションを分析し、繰り返し発生するパターンや重要な教訓を `.claude/rules/` のルールファイルに反映する。
+`dev-journal/progress-management/session-log.md` と `dev-journal/archives/session-logs/YYYY-MM-DD.md` に記録された「学び・気づき」セクションを分析し、繰り返し発生するパターンや重要な教訓を `.claude/rules/` のルールファイルに反映する。
 
 ## 手順
 
@@ -19,7 +19,7 @@ description: |
 以下を読み込み、「学び・気づき」セクションの内容を抽出する:
 
 1. `dev-journal/progress-management/session-log.md`（直近2セッション分）
-2. `dev-journal/archives/session-logs/session-log-archive.md`（過去セッション分）
+2. `dev-journal/archives/session-logs/YYYY-MM-DD.md`（過去セッション分、日付別ファイル）
 
 ### 2. パターン分析
 
