@@ -39,6 +39,12 @@ host gateway からの inbound は、`HOST_GATEWAY_TCP_PORTS` で明示したポ
 - proxy 非対応ツールは fail-closed で失敗する可能性がある
 - `/home/node/.codex` と `/home/node/.claude` は named volume に残るため、古い認証情報の破棄は運用で行う必要がある
 
+## codex sandbox の制約
+
+WSL2 カーネルが非特権 user namespace を許可していないため、codex のデフォルト sandbox（bubblewrap 依存）が動作しない。`codex exec --full-auto`（`workspace-write` sandbox）および `apply_patch` による書き込みも失敗する。
+
+対応として `--sandbox danger-full-access` を使用する。公式 docs でこのオプションは「外部でサンドボックスされた環境（container / CI runner）」向けとされており、この DevContainer の egress firewall（default-deny + allowlist）がその前提に合致する。
+
 ## 運用メモ
 
 - 変更後は起動時 bootstrap で `init-devcontainer.sh` / `init-firewall.sh` が成功すること

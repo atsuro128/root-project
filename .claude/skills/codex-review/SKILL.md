@@ -17,8 +17,9 @@ codex レビューを実行してください。
 
 以下の **すべて** を満たしていることを確認:
 
-1. Step の成果物（`dev-journal/deliverables/docs/` 配下）を新規作成または更新した
-2. 上記を該当リポジトリにコミット済み
+1. Step の成果物が作成済み（設計文書: `dev-journal/deliverables/docs/`、実装コード: `expense-saas/`）
+2. 内部レビュー（reviewer エージェント）が PASS 済み
+3. コミット前でも実行可能（codex はファイルを直接読める）
 
 ### Issue 解決レビュー
 
@@ -32,19 +33,19 @@ codex レビューを実行してください。
 ### 初回レビュー
 
 ```bash
-codex exec "Step N（ステップ名）の初回レビューを実施してください" --full-auto
+codex exec "Step N（ステップ名）の初回レビューを実施してください" --sandbox danger-full-access
 ```
 
 ### 再レビュー
 
 ```bash
-codex exec "Step N の再レビューを実施してください" --full-auto
+codex exec "Step N の再レビューを実施してください" --sandbox danger-full-access
 ```
 
 ### Issue 解決レビュー（コミット済み）
 
 ```bash
-codex exec "issues/pending-review/ にある Issue の解決レビューを実施してください" --full-auto
+codex exec "issues/pending-review/ にある Issue の解決レビューを実施してください" --sandbox danger-full-access
 ```
 
 ### Issue 解決レビュー（未コミット・差分ベース）
@@ -52,7 +53,7 @@ codex exec "issues/pending-review/ にある Issue の解決レビューを実�
 ```bash
 # 差分をファイルに出力してからレビューを依頼
 git -C dev-journal diff > /tmp/issue-diff.txt
-codex exec "Issue NNN の解決レビューを実施してください。変更差分は /tmp/issue-diff.txt を参照してください。issue ファイルは dev-journal/issues/open/NNN-*.md です" --full-auto
+codex exec "Issue NNN の解決レビューを実施してください。変更差分は /tmp/issue-diff.txt を参照してください。issue ファイルは dev-journal/issues/open/NNN-*.md です" --sandbox danger-full-access
 ```
 
 - 作業ディレクトリは `root-project/` であること
