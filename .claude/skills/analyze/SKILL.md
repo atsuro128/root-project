@@ -1,9 +1,6 @@
 ---
 name: analyze
-description: |
-  開発プロセスや技術判断の変遷を分析し、資料としてまとめる。
-  Use when: ユーザーが「分析して」「変遷まとめて」「振り返り資料作って」「総評書いて」「週次レビューして」と依頼した時
-  DO NOT use when: 日報作成（/daily-report を使う）
+description: "開発プロセス分析・振り返り資料作成。Use when: 「分析して」「振り返り」「週次レビュー」"
 argument-hint: "[期間: YYYY-MM-DD~YYYY-MM-DD | 直近N日] [分析テーマ（省略可）]"
 ---
 

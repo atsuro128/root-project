@@ -1,9 +1,6 @@
 ---
 name: adr
-description: |
-  Architecture Decision Record を作成する。
-  Use when: ユーザーが「ADR書いて」「判断記録して」「意思決定を残して」と依頼した時
-  DO NOT use when: 通常のセッションログへの記録、Issue 起票（/issue を使う）
+description: "ADR 作成。Use when: 「ADR書いて」「意思決定を残して」"
 argument-hint: "[判断の概要]"
 ---
 

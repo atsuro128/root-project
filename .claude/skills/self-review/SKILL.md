@@ -1,9 +1,6 @@
 ---
 name: self-review
-description: |
-  セッションログの学び・気づきを分析し、ルール化すべきものを .claude/rules/ に反映する。
-  Use when: ユーザーが「自己改善して」「ルール化して」「self-review」と依頼した時
-  DO NOT use when: 通常の作業中
+description: "学び・気づきのルール化。Use when: 「self-review」「ルール化して」"
 ---
 
 蓄積された学び・気づきを分析し、ルール化を実施してください。

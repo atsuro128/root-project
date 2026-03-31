@@ -1,9 +1,6 @@
 ---
 name: daily-report
-description: |
-  今日の作業内容を日報としてまとめる。
-  Use when: ユーザーが「日報書いて」「今日のまとめ」「作業報告して」と依頼した時
-  DO NOT use when: 単に進捗確認をしたい時（statusを使う）
+description: "日報作成。Use when: 「日報書いて」「作業報告して」"
 disable-model-invocation: true
 argument-hint: "[YYYY-MM-DD]"
 ---
