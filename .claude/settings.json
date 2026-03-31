@@ -39,6 +39,18 @@
           }
         ]
       }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/expense-saas/.claude/hooks/post-edit-format-lint.sh\"",
+            "timeout": 30000
+          }
+        ]
+      }
     ]
   }
 }
