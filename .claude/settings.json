@@ -7,16 +7,14 @@
       "Bash(go test *)",
       "Bash(golangci-lint *)",
       "Bash(gofmt *)",
+      "Bash(go vet *)",
       "Bash(npm run dev *)",
       "Bash(npm test *)",
       "Bash(npm run lint *)",
       "Bash(npm run build *)",
-      "Bash(git status *)",
-      "Bash(git diff *)",
-      "Bash(git log *)",
-      "Bash(git add *)",
-      "Bash(git commit *)",
-      "Bash(git -C *)",
+      "Bash(git *)",
+      "Bash(chmod *)",
+      "Bash(mkdir *)",
       "Bash(date *)",
       "Write(**)",
       "Edit(**)",
@@ -24,7 +22,6 @@
       "WebFetch"
     ],
     "deny": [
-      "Bash(git push *)",
       "Bash(git push --force *)"
     ]
   },
@@ -36,18 +33,6 @@
           {
             "type": "command",
             "command": "python \"$CLAUDE_PROJECT_DIR/.claude/hooks/edit-scope-check.py\""
-          }
-        ]
-      }
-    ],
-    "PostToolUse": [
-      {
-        "matcher": "Edit|Write",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash \"$CLAUDE_PROJECT_DIR/expense-saas/.claude/hooks/post-edit-format-lint.sh\"",
-            "timeout": 30000
           }
         ]
       }

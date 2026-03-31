@@ -6,6 +6,7 @@
 |---|---|
 | 初回レビュー | `ai-dev-framework/agents/review-procedure.md` |
 | 再レビュー（指摘対応後） | `ai-dev-framework/agents/re-review-procedure.md` |
+| PR レビュー | `ai-dev-framework/agents/pr-review-procedure.md` |
 | Issue 解決レビュー | `ai-dev-framework/agents/issue-review-procedure.md` |
 
 ---

@@ -56,11 +56,24 @@ git -C dev-journal diff > /tmp/issue-diff.txt
 codex exec "Issue NNN の解決レビューを実施してください。変更差分は /tmp/issue-diff.txt を参照してください。issue ファイルは dev-journal/issues/open/NNN-*.md です" --sandbox danger-full-access
 ```
 
+### PR レビュー（expense-saas の実装コード）
+
+```bash
+codex exec "PR #N のレビューを実施してください" --sandbox danger-full-access
+```
+
+### PR 再レビュー（指摘対応後）
+
+```bash
+codex exec "PR #N の再レビューを実施してください" --sandbox danger-full-access
+```
+
 - 作業ディレクトリは `root-project/` であること
 - Bash ツールの `run_in_background: true` で実行する（長時間かかるため）
 - 完了通知を受け取ったら、結果を確認する
   - Step 成果物レビュー: `dev-journal/review-findings/open/` に指摘が起票されているか確認
   - Issue 解決レビュー: `dev-journal/issues/pending-review/` の issue が `resolved/` に移動されているか確認
+  - PR レビュー: PR のコメント欄（`gh pr view <PR番号> --comments`）に指摘が投稿されているか確認
 
 ## 実行後の対応
 
