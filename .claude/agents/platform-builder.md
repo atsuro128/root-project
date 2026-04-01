@@ -5,6 +5,7 @@ description: >
   DB接続、Docker Compose、CI/CD パイプライン、共通エラーハンドリングを実装する。
 tools: Read, Glob, Grep, Edit, Write, Bash
 model: sonnet
+isolation: worktree
 ---
 
 # platform-builder — 基盤実装者

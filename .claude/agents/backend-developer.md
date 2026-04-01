@@ -5,6 +5,7 @@ description: >
   Clean Architecture に従い実装する。テナント分離とRBACをすべてのエンドポイントに適用する。
 tools: Read, Glob, Grep, Edit, Write, Bash
 model: sonnet
+isolation: worktree
 ---
 
 # backend-developer — バックエンド実装者
