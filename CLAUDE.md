@@ -12,8 +12,14 @@ Backend: Go / Frontend: React (TypeScript, Vite) / DB: PostgreSQL / Infra: AWS (
 | `ai-dev-framework/` | AI駆動開発フレームワーク（ルール・コマンド・テンプレート・ADR） |
 
 ## セッション開始時
-セッションの最初のアクションとして `/session-start` スキルを実行すること（`.claude/skills/session-start/SKILL.md`）。
-workflow.md の読み込み・進捗確認・ブロッカー確認を全て完了してからゴールを提案する。
+ユーザーの発言からセッション種別を判定し、対応するスキルを実行すること。
+
+| 種別 | 判定基準 | 開始スキル | 終了スキル |
+|------|---------|-----------|-----------|
+| 開発 | 「続き」「次の作業」等 | `/session-start` | `/session-log` |
+| レビュー | 「レビュー」「成果物確認」「コード見たい」等 | `/human-review-start` | `/human-review-log` |
+
+判定が曖昧な場合はユーザーに確認すること。
 
 ## メモリ
 - 保存先: `.claude/memory/`（`settings.local.json` の `autoMemoryDirectory` で設定済み）
