@@ -16,6 +16,11 @@ paths:
 - 画面: `dev-journal/deliverables/docs/50_detail_design/screens/`
 - テスト: `dev-journal/deliverables/docs/60_test/`
 
+## コメント言語
+
+- コード内コメントは全て日本語で書く（godoc / JSDoc 含む）
+- 識別子（変数名・関数名・型名）は英語のまま
+
 ## デリバリー手順
 
 チケットのブランチ欄を確認し、以下に従う。
