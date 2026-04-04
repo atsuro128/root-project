@@ -60,5 +60,9 @@
         ]
       }
     ]
+  },
+  "enabledPlugins": {
+    "gopls@claude-code-lsps": true,
+    "vtsls@claude-code-lsps": true
   }
 }

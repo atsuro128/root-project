@@ -107,6 +107,9 @@ RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/
 # Install Claude Code CLI and OpenAI Codex CLI with pinned versions.
 RUN npm install -g @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} @openai/codex@${CODEX_VERSION} typescript-language-server typescript
 
+# Pre-configure LSP plugin marketplace for Claude Code
+RUN echo '{"extraKnownMarketplaces":{"claude-code-lsps":{"source":{"source":"github","repo":"Piebald-AI/claude-code-lsps"}}}}' > /home/node/.claude/settings.json
+
 # Copy and set up container init/firewall/proxy scripts
 COPY proxy-allowlist.txt /usr/local/share/proxy-allowlist.txt
 COPY init-devcontainer.sh render-squid-config.sh verify-egress.sh init-firewall.sh announce-egress-status.sh devcontainer-entrypoint.sh /usr/local/bin/
