@@ -1,7 +1,4 @@
 {
-  "env": {
-    "ENABLE_LSP_TOOL": "1"
-  },
   "permissions": {
     "allow": [
       "Bash(ls *)",
@@ -60,9 +57,5 @@
         ]
       }
     ]
-  },
-  "enabledPlugins": {
-    "gopls@claude-code-lsps": true,
-    "vtsls@claude-code-lsps": true
   }
 }
