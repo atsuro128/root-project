@@ -30,22 +30,24 @@ codex レビューを実行してください。
 
 ## 実行手順
 
+**重要: codex は起動時のカレントディレクトリの `.git` をプロジェクトルートとして認識する。必ず `cd /root-project &&` を付けて実行すること。**
+
 ### 初回レビュー
 
 ```bash
-codex exec "Step N（ステップ名）の初回レビューを実施してください" --sandbox danger-full-access
+cd /root-project && codex exec "Step N（ステップ名）の初回レビューを実施してください" --sandbox danger-full-access
 ```
 
 ### 再レビュー
 
 ```bash
-codex exec "Step N の再レビューを実施してください" --sandbox danger-full-access
+cd /root-project && codex exec "Step N の再レビューを実施してください" --sandbox danger-full-access
 ```
 
 ### Issue 解決レビュー（コミット済み）
 
 ```bash
-codex exec "issues/pending-review/ にある Issue の解決レビューを実施してください" --sandbox danger-full-access
+cd /root-project && codex exec "issues/pending-review/ にある Issue の解決レビューを実施してください" --sandbox danger-full-access
 ```
 
 ### Issue 解決レビュー（未コミット・差分ベース）
@@ -53,22 +55,20 @@ codex exec "issues/pending-review/ にある Issue の解決レビューを実�
 ```bash
 # 差分をファイルに出力してからレビューを依頼
 git -C dev-journal diff > /tmp/issue-diff.txt
-codex exec "Issue NNN の解決レビューを実施してください。変更差分は /tmp/issue-diff.txt を参照してください。issue ファイルは dev-journal/issues/open/NNN-*.md です" --sandbox danger-full-access
+cd /root-project && codex exec "Issue NNN の解決レビューを実施してください。変更差分は /tmp/issue-diff.txt を参照してください。issue ファイルは dev-journal/issues/open/NNN-*.md です" --sandbox danger-full-access
 ```
 
 ### PR レビュー（expense-saas の実装コード）
 
 ```bash
-codex exec "PR #N のレビューを実施してください" --sandbox danger-full-access
+cd /root-project && codex exec "PR #N のレビューを実施してください" --sandbox danger-full-access
 ```
 
 ### PR 再レビュー（指摘対応後）
 
 ```bash
-codex exec "PR #N の再レビューを実施してください" --sandbox danger-full-access
+cd /root-project && codex exec "PR #N の再レビューを実施してください" --sandbox danger-full-access
 ```
-
-- 作業ディレクトリは `root-project/` であること
 - Bash ツールの `run_in_background: true` で実行する（長時間かかるため）
 - 完了通知を受け取ったら、結果を確認する
   - Step 成果物レビュー: `dev-journal/review-findings/open/` に指摘が起票されているか確認
