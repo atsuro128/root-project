@@ -27,7 +27,6 @@ host gateway からの inbound は、`HOST_GATEWAY_TCP_PORTS` で明示したポ
 既定値:
 
 - `3000`
-- `5432`
 - `8080`
 
 新しいポートを host から使う必要がある場合だけ、この環境変数を更新する。

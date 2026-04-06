@@ -12,6 +12,7 @@ ARG GOLANGCI_LINT_VERSION=v1.64.8
 RUN apt-get update && apt-get install -y --no-install-recommends \
   less \
   git \
+  wget \
   procps \
   sudo \
   fzf \
