@@ -1,29 +1,29 @@
 #!/usr/bin/env bash
-# PostToolUse(Agent) ワークアラウンド — WorktreeRemove フック未発火バグ対策
-# https://github.com/anthropics/claude-code/issues/28363
+# PostToolUse(Agent) — 完了したエージェントのワークツリーのみクリーンアップ
+# 並列実行中の他エージェントのワークツリーには触れない
 set -euo pipefail
 
 INPUT=$(cat)
 
-# isolation: worktree のサブエージェント完了時のみ実行
-ISOLATION=$(echo "$INPUT" | jq -r '.tool_input.isolation // empty' 2>/dev/null)
-[ "$ISOLATION" = "worktree" ] || exit 0
+# 完了したエージェントのワークツリーパスを取得
+WT_PATH=$(echo "$INPUT" | jq -r '.tool_response.worktreePath // empty' 2>/dev/null)
+[ -n "$WT_PATH" ] || exit 0
+[ -d "$WT_PATH" ] || exit 0
 
-EXPENSE_SAAS_DIR="/root-project/expense-saas"
-WORKTREES_DIR="${EXPENSE_SAAS_DIR}/.claude/worktrees"
+# ワークツリーの親リポジトリを特定
+REPO_DIR=$(cd "$WT_PATH" && git rev-parse --show-toplevel 2>/dev/null) || exit 0
+# worktree の場合、commondir を辿って本体リポジトリを取得
+if [ -f "$WT_PATH/.git" ]; then
+    REPO_DIR=$(cd "$WT_PATH" && git rev-parse --path-format=absolute --git-common-dir 2>/dev/null | sed 's|/\.git$||') || exit 0
+fi
 
-[ -d "$WORKTREES_DIR" ] || exit 0
+BRANCH=$(basename "$WT_PATH")
 
-for wt in "$WORKTREES_DIR"/*/; do
-    [ -d "$wt" ] || continue
-
-    # 未コミットの変更があるワークツリーは残す
-    CHANGES=$(cd "$wt" && git diff --name-only 2>/dev/null | wc -l)
-    if [ "$CHANGES" -eq 0 ]; then
-        BRANCH=$(basename "$wt")
-        git -C "$EXPENSE_SAAS_DIR" worktree remove "$wt" --force 2>/dev/null || true
-        git -C "$EXPENSE_SAAS_DIR" branch -D "$BRANCH" 2>/dev/null || true
-    fi
-done
+# 未コミットの変更があるワークツリーは残す
+CHANGES=$(cd "$WT_PATH" && git diff --name-only 2>/dev/null | wc -l)
+if [ "$CHANGES" -eq 0 ]; then
+    git -C "$REPO_DIR" worktree remove "$WT_PATH" --force 2>/dev/null || true
+    git -C "$REPO_DIR" branch -D "$BRANCH" 2>/dev/null || true
+fi
 
 exit 0
