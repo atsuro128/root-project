@@ -37,10 +37,24 @@ argument-hint: "<チケットID（例: 9-1）>"
 - `run_in_background: true`
 - `isolation: "worktree"`
 
-プロンプトに以下を含める:
+プロンプトに以下を**必ず**含める:
 - チケットの責務・完了条件
 - 入力資料のパス（絶対パスで指定: `/root-project/dev-journal/...`）
 - ブランチ名（新規: `{チケットのブランチ名}`）
+- **worktree 汚染防止ブロック**（以下をそのまま貼る）:
+
+```
+## 作業ディレクトリ（重要）
+
+作業ディレクトリは worktree 内です。最初に `pwd` で確認してください。
+パスは `/root-project/expense-saas/.claude/worktrees/agent-XXXXXXXX/` の形式です。
+
+### 絶対に守ること
+- Read / Edit / Write / Bash の全操作を worktree 内のパスで行うこと
+- `/root-project/expense-saas/` 直下（worktree 外の本体）を絶対に読み書きしないこと
+- 既存コードを参照する場合も worktree 内の相対パスまたは worktree の絶対パスを使うこと
+- `/root-project/dev-journal/...` の参照資料は読み取り専用でアクセスしてよい
+```
 
 ### 4. 完了報告
 

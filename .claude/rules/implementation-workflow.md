@@ -26,8 +26,21 @@ paths:
 expense-saas のコードを編集するエージェントは worktree 内で起動される。以下を厳守すること。
 
 - カレントディレクトリ（worktree）内で全ての作業を行う
-- `/root-project/expense-saas/` に `cd` や絶対パスで直接アクセスしない
+- **`/root-project/expense-saas/` に `cd` や絶対パスで直接アクセスしない**（Read も禁止）
+- 既存コードの参照は worktree 内のパスを使う（`./` または worktree の絶対パス）
 - dev-journal 等の参照資料は `/root-project/dev-journal/...` の絶対パスで読み取ってよい（読み取り専用）
+
+### よくある汚染パターン（禁止）
+
+```
+# NG: 本体パスで Read → そのパスで Edit してしまう
+Read /root-project/expense-saas/internal/testutil/fixture.go
+Edit /root-project/expense-saas/internal/testutil/fixture.go  ← 本体を汚染
+
+# OK: worktree 内のパスで操作する
+Read /root-project/expense-saas/.claude/worktrees/agent-XXX/internal/testutil/fixture.go
+Edit /root-project/expense-saas/.claude/worktrees/agent-XXX/internal/testutil/fixture.go
+```
 
 ### ブランチ操作
 
