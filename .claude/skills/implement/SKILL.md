@@ -35,10 +35,12 @@ argument-hint: "<チケットID（例: 9-1）>"
 起動時の設定:
 - `subagent_type`: チケットの担当エージェント名
 - `run_in_background: true`
+- `isolation: "worktree"`
 
 プロンプトに以下を含める:
 - チケットの責務・完了条件
 - 入力資料のパス（絶対パスで指定: `/root-project/dev-journal/...`）
+- expense-saas 内のファイル操作は worktree 内の相対パスで行うこと（`/root-project/expense-saas/` に直接移動しない）
 - ブランチ操作の指示:
   1. 現在のブランチを `git branch -m {チケットのブランチ名}` でリネーム
   2. 実装
