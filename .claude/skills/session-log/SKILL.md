@@ -84,4 +84,5 @@ description: |
    - 変更ファイルをステージ
    - Conventional Commits 形式（日本語）でコミット
    - フッター: `Co-Authored-By: Claude <noreply@anthropic.com>`
-3. `git push` はしない
+3. 各リポジトリで `git push` する（リモートへのバックアップ）
+   - expense-saas は PR ベースで運用するため、master への直接 push はスキップ
