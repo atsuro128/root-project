@@ -32,16 +32,16 @@ codex レビューを実行してください。
 
 **重要: codex は起動時のカレントディレクトリの `.git` をプロジェクトルートとして認識する。必ず `cd /root-project &&` を付けて実行すること。**
 
-### 初回レビュー
+### 設計レビュー（初回）
 
 ```bash
-cd /root-project && codex exec "Step N（ステップ名）の初回レビューを実施してください" --sandbox danger-full-access
+cd /root-project && codex exec "Step N（ステップ名）の設計レビューを実施してください" --sandbox danger-full-access
 ```
 
-### 再レビュー
+### 設計レビュー（再レビュー）
 
 ```bash
-cd /root-project && codex exec "Step N の再レビューを実施してください" --sandbox danger-full-access
+cd /root-project && codex exec "Step N の設計レビュー（再レビュー）を実施してください" --sandbox danger-full-access
 ```
 
 ### Issue 解決レビュー（コミット済み）
