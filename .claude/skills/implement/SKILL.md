@@ -40,15 +40,7 @@ argument-hint: "<チケットID（例: 9-1）>"
 プロンプトに以下を含める:
 - チケットの責務・完了条件
 - 入力資料のパス（絶対パスで指定: `/root-project/dev-journal/...`）
-- expense-saas 内のファイル操作は worktree 内の相対パスで行うこと（`/root-project/expense-saas/` に直接移動しない）
-- ブランチ操作の指示:
-  1. 現在のブランチを `git branch -m {チケットのブランチ名}` でリネーム
-  2. 実装
-  3. 完了条件を確認
-  4. `git add` + `git commit`
-  5. `git push -u origin {ブランチ名}`
-  6. `gh pr create --title "{チケットID}: {タイトル}" --base master`
-  7. PR URL を返す
+- ブランチ名（新規: `{チケットのブランチ名}`）
 
 ### 4. 完了報告
 
