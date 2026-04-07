@@ -54,6 +54,7 @@
     "source=claude-code-bashhistory-${devcontainerId},target=/commandhistory,type=volume",
     "source=claude-code-config-${devcontainerId},target=/home/node/.claude,type=volume",
     "source=codex-config-${devcontainerId},target=/home/node/.codex,type=volume",
+    "source=gh-config-${devcontainerId},target=/home/node/.config/gh,type=volume",
     "source=${localEnv:USERPROFILE}/.gitconfig,target=/home/node/.gitconfig.host,type=bind,consistency=cached,readonly"
   ],
   "containerEnv": {
