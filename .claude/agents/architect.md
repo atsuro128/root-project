@@ -72,5 +72,5 @@ platform-builder（基盤）
 - `dev-journal/issues/open/` — オープン issue
 - `dev-journal/deliverables/docs/01_glossary.md` — 用語集
 - `dev-journal/deliverables/docs/02_scope.md` — MVP スコープ
-- `ai-dev-framework/guide/work-breakdown/step*.md` — 該当 Step の完了条件
+- `ai-dev-framework/guide/work-breakdown/step*/main.md` — 該当 Step の作業分解（完了条件は `review.md`）
 - `.claude/agents/` — 利用可能なサブエージェントの description

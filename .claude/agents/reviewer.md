@@ -123,4 +123,4 @@ PR レビュー時もレビュー観点・判定基準は同一。出力先の�
 - Bash で使用可能なコマンド: `go vet ./...`, `golangci-lint run`, `npm run lint`, `npm run build`, `go build ./...`, `go test -v ./...`, `npm test -- --reporter=verbose`
 - 指摘は根拠（対象ファイル・行番号・設計ドキュメントの該当箇所）を明示する
 - 推測による指摘は行わない（ドキュメントに記載がない場合は「未定義」と記録）
-- レビュー観点は `ai-dev-framework/guide/work-breakdown/step*.md` の該当 Step のセクションを必ず確認すること
+- レビュー観点は `ai-dev-framework/guide/work-breakdown/step*/review.md` の該当 Step を必ず確認すること

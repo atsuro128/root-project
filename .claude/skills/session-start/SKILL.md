@@ -20,7 +20,7 @@ description: |
 
 ### 3. 作業中 Step の work-breakdown 確認
 
-progress.md で「進行中」の Step を特定し、該当する work-breakdown（`/root-project/ai-dev-framework/guide/work-breakdown/stepN-*.md`）を Read する。
+progress.md で「進行中」の Step を特定し、該当する work-breakdown（`/root-project/ai-dev-framework/guide/work-breakdown/stepN-*/main.md`）を Read する。
 
 - 完了条件・品質ゲートを把握し、セッション中の作業判断に使う
 - 進行中の Step がない場合はスキップする
