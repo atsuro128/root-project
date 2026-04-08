@@ -4,8 +4,6 @@
     "dockerfile": "Dockerfile",
     "args": {
       "TZ": "Asia/Tokyo",
-      "CLAUDE_CODE_VERSION": "2.1.76",
-      "CODEX_VERSION": "0.116.0",
       "GIT_DELTA_VERSION": "0.18.2",
       "ZSH_IN_DOCKER_VERSION": "1.2.0",
       "GO_VERSION": "1.24.1",
@@ -79,6 +77,6 @@
   },
   "workspaceMount": "source=${localWorkspaceFolder},target=/root-project,type=bind,consistency=delegated",
   "workspaceFolder": "/root-project",
-  "postCreateCommand": "cp /home/node/.gitconfig.host /home/node/.gitconfig 2>/dev/null || true && git config --global core.autocrlf input && git config --global core.fileMode false && git config --global --add safe.directory /root-project && git config --global --add safe.directory /root-project/expense-saas && git config --global --add safe.directory /root-project/dev-journal && git config --global --add safe.directory /root-project/ai-dev-framework && echo \"alias cc='claude --dangerously-skip-permissions'\" >> /home/node/.zshrc && echo \"alias cx='codex --dangerously-bypass-approvals-and-sandbox'\" >> /home/node/.zshrc",
+  "postCreateCommand": "cp /home/node/.gitconfig.host /home/node/.gitconfig 2>/dev/null || true && git config --global core.autocrlf input && git config --global core.fileMode false && git config --global --add safe.directory /root-project && git config --global --add safe.directory /root-project/expense-saas && git config --global --add safe.directory /root-project/dev-journal && git config --global --add safe.directory /root-project/ai-dev-framework && npm install -g @anthropic-ai/claude-code@latest @openai/codex@latest && /bin/bash /root-project/.devcontainer/setup-shell-aliases.sh",
   "postAttachCommand": "/usr/local/bin/announce-egress-status.sh"
 }

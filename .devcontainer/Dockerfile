@@ -3,8 +3,6 @@ FROM node:20-bookworm
 ARG TZ
 ENV TZ="$TZ"
 
-ARG CLAUDE_CODE_VERSION=2.1.76
-ARG CODEX_VERSION=0.116.0
 ARG GO_VERSION=1.24.1
 ARG GOLANGCI_LINT_VERSION=v1.64.8
 
@@ -104,8 +102,8 @@ RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/
   -a "export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhistory/.bash_history" \
   -x
 
-# Install Claude Code CLI and OpenAI Codex CLI with pinned versions.
-RUN npm install -g @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} @openai/codex@${CODEX_VERSION}
+# Install baseline CLI tooling. postCreateCommand refreshes both to the latest release.
+RUN npm install -g @anthropic-ai/claude-code@latest @openai/codex@latest
 
 # Copy and set up container init/firewall/proxy scripts
 COPY proxy-allowlist.txt /usr/local/share/proxy-allowlist.txt
