@@ -94,6 +94,8 @@ ENV VISUAL=nano
 
 # Default powerline10k theme
 ARG ZSH_IN_DOCKER_VERSION=1.2.0
+ARG CLAUDE_CODE_VERSION=2.1.96
+ARG CODEX_VERSION=0.118.0
 RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v${ZSH_IN_DOCKER_VERSION}/zsh-in-docker.sh)" -- \
   -p git \
   -p fzf \
@@ -102,8 +104,8 @@ RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/
   -a "export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhistory/.bash_history" \
   -x
 
-# Install baseline CLI tooling. postCreateCommand refreshes both to the latest release.
-RUN npm install -g @anthropic-ai/claude-code@latest @openai/codex@latest
+# Install baseline CLI tooling during image build so rebuilds can use Docker layer cache.
+RUN npm install -g @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} @openai/codex@${CODEX_VERSION}
 
 # Copy and set up container init/firewall/proxy scripts
 COPY proxy-allowlist.txt /usr/local/share/proxy-allowlist.txt

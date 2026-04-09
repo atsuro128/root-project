@@ -7,7 +7,9 @@
       "GIT_DELTA_VERSION": "0.18.2",
       "ZSH_IN_DOCKER_VERSION": "1.2.0",
       "GO_VERSION": "1.24.1",
-      "GOLANGCI_LINT_VERSION": "v1.64.8"
+      "GOLANGCI_LINT_VERSION": "v1.64.8",
+      "CLAUDE_CODE_VERSION": "2.1.96",
+      "CODEX_VERSION": "0.118.0"
     }
   },
   "runArgs": [
@@ -77,6 +79,6 @@
   },
   "workspaceMount": "source=${localWorkspaceFolder},target=/root-project,type=bind,consistency=delegated",
   "workspaceFolder": "/root-project",
-  "postCreateCommand": "cp /home/node/.gitconfig.host /home/node/.gitconfig 2>/dev/null || true && git config --global core.autocrlf input && git config --global core.fileMode false && git config --global --add safe.directory /root-project && git config --global --add safe.directory /root-project/expense-saas && git config --global --add safe.directory /root-project/dev-journal && git config --global --add safe.directory /root-project/ai-dev-framework && npm install -g @anthropic-ai/claude-code@latest @openai/codex@latest && /bin/bash /root-project/.devcontainer/setup-shell-aliases.sh",
-  "postAttachCommand": "/usr/local/bin/announce-egress-status.sh"
+  "postCreateCommand": "cp /home/node/.gitconfig.host /home/node/.gitconfig 2>/dev/null || true && git config --global core.autocrlf input && git config --global core.fileMode false && git config --global --add safe.directory /root-project && git config --global --add safe.directory /root-project/expense-saas && git config --global --add safe.directory /root-project/dev-journal && git config --global --add safe.directory /root-project/ai-dev-framework && /bin/bash /root-project/.devcontainer/setup-shell-aliases.sh",
+  "postAttachCommand": "/bin/bash /root-project/.devcontainer/setup-shell-aliases.sh && /usr/local/bin/announce-egress-status.sh"
 }
