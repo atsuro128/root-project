@@ -35,19 +35,19 @@ codex レビューを実行してください。
 ### 設計レビュー（初回）
 
 ```bash
-cd /root-project && codex exec "Step N（ステップ名）の設計レビューを実施してください" --sandbox danger-full-access
+echo "" | cd /root-project && codex exec "Step N（ステップ名）の設計レビューを実施してください" --sandbox danger-full-access
 ```
 
 ### 設計レビュー（再レビュー）
 
 ```bash
-cd /root-project && codex exec "Step N の設計レビュー（再レビュー）を実施してください" --sandbox danger-full-access
+echo "" | cd /root-project && codex exec "Step N の設計レビュー（再レビュー）を実施してください" --sandbox danger-full-access
 ```
 
 ### Issue 解決レビュー（コミット済み）
 
 ```bash
-cd /root-project && codex exec "issues/pending-review/ にある Issue の解決レビューを実施してください" --sandbox danger-full-access
+echo "" | cd /root-project && codex exec "issues/pending-review/ にある Issue の解決レビューを実施してください" --sandbox danger-full-access
 ```
 
 ### Issue 解決レビュー（未コミット・差分ベース）
@@ -55,23 +55,24 @@ cd /root-project && codex exec "issues/pending-review/ にある Issue の解決
 ```bash
 # 差分をファイルに出力してからレビューを依頼
 git -C dev-journal diff > /tmp/issue-diff.txt
-cd /root-project && codex exec "Issue NNN の解決レビューを実施してください。変更差分は /tmp/issue-diff.txt を参照してください。issue ファイルは dev-journal/issues/open/NNN-*.md です" --sandbox danger-full-access
+echo "" | cd /root-project && codex exec "Issue NNN の解決レビューを実施してください。変更差分は /tmp/issue-diff.txt を参照してください。issue ファイルは dev-journal/issues/open/NNN-*.md です" --sandbox danger-full-access
 ```
 
 ### PR レビュー（expense-saas の実装コード）
 
 ```bash
-git -C /root-project/expense-saas fetch origin && cd /root-project && codex exec "PR #N のレビューを実施してください" --sandbox danger-full-access
+git -C /root-project/expense-saas fetch origin && echo "" | cd /root-project && codex exec "PR #N のレビューを実施してください" --sandbox danger-full-access
 ```
 
 ### PR 再レビュー（指摘対応後）
 
 ```bash
-git -C /root-project/expense-saas fetch origin && cd /root-project && codex exec "PR #N の再レビューを実施してください" --sandbox danger-full-access
+git -C /root-project/expense-saas fetch origin && echo "" | cd /root-project && codex exec "PR #N の再レビューを実施してください" --sandbox danger-full-access
 ```
 
 **注意**: `git fetch origin` は必須。worktree 内で push した変更はメインリポジトリのトラッキング ref に自動反映されないため、fetch しないと codex が古いコードを読んでしまう。
 - Bash ツールの `run_in_background: true` で実行する（長時間かかるため）
+- **重要: バックグラウンド実行時は `echo "" |` を先頭に付けること。** `codex exec` は起動時に stdin を読もうとするため、`run_in_background: true`（stdin が閉じられる）では `Reading additional input from stdin...` で無限待機する。例: `echo "" | echo "" | cd /root-project && codex exec "..." --sandbox danger-full-access`
 - 完了通知を受け取ったら、結果を確認する
   - Step 成果物レビュー: `dev-journal/review-findings/open/` に指摘が起票されているか確認
   - Issue 解決レビュー: `dev-journal/issues/pending-review/` の issue が `resolved/` に移動されているか確認
