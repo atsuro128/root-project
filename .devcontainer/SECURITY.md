@@ -10,6 +10,7 @@
 2. firewall は default-deny とし、Squid プロセス以外の外向き `tcp/80` と `tcp/443` を拒否する
 
 これにより、proxy を使わない直接外向き通信は fail-closed で失敗する。
+また、追加 capability を避けるため Squid の ICMP pinger は無効化する。
 
 ## 意図的にやめたこと
 

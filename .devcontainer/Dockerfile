@@ -5,6 +5,7 @@ ENV TZ="$TZ"
 
 ARG GO_VERSION=1.24.1
 ARG GOLANGCI_LINT_VERSION=v1.64.8
+ARG GITHUB_MCP_SERVER_VERSION=0.32.0
 
 # Install basic development tools, firewall/proxy dependencies, Python, and PostgreSQL client
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -106,6 +107,14 @@ RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/
 
 # Install baseline CLI tooling during image build so rebuilds can use Docker layer cache.
 RUN npm install -g @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} @openai/codex@${CODEX_VERSION}
+
+# Install GitHub MCP Server (Go binary) for CI log retrieval from Claude Code.
+RUN ARCH=$(dpkg --print-architecture) && \
+  case "$ARCH" in amd64) GOARCH="x86_64" ;; arm64) GOARCH="arm64" ;; *) echo "Unsupported arch: $ARCH" && exit 1 ;; esac && \
+  wget -q "https://github.com/github/github-mcp-server/releases/download/v${GITHUB_MCP_SERVER_VERSION}/github-mcp-server_Linux_${GOARCH}.tar.gz" -O /tmp/github-mcp-server.tar.gz && \
+  tar xzf /tmp/github-mcp-server.tar.gz -C /usr/local/bin github-mcp-server && \
+  rm /tmp/github-mcp-server.tar.gz && \
+  chmod +x /usr/local/bin/github-mcp-server
 
 # Copy and set up container init/firewall/proxy scripts
 COPY proxy-allowlist.txt /usr/local/share/proxy-allowlist.txt

@@ -5,6 +5,7 @@ IFS=$'\n\t'
 readonly SQUID_USER="proxy"
 readonly SQUID_UID="$(id -u "${SQUID_USER}")"
 readonly SQUID_CONFIG="/etc/squid/squid.conf"
+readonly SQUID_PID_FILE="/var/run/squid.pid"
 readonly SQUID_ALLOWLIST="/etc/squid/proxy-allowlist.txt"
 readonly RENDER_SCRIPT="/usr/local/bin/render-squid-config.sh"
 readonly VERIFY_SCRIPT="/usr/local/bin/verify-egress.sh"
@@ -76,6 +77,24 @@ resolve_ipv4() {
   getent ahostsv4 "$host" | awk '{print $1}' | sort -u
 }
 
+wait_for_squid_startup() {
+  local pid=""
+  local attempt
+
+  for attempt in {1..20}; do
+    if [[ -f "$SQUID_PID_FILE" ]]; then
+      pid="$(tr -d '[:space:]' < "$SQUID_PID_FILE")"
+      if [[ "$pid" =~ ^[0-9]+$ ]] && kill -0 "$pid" 2>/dev/null; then
+        return 0
+      fi
+    fi
+
+    sleep 0.5
+  done
+
+  return 1
+}
+
 render_and_start_squid() {
   "$RENDER_SCRIPT"
 
@@ -89,10 +108,10 @@ render_and_start_squid() {
   fi
 
   log_info "Starting Squid."
+  rm -f "$SQUID_PID_FILE"
   squid -f "$SQUID_CONFIG"
-  sleep 1
 
-  if ! pgrep -x squid >/dev/null; then
+  if ! wait_for_squid_startup; then
     tail -n 50 /var/log/squid/cache.log >&2 || true
     die "Squid failed to start."
   fi

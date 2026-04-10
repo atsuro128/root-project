@@ -9,7 +9,8 @@
       "GO_VERSION": "1.24.1",
       "GOLANGCI_LINT_VERSION": "v1.64.8",
       "CLAUDE_CODE_VERSION": "2.1.96",
-      "CODEX_VERSION": "0.118.0"
+      "CODEX_VERSION": "0.118.0",
+      "GITHUB_MCP_SERVER_VERSION": "0.32.0"
     }
   },
   "runArgs": [

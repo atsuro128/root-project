@@ -102,6 +102,7 @@ render_squid_config() {
   cat > "$SQUID_CONFIG" <<EOF
 visible_hostname devcontainer-squid
 pid_filename /var/run/squid.pid
+pinger_enable off
 
 access_log stdio:/var/log/squid/access.log squid
 cache_log stdio:/var/log/squid/cache.log

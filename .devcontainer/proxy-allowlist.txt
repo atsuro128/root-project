@@ -14,6 +14,9 @@ objects.githubusercontent.com
 codeload.github.com
 uploads.github.com
 github-releases.githubusercontent.com
+release-assets.githubusercontent.com
+results-receiver.actions.githubusercontent.com
+productionresultssa15.blob.core.windows.net
 proxy.golang.org
 sum.golang.org
 storage.googleapis.com
