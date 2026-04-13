@@ -38,7 +38,6 @@ $ARGUMENTS
 4. `dev-journal/progress-management/progress.md` を読み、次タスクを確認する
 5. 下記の出力形式に従い `dev-journal/archives/daily-reports/YYYY-MM-DD.md` にファイルを作成する
 6. 作成した内容をユーザーにも表示する
-7. `/commit` スキルに従いコミットする
 
 ## 出力形式
 
