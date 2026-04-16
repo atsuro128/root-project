@@ -22,12 +22,23 @@ argument-hint: "[frontend|backend|all] [テスト対象のファイルやコン�
 | `all` / 引数なし | Frontend → Backend の順に両方 |
 | ファイル名やコンポーネント名が含まれる場合 | 対象を絞り込む |
 
+## 実行パスの決定
+
+テスト対象のブランチが worktree 上にある場合は、そのパスを使用する。
+
+| 状態 | ベースパス |
+|------|----------|
+| master 上のテスト | `/root-project/expense-saas` |
+| worktree 上の PR テスト | `/root-project/expense-saas/.claude/worktrees/agent-XXXXX`（worktree のパス） |
+
+以降の手順では `$BASE` をベースパスとする。
+
 ## Frontend テスト
 
 devcontainer 内で完結する。ホスト側の操作は不要。
 
 ```bash
-cd /root-project/expense-saas/frontend
+cd $BASE/frontend
 
 # 1. lint
 npm run lint
@@ -77,7 +88,7 @@ timeout 3 bash -c "echo > /dev/tcp/$(ip route show default | awk '{print $3; exi
 ### 3. テスト実行
 
 ```bash
-cd /root-project/expense-saas
+cd $BASE
 
 # host gateway IP を取得
 HOST_GW=$(ip route show default | awk '{print $3; exit}')
