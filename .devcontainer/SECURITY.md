@@ -1,6 +1,6 @@
 # DevContainer Security Notes
 
-最終更新: 2026-03-16
+最終更新: 2026-04-16
 
 ## 現在の設計
 
@@ -23,6 +23,8 @@
 
 ## host gateway の扱い
 
+### inbound（ホスト → コンテナ）
+
 host gateway からの inbound は、`HOST_GATEWAY_TCP_PORTS` で明示したポートだけ許可する。
 
 既定値:
@@ -31,6 +33,29 @@ host gateway からの inbound は、`HOST_GATEWAY_TCP_PORTS` で明示したポ
 - `8080`
 
 新しいポートを host から使う必要がある場合だけ、この環境変数を更新する。
+
+### outbound（コンテナ → ホスト）
+
+コンテナから host gateway への outbound は、`HOST_GATEWAY_OUTBOUND_TCP_PORTS` で明示したポートだけ許可する。
+
+既定値: なし（空）
+
+現在の設定値:
+
+- `5433`（テスト用 PostgreSQL）
+
+用途はホスト側で起動した Docker サービス（DB 等）への接続。DB ポートは既定で開けず、ローカルテスト実行時に必要なポートだけ設定する。
+
+注意: outbound 許可ポートは「host のそのポートに信頼できるサービスだけが待ち受ける」ことが前提。host 側で当該ポートに TCP proxy / SSH port-forward / socat 等を立てると、コンテナから外部宛通信の踏み台になり Squid allowlist を迂回できる。outbound ポートは用途を固定し、汎用 proxy / tunnel に使わないこと。
+
+## Docker（DinD / DooD）を採用しない理由
+
+ops-107 の検討で DinD / DooD を分析し、いずれも不採用とした。
+
+- **DinD**: `--privileged` または SYS_ADMIN + seccomp=unconfined が必要。`no-new-privileges` と矛盾し、firewall の FORWARD DROP とも競合する。現行セキュリティ方針を根本的に破壊する
+- **DooD**: docker.sock マウントはホスト Docker への実質 root 相当アクセスを付与する。issue 061（mount 最小化）と矛盾し、Squid proxy/allowlist もバイパスされる
+
+代替として「ホスト側で Docker サービスを起動し、コンテナから host gateway 経由で接続する」方式を採用する。これにより devcontainer のセキュリティモデルを維持したまま、Backend integration テストの実行が可能になる。
 
 ## 残余リスク
 
