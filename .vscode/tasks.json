@@ -1,0 +1,89 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Setup: 初回セットアップ(.env + JWT鍵)",
+      "type": "shell",
+      "command": "cp .env.example .env && docker run --rm -v \"${workspaceFolder}/expense-saas/keys:/keys\" alpine/openssl genrsa -out /keys/private.pem 2048 && docker run --rm -v \"${workspaceFolder}/expense-saas/keys:/keys\" alpine/openssl rsa -in /keys/private.pem -pubout -out /keys/public.pem",
+      "options": { "cwd": "${workspaceFolder}/expense-saas" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Docker: 起動 + ブラウザ",
+      "dependsOn": ["Docker: compose up", "ブラウザ待機"],
+      "dependsOrder": "parallel",
+      "problemMatcher": []
+    },
+    {
+      "label": "Docker: compose up",
+      "type": "shell",
+      "command": "powershell -ExecutionPolicy Bypass -File ${workspaceFolder}/.vscode/docker-up.ps1",
+      "options": { "cwd": "${workspaceFolder}/expense-saas" },
+      "problemMatcher": [],
+      "isBackground": true
+    },
+    {
+      "label": "Docker: 停止",
+      "type": "shell",
+      "command": "docker compose down",
+      "options": { "cwd": "${workspaceFolder}/expense-saas" },
+      "problemMatcher": []
+    },
+    {
+      "label": "ブラウザ待機",
+      "type": "shell",
+      "command": "powershell -ExecutionPolicy Bypass -File ${workspaceFolder}/.vscode/wait-and-open.ps1",
+      "problemMatcher": []
+    },
+    {
+      "label": "Docker: フルリセット + seed + ブラウザ(シークレット)",
+      "dependsOn": ["Docker: reset and seed", "ブラウザ起動(シークレット)"],
+      "dependsOrder": "sequence",
+      "problemMatcher": []
+    },
+    {
+      "label": "Docker: reset and seed",
+      "type": "shell",
+      "command": "powershell -ExecutionPolicy Bypass -File ${workspaceFolder}/.vscode/docker-reset.ps1",
+      "options": { "cwd": "${workspaceFolder}/expense-saas" },
+      "problemMatcher": []
+    },
+    {
+      "label": "ブラウザ起動(シークレット)",
+      "type": "shell",
+      "command": "powershell -ExecutionPolicy Bypass -File ${workspaceFolder}/.vscode/open-browser-incognito.ps1",
+      "problemMatcher": []
+    },
+    {
+      "label": "BE: lint",
+      "type": "shell",
+      "command": "docker compose --profile test run --rm --no-deps test-be golangci-lint run ./...",
+      "options": { "cwd": "${workspaceFolder}/expense-saas" },
+      "group": "test",
+      "problemMatcher": ["$go"]
+    },
+    {
+      "label": "BE: unit test",
+      "type": "shell",
+      "command": "docker compose --profile test run --rm --no-deps test-be go test ./...",
+      "options": { "cwd": "${workspaceFolder}/expense-saas" },
+      "group": "test",
+      "problemMatcher": ["$go"]
+    },
+    {
+      "label": "BE: integration test",
+      "type": "shell",
+      "command": "docker compose --profile test run --rm test-be go test -tags integration ./...",
+      "options": { "cwd": "${workspaceFolder}/expense-saas" },
+      "group": "test",
+      "problemMatcher": ["$go"]
+    },
+    {
+      "label": "BE: full test (lint + unit + integration)",
+      "dependsOn": ["BE: lint", "BE: unit test", "BE: integration test"],
+      "dependsOrder": "sequence",
+      "group": "test",
+      "problemMatcher": []
+    }
+  ]
+}
