@@ -64,51 +64,36 @@ npm run build
 
 ## Backend テスト
 
-Backend の integration テストはホスト側で PostgreSQL が起動している必要がある。
+devcontainer 内に Docker CLI がないため、ホスト側で VS Code タスク経由で実行する。
+テスト結果は `dev-journal/logs/test-results/` に出力され、devcontainer 側から読み取る。
 
-### 1. DB 接続確認
+### 1. ユーザーに実行を依頼
 
-```bash
-timeout 3 bash -c "echo > /dev/tcp/$(ip route show default | awk '{print $3; exit}')/5433" 2>&1
-```
+以下のようにユーザーに依頼する:
 
-### 2. 接続できない場合
+> VS Code の「実行とデバッグ」（Ctrl+Shift+D）から以下を実行してください:
+> - **BE: full test** — lint + unit + integration を順次実行
+> - **BE: lint** / **BE: unit test** / **BE: integration test** — 個別実行
+>
+> 完了したら教えてください。
 
-ユーザーに以下を指示する:
+### 2. 結果ファイルを読み取る
 
-> ホスト側（WSL2 ターミナル）で以下を実行してください:
-> ```
-> cd <expense-saas のパス>
-> docker compose up db-test -d
-> ```
-> 起動後、このチャットに戻ってきてください。
-
-ユーザーの確認を待ってから再度接続確認を行う。
-
-### 3. テスト実行
+ユーザーから完了報告を受けたら、結果ファイルを読む:
 
 ```bash
-cd $BASE
-
-# host gateway IP を取得
-HOST_GW=$(ip route show default | awk '{print $3; exit}')
-
-# 1. lint
-golangci-lint run ./...
-
-# 2. 単体テスト（DB 不要）
-go test ./...
-
-# 3. integration テスト（DB 必要）
-TEST_DATABASE_URL="postgres://testuser:testpass@${HOST_GW}:5433/expense_test?sslmode=disable" \
-  go test -tags integration ./...
+cat /root-project/dev-journal/logs/test-results/lint.txt
+cat /root-project/dev-journal/logs/test-results/unit.txt
+cat /root-project/dev-journal/logs/test-results/integration.txt
 ```
 
 ### 対象を絞り込む場合
 
-引数にパッケージ名やファイル名が含まれる場合:
-- `go test ./internal/handler/...` のようにパッケージを指定
-- lint は全体を対象に実行
+特定パッケージのみ実行したい場合は、ユーザーにホスト側で直接コマンドを実行してもらう:
+
+```
+docker compose --profile test run --rm test-be go test -tags integration -p 1 ./internal/handler/...
+```
 
 ## 結果報告
 
@@ -120,9 +105,9 @@ TEST_DATABASE_URL="postgres://testuser:testpass@${HOST_GW}:5433/expense_test?ssl
 - [x/fail] Frontend tsc
 - [x/fail] Frontend test (XX件 PASS)
 - [x/fail] Frontend build
-- [x/fail] Backend lint
-- [x/fail] Backend unit test
-- [x/fail] Backend integration test (XX件 PASS)
+- [x/fail] Backend lint（結果ファイル参照）
+- [x/fail] Backend unit test（結果ファイル参照）
+- [x/fail] Backend integration test（結果ファイル参照）
 ```
 
 失敗がある場合はエラー内容を添えて報告する。
