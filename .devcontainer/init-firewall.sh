@@ -13,14 +13,12 @@ readonly VERIFY_LOG="/tmp/devcontainer-egress-check.log"
 readonly VERIFY_STATUS="/tmp/devcontainer-egress-check.status"
 readonly NAT_CHAIN="CODEX_PROXY_REDIRECT"
 readonly HOST_GATEWAY_TCP_PORTS_RAW="${HOST_GATEWAY_TCP_PORTS:-3000,5432,8080}"
-readonly HOST_GATEWAY_OUTBOUND_TCP_PORTS_RAW="${HOST_GATEWAY_OUTBOUND_TCP_PORTS:-}"
 
 UPSTREAM_PROXY_HOST="${UPSTREAM_PROXY_HOST:-}"
 UPSTREAM_PROXY_PORT="${UPSTREAM_PROXY_PORT:-}"
 
 declare -a DNS_SERVERS=()
 declare -a HOST_GATEWAY_TCP_PORTS=()
-declare -a HOST_GATEWAY_OUTBOUND_PORTS=()
 
 log_info() {
   echo "[INFO] $*"
@@ -64,20 +62,6 @@ load_host_gateway_ports() {
   for port in "${HOST_GATEWAY_TCP_PORTS[@]}"; do
     [[ "$port" =~ ^[0-9]+$ ]] || die "HOST_GATEWAY_TCP_PORTS must contain only numeric ports."
     ((port >= 1 && port <= 65535)) || die "HOST_GATEWAY_TCP_PORTS contains an out-of-range port: $port"
-  done
-}
-
-load_host_gateway_outbound_ports() {
-  local raw="${HOST_GATEWAY_OUTBOUND_TCP_PORTS_RAW//[[:space:]]/}"
-  local port
-
-  HOST_GATEWAY_OUTBOUND_PORTS=()
-  [[ -n "$raw" ]] || return 0
-
-  IFS=',' read -r -a HOST_GATEWAY_OUTBOUND_PORTS <<< "$raw"
-  for port in "${HOST_GATEWAY_OUTBOUND_PORTS[@]}"; do
-    [[ "$port" =~ ^[0-9]+$ ]] || die "HOST_GATEWAY_OUTBOUND_TCP_PORTS must contain only numeric ports."
-    ((port >= 1 && port <= 65535)) || die "HOST_GATEWAY_OUTBOUND_TCP_PORTS contains an out-of-range port: $port"
   done
 }
 
@@ -182,13 +166,6 @@ configure_filter_rules() {
     log_info "Host gateway inbound access is disabled."
   fi
 
-  if [[ -n "$host_gateway" && ${#HOST_GATEWAY_OUTBOUND_PORTS[@]} -gt 0 ]]; then
-    for port in "${HOST_GATEWAY_OUTBOUND_PORTS[@]}"; do
-      iptables -A OUTPUT -p tcp -d "$host_gateway" --dport "$port" -j ACCEPT
-    done
-    log_info "Allowed host gateway outbound access on tcp/${HOST_GATEWAY_OUTBOUND_TCP_PORTS_RAW}."
-  fi
-
   for dns in "${DNS_SERVERS[@]}"; do
     iptables -A OUTPUT -p udp -d "$dns" --dport 53 -j ACCEPT
     iptables -A OUTPUT -p tcp -d "$dns" --dport 53 -j ACCEPT
@@ -259,10 +236,9 @@ main() {
   validate_upstream_env
   load_dns_servers
   load_host_gateway_ports
-  load_host_gateway_outbound_ports
 
   local host_gateway=""
-  if ((${#HOST_GATEWAY_TCP_PORTS[@]} > 0)) || ((${#HOST_GATEWAY_OUTBOUND_PORTS[@]} > 0)); then
+  if ((${#HOST_GATEWAY_TCP_PORTS[@]} > 0)); then
     host_gateway="$(detect_host_gateway)"
     log_info "Detected host gateway: $host_gateway"
   fi
