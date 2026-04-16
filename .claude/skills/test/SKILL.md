@@ -104,7 +104,7 @@ TEST_DATABASE_URL="postgres://testuser:testpass@${HOST_GW}:5433/expense_test?ssl
 テスト完了後、以下の形式で結果をユーザーに報告する:
 
 ```
-## Local CI 結果
+## ローカルテスト結果
 - [x/fail] Frontend lint
 - [x/fail] Frontend tsc
 - [x/fail] Frontend test (XX件 PASS)
