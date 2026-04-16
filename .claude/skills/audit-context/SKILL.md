@@ -1,6 +1,7 @@
 ---
 name: audit-context
 description: "自動読み込みコンテキストの査定。Use when: 「コンテキスト見直して」「ノイズ減らしたい」"
+disable-model-invocation: true
 ---
 
 自動読み込みコンテキストを「実際に作業の助けになるか」の観点で査定してください。

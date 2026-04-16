@@ -2,6 +2,7 @@
 name: analyze
 description: "開発プロセス分析・振り返り資料作成。Use when: 「分析して」「振り返り」「週次レビュー」"
 argument-hint: "[期間: YYYY-MM-DD~YYYY-MM-DD | 直近N日] [分析テーマ（省略可）]"
+disable-model-invocation: true
 ---
 
 開発プロセスの分析資料を作成してください。

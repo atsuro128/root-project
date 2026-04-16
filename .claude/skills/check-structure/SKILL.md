@@ -1,6 +1,7 @@
 ---
 name: check-structure
 description: "ディレクトリ構成ドキュメントと実態の差分チェック。Use when: 「構成チェックして」"
+disable-model-invocation: true
 context: fork
 agent: Explore
 ---
