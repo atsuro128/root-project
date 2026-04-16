@@ -57,7 +57,7 @@
     {
       "label": "BE: lint",
       "type": "shell",
-      "command": "docker compose --profile test run --rm --no-deps test-be golangci-lint run ./...",
+      "command": "docker compose --profile test run --rm --no-deps test-be golangci-lint run ./... 2>&1 | tee ${workspaceFolder}/dev-journal/logs/test-results/lint.txt",
       "options": { "cwd": "${workspaceFolder}/expense-saas" },
       "group": "test",
       "problemMatcher": ["$go"]
@@ -65,7 +65,7 @@
     {
       "label": "BE: unit test",
       "type": "shell",
-      "command": "docker compose --profile test run --rm --no-deps test-be go test ./...",
+      "command": "docker compose --profile test run --rm --no-deps test-be go test ./... 2>&1 | tee ${workspaceFolder}/dev-journal/logs/test-results/unit.txt",
       "options": { "cwd": "${workspaceFolder}/expense-saas" },
       "group": "test",
       "problemMatcher": ["$go"]
@@ -73,7 +73,7 @@
     {
       "label": "BE: integration test",
       "type": "shell",
-      "command": "docker compose --profile test run --rm test-be go test -tags integration ./...",
+      "command": "docker compose --profile test run --rm test-be go test -tags integration -p 1 ./... 2>&1 | tee ${workspaceFolder}/dev-journal/logs/test-results/integration.txt",
       "options": { "cwd": "${workspaceFolder}/expense-saas" },
       "group": "test",
       "problemMatcher": ["$go"]
