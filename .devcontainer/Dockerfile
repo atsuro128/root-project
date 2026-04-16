@@ -4,7 +4,7 @@ ARG TZ
 ENV TZ="$TZ"
 
 ARG GO_VERSION=1.24.1
-ARG GOLANGCI_LINT_VERSION=v1.64.8
+ARG GOLANGCI_LINT_VERSION=v2.11.4
 ARG GITHUB_MCP_SERVER_VERSION=0.32.0
 
 # Install basic development tools, firewall/proxy dependencies, Python, and PostgreSQL client
@@ -88,7 +88,7 @@ USER node
 # Set up Go workspace for non-root user
 ENV GOPATH=/home/node/go
 ENV PATH=$GOPATH/bin:$PATH
-RUN go install github.com/golangci/golangci-lint/cmd/golangci-lint@${GOLANGCI_LINT_VERSION}
+RUN go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@${GOLANGCI_LINT_VERSION}
 
 # Install global packages
 ENV NPM_CONFIG_PREFIX=/usr/local/share/npm-global
