@@ -16,7 +16,9 @@ append_if_missing() {
 append_if_missing /home/node/.zshrc "alias cc='claude --dangerously-skip-permissions'"
 append_if_missing /home/node/.zshrc "alias ccr='claude --resume --dangerously-skip-permissions'"
 append_if_missing /home/node/.zshrc "alias cx='codex --dangerously-bypass-approvals-and-sandbox'"
+append_if_missing /home/node/.zshrc 'export PATH="$HOME/.local/bin:$PATH"'
 
 append_if_missing /home/node/.bashrc "alias cc='claude --dangerously-skip-permissions'"
 append_if_missing /home/node/.bashrc "alias ccr='claude --resume --dangerously-skip-permissions'"
 append_if_missing /home/node/.bashrc "alias cx='codex --dangerously-bypass-approvals-and-sandbox'"
+append_if_missing /home/node/.bashrc 'export PATH="$HOME/.local/bin:$PATH"'
