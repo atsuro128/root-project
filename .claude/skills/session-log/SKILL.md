@@ -81,9 +81,38 @@ description: |
 6. **新しいセッション分で `session-log.md` を上書き**
    - `Write` で新セッション分を書き出す
 
+## progress.md 更新・アーカイブ
+
+引き継ぎメモ作成後、`dev-journal/progress-management/progress.md` を更新し、完了済みの情報をアーカイブに退避する。
+
+### 更新
+
+1. 今セッションで状態が変わったタスク・issue のステータスを反映する
+2. 新たに起票した issue があれば追記する
+
+### アーカイブ
+
+完了した Step のチケット一覧と解決済み issue テーブルを progress.md から退避し、ファイルを軽量に保つ。
+
+- **退避対象**: 完了した Step のチケット一覧テーブル、解決済み issue テーブル
+- **残す**: 進行中の Step のチケット一覧、残存 issue（open）、マイルストーン一覧（全 Step の状態俯瞰）
+- **アーカイブ先**:
+  - `dev-journal/archives/progress/steps.md` — 完了 Step のチケット一覧を追記
+  - `dev-journal/archives/progress/issues.md` — 解決済み issue テーブルを追記
+
+### 手順
+
+1. progress.md を Read する
+2. 完了した Step のチケット一覧テーブルのうち、まだアーカイブされていないものを特定する
+3. `archives/progress/steps.md` に追記する（ファイルが存在しない場合は新規作成）
+   - `## Step N: {名前}` の見出し付きでテーブルをそのまま転記
+4. progress.md から転記済みのチケット一覧テーブルを削除し、`アーカイブ済み（archives/progress/steps.md 参照）` の 1 行に置き換える
+5. 解決済み issue テーブルも同様に `archives/progress/issues.md` に追記し、progress.md からは削除する
+6. アーカイブ対象がない場合（新たに完了した Step や解決済み issue がない場合）はスキップ
+
 ## クリーンアップ
 
-引き継ぎメモ作成後、以下を実施する:
+progress.md 更新後、以下を実施する:
 
 1. `.claude/worktrees/` にディレクトリが残っていれば削除する
 2. `git worktree list` で不要なワークツリーが登録されていれば `git worktree remove` で除去する
