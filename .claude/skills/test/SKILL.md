@@ -1,8 +1,8 @@
 ---
 name: test
 description: |
-  ローカルテストを実行する。
-  Use when: ユーザーが「テストして」「lint 通して」と依頼した時、PR 作成前のローカル検証時
+  ローカルテストを実行する（実運用の CI）。
+  Use when: ユーザーが「テストして」「lint 通して」と依頼した時、PR 作成後・reviewer 起動前に指揮役がローカル CI として実行する時（workflow.md PR フロー §2）、実装タスク完了後の動作確認
   DO NOT use when: CI ワークフロー（ci.yml）の修正時
 argument-hint: "[frontend|backend|all] [テスト対象のファイルやコンポーネント名（省略時は全件）]"
 ---
