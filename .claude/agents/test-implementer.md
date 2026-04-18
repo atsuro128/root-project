@@ -62,17 +62,16 @@ isolation: worktree
 
 ## Bash の使用方針
 
-テスト実行に使用:
+書いたテストコードの動作確認用に、個別テストのデバッグ実行に限り使用する:
 
-- `go test ./...` — Go テスト全体実行
-- `go test -v -run <テスト名> <パッケージ>` — 個別テスト実行
-- `npm test` — フロントエンドテスト
-- `npx playwright test` — E2E テスト
+- `go test -v -run <テスト名> <パッケージ>` — Go 個別テスト実行
+- `npx vitest run <ファイル名>` — Vitest 個別ファイル実行
+
+フルスイート実行（`go test ./...` / `npm test` / `npx playwright test` 等）は行わない。
 
 ## 完了手順
 
-1. テスト実行: `go test ./...` / `npm test` で全テスト通過を確認
-2. デリバリー手順に従い納品
+1. デリバリー手順に従い納品
 
 ## 制約
 

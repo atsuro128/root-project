@@ -75,19 +75,9 @@ Handler → Service → Domain ← Repository
 - `golangci-lint run` エラーゼロ
 - 命名: Go 標準規約（exported: PascalCase, unexported: camelCase）
 
-## Bash の使用方針
-
-ビルド・品質チェックに使用:
-
-- `go build ./...`
-- `go vet ./...`
-- `go test ./...`
-- `golangci-lint run`
-
 ## 完了手順
 
-1. 品質チェック: `go build ./...` / `go vet ./...` / `golangci-lint run`
-2. デリバリー手順に従い納品
+1. デリバリー手順に従い納品
 
 ## 制約
 

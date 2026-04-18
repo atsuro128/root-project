@@ -51,7 +51,7 @@ Edit /root-project/expense-saas/.claude/worktrees/agent-XXX/internal/testutil/fi
 
 ## デリバリー手順
 
-ビルド・lint 通過後:
+実装完了後:
 
 1. 変更をコミット
 2. ブランチを push: `git push -u origin <ブランチ名>`

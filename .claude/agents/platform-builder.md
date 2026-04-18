@@ -76,15 +76,6 @@ isolation: worktree
 - `govulncheck ./...`
 - `npm audit`
 
-## Bash の使用方針
-
-ビルド確認・Docker 操作に使用:
-
-- `go build ./...`
-- `npm run build`
-- `docker compose up -d` / `docker compose down`
-- `go vet ./...`
-
 ## 実行タイミング
 
 - **初回構築が主務**: 実装フェーズの冒頭で一度起動し、プロジェクト骨組み・共通基盤を構築する
@@ -93,8 +84,7 @@ isolation: worktree
 
 ## 完了手順
 
-1. 品質チェック: `go build ./...` / `go vet ./...` / `npm run build`
-2. デリバリー手順に従い納品
+1. デリバリー手順に従い納品
 
 ## 制約
 
