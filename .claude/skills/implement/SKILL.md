@@ -1,21 +1,25 @@
 ---
 name: implement
 description: |
-  チケットに基づき実装エージェントを起動する。
-  Use when: 実装チケットの着手時（ユーザー指示 or 計画に基づく自主判断）
+  実装エージェントを起動する（チケット・issue 対応など実装全般）。
+  Use when: 実装チケットの着手時、issue 対応の実装着手時、PR 追加対応時
   DO NOT use when: 設計成果物の作成（設計成果物フローを使う）
-argument-hint: "<チケットID（例: 9-1）>"
+argument-hint: "<チケットID または issue 参照>"
 ---
 
-チケットに基づき実装エージェントを起動してください。
+実装エージェントを起動してください。
 
-チケットID: $ARGUMENTS
+対象: $ARGUMENTS
 
 ## 手順
 
-### 1. チケット読み込み
+### 1. 実装計画の参照元を読み込み
 
-`dev-journal/progress-management/tickets/` 配下からチケットファイルを探して Read する。
+対象に応じて以下から実装計画を読み込む:
+- **チケット対応**: `dev-journal/progress-management/tickets/` 配下のチケットファイル
+- **issue 対応**: `dev-journal/issues/open/` 配下の issue ファイル（末尾の追加対応ログを含む場合あり）
+- **PR 追加対応**: 元 issue / チケットに追記された追加対応ログ
+
 以下を取得する:
 - 担当エージェント
 - ブランチ名
@@ -25,7 +29,7 @@ argument-hint: "<チケットID（例: 9-1）>"
 
 ### 2. 依存チェック
 
-`dev-journal/progress-management/progress.md` を確認し、依存先チケットが全て `完了` であることを確認する。
+`dev-journal/progress-management/progress.md` を確認し、依存先（チケット・issue 等）が全て `完了`（または解決済み）であることを確認する。
 未完了の依存があればユーザーに報告して中止する。
 
 ### 3. エージェント起動
@@ -33,14 +37,14 @@ argument-hint: "<チケットID（例: 9-1）>"
 担当エージェントを Agent tool で起動する。
 
 起動時の設定:
-- `subagent_type`: チケットの担当エージェント名
+- `subagent_type`: 担当エージェント名
 - `run_in_background: true`
 - `isolation: "worktree"`
 
 プロンプトに以下を**必ず**含める:
-- チケットの責務・完了条件
+- 責務・完了条件
 - 入力資料のパス（絶対パスで指定: `/root-project/dev-journal/...`）
-- ブランチ名（新規: `{チケットのブランチ名}`）
+- ブランチ名（新規: `{ブランチ名}`）
 - **worktree 汚染防止ブロック**（以下をそのまま貼る）:
 
 ```
@@ -56,12 +60,22 @@ argument-hint: "<チケットID（例: 9-1）>"
 - `/root-project/dev-journal/...` の参照資料は読み取り専用でアクセスしてよい
 ```
 
+- **ローカル CI 禁止ブロック**（以下をそのまま貼る）:
+
+```
+## ローカル CI（禁止事項）
+
+lint / test / build のフルスイート実行（`npm run lint` / `npm test` / `go test ./...` / `npm run build` 等）は行わないこと。ローカル CI は指揮役が別途 /test スキルで実施する。
+
+個別テストのデバッグ実行（`go test -v -run <テスト名>` / `npx vitest run <ファイル名>` 等）は許容する。
+```
+
 ### 4. 完了報告
 
 エージェント完了後、結果をユーザーに報告する:
 - PR URL
 - 実装内容の要約
-- 次のアクション（CI 監視 → 内部レビュー → codex レビュー）
+- 次のアクション（/test スキルでローカル CI → 内部レビュー → codex レビュー）
 
 ### 5. worktree クリーンアップ
 
@@ -78,6 +92,7 @@ git -C /root-project/expense-saas worktree remove <パス> --force
 
 PR 作成前のブランチは削除しない。
 
-### 6. progress.md 更新
+### 6. progress.md 更新（チケット対応時のみ）
 
-チケットの状態を `作業中` に更新する。
+チケット対応の場合、チケットの状態を `作業中` に更新する。
+issue 対応の場合は progress.md の該当 issue ステータスを更新する（該当箇所がなければスキップ）。
