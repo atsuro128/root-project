@@ -32,7 +32,31 @@ argument-hint: "<チケットID または issue 参照>"
 `dev-journal/progress-management/progress.md` を確認し、依存先（チケット・issue 等）が全て `完了`（または解決済み）であることを確認する。
 未完了の依存があればユーザーに報告して中止する。
 
-### 3. エージェント起動
+### 3. master 最新化と worktree ベース確認（重要）
+
+`isolation: "worktree"` のエージェントは、main リポジトリの現在の HEAD を基点に worktree を作成する。main が master 以外のブランチに居ると **編集履歴に無関係なコミットが混入する**。
+
+エージェント起動前に以下を必ず実行する:
+
+```bash
+git -C /root-project/expense-saas fetch origin
+git -C /root-project/expense-saas rev-parse --abbrev-ref HEAD  # master であること
+git -C /root-project/expense-saas rev-parse HEAD               # origin/master と一致すること
+git -C /root-project/expense-saas rev-parse origin/master
+```
+
+main の HEAD が master でない、または `origin/master` と一致しない場合はユーザーに報告して中止する（勝手に checkout しない）。
+
+エージェント起動後、worktree のベースが master と一致するか再度確認する:
+
+```bash
+git -C /root-project/expense-saas/.claude/worktrees/agent-XXXXXXXX merge-base HEAD origin/master
+# 戻り値が origin/master と一致すれば OK
+```
+
+不一致ならエージェントを停止（`TaskStop`）→ worktree 削除 → main を master に戻してから再起動する。
+
+### 4. エージェント起動
 
 担当エージェントを Agent tool で起動する。
 
