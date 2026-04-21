@@ -55,6 +55,13 @@
       "problemMatcher": []
     },
     {
+      "label": "BE: db-test migrate up",
+      "type": "shell",
+      "command": "docker compose --profile test run --rm migrate-test",
+      "options": { "cwd": "${workspaceFolder}/expense-saas" },
+      "problemMatcher": []
+    },
+    {
       "label": "BE: lint",
       "type": "shell",
       "command": "docker compose --profile test run --rm --no-deps test-be sh -c 'golangci-lint run ./... > /test-results/lint.txt 2>&1; cat /test-results/lint.txt'",
@@ -68,7 +75,9 @@
       "command": "docker compose --profile test run --rm --no-deps test-be sh -c 'go test -p 1 ./... > /test-results/unit.txt 2>&1; cat /test-results/unit.txt'",
       "options": { "cwd": "${workspaceFolder}/expense-saas" },
       "group": "test",
-      "problemMatcher": ["$go"]
+      "problemMatcher": ["$go"],
+      "dependsOn": ["BE: db-test migrate up"],
+      "dependsOrder": "sequence"
     },
     {
       "label": "BE: integration test",
@@ -76,7 +85,9 @@
       "command": "docker compose --profile test run --rm test-be sh -c 'go test -tags integration -p 1 ./... > /test-results/integration.txt 2>&1; cat /test-results/integration.txt'",
       "options": { "cwd": "${workspaceFolder}/expense-saas" },
       "group": "test",
-      "problemMatcher": ["$go"]
+      "problemMatcher": ["$go"],
+      "dependsOn": ["BE: db-test migrate up"],
+      "dependsOrder": "sequence"
     },
     {
       "label": "BE: full test (lint + unit + integration)",
@@ -84,7 +95,9 @@
       "command": "docker compose --profile test run --rm test-be sh -c 'golangci-lint run ./... > /test-results/lint.txt 2>&1; go test -p 1 ./... > /test-results/unit.txt 2>&1; go test -tags integration -p 1 ./... > /test-results/integration.txt 2>&1; echo \"--- lint.txt ---\"; cat /test-results/lint.txt; echo \"--- unit.txt ---\"; cat /test-results/unit.txt; echo \"--- integration.txt ---\"; cat /test-results/integration.txt'",
       "options": { "cwd": "${workspaceFolder}/expense-saas" },
       "group": "test",
-      "problemMatcher": ["$go"]
+      "problemMatcher": ["$go"],
+      "dependsOn": ["BE: db-test migrate up"],
+      "dependsOrder": "sequence"
     }
   ]
 }
