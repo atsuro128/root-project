@@ -15,6 +15,8 @@ paths:
 - API: `dev-journal/deliverables/docs/50_detail_design/openapi.yaml`
 - 画面: `dev-journal/deliverables/docs/50_detail_design/screens/`
 - テスト: `dev-journal/deliverables/docs/60_test/`
+- 状態管理: `dev-journal/deliverables/docs/55_ui_component/state-management.md`
+- 共通コンポーネント: `dev-journal/deliverables/docs/55_ui_component/common-components.md`
 
 ## コメント言語
 
@@ -48,6 +50,47 @@ Edit /root-project/expense-saas/.claude/worktrees/agent-XXX/internal/testutil/fi
 
 - 新規ブランチ: `git branch -m {ブランチ名}`（worktree の自動ブランチをリネーム）
 - 既存ブランチ: `git checkout {ブランチ名}`（worktree 内で切り替え）
+
+## FE エラーハンドリング
+
+### 原則
+
+- `ApiClientError.message` は `client.ts` 層で `SERVER_ERROR_MESSAGES` によりマッピング済みである（issue #124 / PR #70 以降）
+- コンポーネント / フックの onError ハンドラでは **`err.message` をそのまま使う** ことを原則とする
+- エラーコードごとのユーザー向け文言は `frontend/src/lib/error-messages.ts` の `SERVER_ERROR_MESSAGES` に集約する
+- 新規エラーコード追加時は、まず `SERVER_ERROR_MESSAGES` に追加し、コンポーネント側は `err.message` のまま変更不要
+
+### 推奨パターン
+
+```ts
+// onError で err.message をそのまま使う（フォールバック文言は最小限に留める）。
+onError: (err) => {
+  const message = err instanceof Error ? err.message : 'XX の処理に失敗しました';
+  setToast({ open: true, severity: 'error', message });
+}
+```
+
+### アンチパターン（禁止）
+
+```ts
+// NG: err を受け取らずハードコード文言を使う（err.message が握り潰される）。
+onError: () => setItemApiError('明細のXXに失敗しました')
+
+// NG: err.message を無視して独自文言で上書きする。
+onError: (err) => {
+  const message = 'XX に失敗しました。もう一度お試しください。'; // err を使っていない
+  onXxError(message);
+}
+
+// NG: SERVER_ERROR_MESSAGES と同一文言をコンポーネント内でハードコードする。
+const message = 'この操作を行う権限がありません。'; // SERVER_ERROR_MESSAGES.FORBIDDEN と重複
+```
+
+### 参照ドキュメント
+
+- `dev-journal/deliverables/docs/55_ui_component/state-management.md` §6.5
+- `frontend/src/lib/error-messages.ts` の `SERVER_ERROR_MESSAGES`
+- `frontend/src/api/client.ts` の `handleErrorResponse`（マッピング適用箇所）
 
 ## デリバリー手順
 
