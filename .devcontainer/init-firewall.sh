@@ -7,12 +7,14 @@ readonly SQUID_UID="$(id -u "${SQUID_USER}")"
 readonly SQUID_CONFIG="/etc/squid/squid.conf"
 readonly SQUID_PID_FILE="/var/run/squid.pid"
 readonly SQUID_ALLOWLIST="/etc/squid/proxy-allowlist.txt"
+readonly SQUID_FORWARD_HOST="${SQUID_FORWARD_HOST:-127.0.0.1}"
+readonly SQUID_FORWARD_PORT="${SQUID_FORWARD_PORT:-3127}"
 readonly RENDER_SCRIPT="/usr/local/bin/render-squid-config.sh"
 readonly VERIFY_SCRIPT="/usr/local/bin/verify-egress.sh"
 readonly VERIFY_LOG="/tmp/devcontainer-egress-check.log"
 readonly VERIFY_STATUS="/tmp/devcontainer-egress-check.status"
 readonly NAT_CHAIN="CODEX_PROXY_REDIRECT"
-readonly HOST_GATEWAY_TCP_PORTS_RAW="${HOST_GATEWAY_TCP_PORTS:-3000,5432,8080}"
+readonly HOST_GATEWAY_TCP_PORTS_RAW="${HOST_GATEWAY_TCP_PORTS:-3000,8080}"
 
 UPSTREAM_PROXY_HOST="${UPSTREAM_PROXY_HOST:-}"
 UPSTREAM_PROXY_PORT="${UPSTREAM_PROXY_PORT:-}"
@@ -77,6 +79,10 @@ resolve_ipv4() {
   getent ahostsv4 "$host" | awk '{print $1}' | sort -u
 }
 
+is_squid_port_ready() {
+  (exec 3<>"/dev/tcp/${SQUID_FORWARD_HOST}/${SQUID_FORWARD_PORT}") >/dev/null 2>&1
+}
+
 wait_for_squid_startup() {
   local pid=""
   local attempt
@@ -84,7 +90,7 @@ wait_for_squid_startup() {
   for attempt in {1..20}; do
     if [[ -f "$SQUID_PID_FILE" ]]; then
       pid="$(tr -d '[:space:]' < "$SQUID_PID_FILE")"
-      if [[ "$pid" =~ ^[0-9]+$ ]] && kill -0 "$pid" 2>/dev/null; then
+      if [[ "$pid" =~ ^[0-9]+$ ]] && kill -0 "$pid" 2>/dev/null && is_squid_port_ready; then
         return 0
       fi
     fi

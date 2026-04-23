@@ -13,6 +13,35 @@ die() {
   exit 1
 }
 
+proxy_endpoint() {
+  if [[ "$PROXY_URL" =~ ^https?://([^/:]+):([0-9]+)/?$ ]]; then
+    printf "%s %s\n" "${BASH_REMATCH[1]}" "${BASH_REMATCH[2]}"
+    return 0
+  fi
+
+  die "Unsupported PROXY_URL format: ${PROXY_URL}"
+}
+
+check_proxy_ready() {
+  local host
+  local port
+  local attempt
+
+  IFS=' ' read -r host port < <(proxy_endpoint)
+  [[ -n "$host" && -n "$port" ]] || die "Failed to parse PROXY_URL: ${PROXY_URL}"
+
+  for attempt in {1..20}; do
+    if (exec 3<>"/dev/tcp/${host}/${port}") >/dev/null 2>&1; then
+      echo "[PASS] proxy listening: ${PROXY_URL}"
+      return 0
+    fi
+
+    sleep 0.25
+  done
+
+  die "proxy is not reachable: ${PROXY_URL}"
+}
+
 run_curl() {
   curl \
     --silent \
@@ -37,12 +66,23 @@ check_reachable() {
 
 check_blocked() {
   local url="$1"
+  local curl_stderr
 
-  if run_curl --proxy "$PROXY_URL" "$url"; then
+  curl_stderr="$(mktemp)"
+
+  if run_curl --proxy "$PROXY_URL" "$url" 2>"$curl_stderr"; then
+    rm -f "$curl_stderr"
     die "blocked check failed (unexpectedly reachable): ${url}"
-  else
-    echo "[PASS] blocked: ${url}"
   fi
+
+  if grep -qiE "Failed to connect|Could not resolve proxy|Connection refused" "$curl_stderr"; then
+    cat "$curl_stderr" >&2
+    rm -f "$curl_stderr"
+    die "blocked check inconclusive because proxy was unavailable: ${url}"
+  fi
+
+  rm -f "$curl_stderr"
+  echo "[PASS] blocked: ${url}"
 }
 
 check_direct_blocked() {
@@ -59,6 +99,7 @@ check_direct_blocked() {
 [[ -f "$ALLOWLIST_PATH" ]] || die "Allowlist file not found: $ALLOWLIST_PATH"
 
 echo "[INFO] Verifying egress via proxy: ${PROXY_URL}"
+check_proxy_ready
 
 mapfile -t allow_hosts < <(
   awk '
