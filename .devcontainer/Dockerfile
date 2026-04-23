@@ -114,7 +114,12 @@ RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/
   -x
 
 # Install baseline CLI tooling during image build so rebuilds can use Docker layer cache.
-RUN npm install -g @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION} @openai/codex@${CODEX_VERSION}
+# Claude Code は Anthropic 公式の native installer で導入する。npm 経由で導入すると初回
+# `claude update` 実行時に暗黙で native installer へ差し替わり、Dockerfile のバージョン
+# 固定が実効しなくなるため。
+RUN npm install -g @openai/codex@${CODEX_VERSION}
+RUN curl -fsSL https://claude.ai/install.sh | bash -s ${CLAUDE_CODE_VERSION}
+ENV PATH=/home/node/.local/bin:$PATH
 
 # Copy and set up container init/firewall/proxy scripts
 COPY proxy-allowlist.txt /usr/local/share/proxy-allowlist.txt
