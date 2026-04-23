@@ -1,6 +1,7 @@
 registry.npmjs.org
 api.anthropic.com
 platform.claude.com
+downloads.claude.ai
 sentry.io
 statsig.anthropic.com
 statsig.com

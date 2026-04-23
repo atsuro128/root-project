@@ -86,6 +86,7 @@ check_reachable "api.openai.com"
 echo "[INFO] Checking required Anthropic endpoints"
 check_reachable "api.anthropic.com"
 check_reachable "platform.claude.com"
+check_reachable "downloads.claude.ai"
 
 echo "[INFO] Checking required GitHub endpoints"
 check_reachable "github.com"
