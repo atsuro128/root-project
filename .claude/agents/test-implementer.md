@@ -29,7 +29,7 @@ isolation: worktree
 
 ## 必須参照ファイル（入力）
 
-- `dev-journal/deliverables/docs/60_test/test_cases.md` — テストケース一覧
+- `dev-journal/deliverables/docs/60_test/test_cases/` — テストケース一覧（ドメイン別ファイル）
 - `dev-journal/deliverables/docs/60_test/test_strategy.md` — テスト戦略
 
 ## 作業方針
@@ -75,4 +75,4 @@ isolation: worktree
 
 ## 制約
 
-- `test_cases.md` で定義されたテストケースに基づいて実装
+- `test_cases/` 配下のドメイン別ファイルで定義されたテストケースに基づいて実装
