@@ -6,6 +6,7 @@ ENV TZ="$TZ"
 ARG GO_VERSION=1.24.1
 ARG GOLANGCI_LINT_VERSION=v2.11.4
 ARG GITHUB_MCP_SERVER_VERSION=0.32.0
+ARG TERRAFORM_VERSION=1.9.8
 
 # Install basic development tools, firewall/proxy dependencies, Python, and PostgreSQL client
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -81,6 +82,19 @@ RUN ARCH=$(dpkg --print-architecture) && \
   tar xzf /tmp/github-mcp-server.tar.gz -C /usr/local/bin github-mcp-server && \
   rm /tmp/github-mcp-server.tar.gz && \
   chmod +x /usr/local/bin/github-mcp-server
+
+# Install Terraform CLI (HashiCorp 公式バイナリ、ADR-0004 で IaC ツールに採用)
+# Step 11-E Phase 1 で `terraform fmt -recursive` の検証ゲートに使用する。
+# 本番 `terraform init/plan/apply` は USER の Windows ホストで実施する設計のため、
+# devcontainer 実行時に registry.terraform.io / releases.hashicorp.com への egress を
+# 必要としない（issue #060/#061 の最小 egress 方針を維持、allowlist 拡張なし）。
+# ビルド時のみ releases.hashicorp.com から DL（docker build は egress allowlist の
+# 制約外）。
+RUN ARCH=$(dpkg --print-architecture) && \
+  wget -q "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_${ARCH}.zip" -O /tmp/terraform.zip && \
+  unzip -q /tmp/terraform.zip -d /usr/local/bin && \
+  rm /tmp/terraform.zip && \
+  chmod +x /usr/local/bin/terraform
 
 # Set up non-root user
 USER node
