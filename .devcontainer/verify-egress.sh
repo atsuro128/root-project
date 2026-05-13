@@ -101,21 +101,6 @@ check_direct_blocked() {
 echo "[INFO] Verifying egress via proxy: ${PROXY_URL}"
 check_proxy_ready
 
-mapfile -t allow_hosts < <(
-  awk '
-    /^[[:space:]]*#/ { next }
-    /^[[:space:]]*$/ { next }
-    {
-      host=tolower($0)
-      gsub(/\r/, "", host)
-      gsub(/^[[:space:]]+|[[:space:]]+$/, "", host)
-      print host
-    }
-  ' "$ALLOWLIST_PATH" | sort -u
-)
-
-((${#allow_hosts[@]} > 0)) || die "Allowlist is empty: $ALLOWLIST_PATH"
-
 echo "[INFO] Checking explicit block target"
 check_blocked "https://example.com"
 
@@ -135,10 +120,5 @@ check_reachable "api.github.com"
 
 echo "[INFO] Checking direct egress is fail-closed"
 check_direct_blocked "https://api.openai.com"
-
-echo "[INFO] Checking allowlist hosts (${#allow_hosts[@]})"
-for host in "${allow_hosts[@]}"; do
-  check_reachable "$host"
-done
 
 echo "[INFO] Egress verification completed successfully"

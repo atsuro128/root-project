@@ -34,8 +34,6 @@
 | `platform.claude.com` | Claude 関連認証・サービス到達 | Claude Code 関連ツール | Claude 関連の利用・認証導線で必要な可能性が高い | Claude 利用をやめる、または不要と確認できた場合 | 要確認 |
 | `downloads.claude.ai` | Claude Code native installer / auto-updater / plugin 配信 | `claude install`, `claude update`, plugin 取得 | Anthropic 公式ドキュメントで native installer と auto-updater の配信元として明記されており、未許可だと `claude update` が HTTP 403 で失敗する | Claude Code の利用をやめる、または native installer 以外の配布方式に切り替えた場合 | 必須 |
 | `sentry.io` | エラー収集・テレメトリ | Claude / VS Code / 拡張機能の可能性 | 現時点で明確な必須用途を確認できていない | 不要と確認できた場合 | 要確認 |
-| `statsig.anthropic.com` | Feature flag / telemetry の可能性 | Claude 関連ツールの可能性 | 現時点で明確な必須用途を確認できていない | 不要と確認できた場合 | 要確認 |
-| `statsig.com` | Feature flag / telemetry の可能性 | Claude 関連ツールの可能性 | 現時点で明確な必須用途を確認できていない | 不要と確認できた場合 | 要確認 |
 | `marketplace.visualstudio.com` | VS Code 拡張取得 | VS Code / DevContainer | 拡張機能のインストール・更新に必要 | 拡張の追加更新をコンテナ内で行わない場合 | 要確認 |
 | `vscode.blob.core.windows.net` | VS Code 配布物取得 | VS Code / DevContainer | VS Code 拡張や関連配布物の取得先として使われる | 不要と確認できた場合 | 要確認 |
 | `update.code.visualstudio.com` | VS Code 更新確認 | VS Code | VS Code 更新確認に使われる可能性がある | 更新確認を不要とする場合 | 削除候補 |
@@ -58,8 +56,6 @@
 ## 次回見直し候補
 
 - `sentry.io`
-- `statsig.anthropic.com`
-- `statsig.com`
 - `update.code.visualstudio.com`
 - `storage.googleapis.com`
 - `chatgpt.com`
