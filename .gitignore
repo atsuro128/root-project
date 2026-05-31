@@ -13,6 +13,3 @@ Desktop.ini
 *~
 .vscode/
 .idea/
-
-# ポートフォリオ公開用 monorepo ビルド出力（ops-108 案 C）
-.portfolio-build/
