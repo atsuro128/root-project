@@ -12,7 +12,7 @@
 
 ## リポジトリ構成
 
-| ディレクトリ | 役割 | README |
+| リポジトリ | 役割 | README |
 |---|---|---|
 | [`expense-saas/`](https://github.com/atsuro128/expense-saas) | プロダクト本体（実装コード） | [README](https://github.com/atsuro128/expense-saas/blob/master/README.md) |
 | [`dev-journal/`](https://github.com/atsuro128/dev-journal) | 開発プロセス記録（設計成果物・進捗・issue・ログ） | [README](https://github.com/atsuro128/dev-journal/blob/master/README.md) |
