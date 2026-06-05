@@ -4,7 +4,13 @@ set -euo pipefail
 INPUT=$(cat)
 NAME=$(echo "$INPUT" | jq -r '.name')
 
-EXPENSE_SAAS_DIR="/root-project/expense-saas"
+# スクリプト自身の位置（.claude/hooks/）から 2 つ上をプロジェクトルートとして解決する。
+# devcontainer（/root-project）でもネイティブ環境（C:\...）でもホストパス非依存で動く。
+# Git Bash では pwd が /c/... 形式を返すが、Claude Code は Windows 形式（C:/...）を期待するため
+# cygpath -m で変換する（cygpath が無い Linux/devcontainer では POSIX パスのまま）。
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+command -v cygpath >/dev/null 2>&1 && ROOT_DIR="$(cygpath -m "$ROOT_DIR")"
+EXPENSE_SAAS_DIR="${ROOT_DIR}/expense-saas"
 WORKTREE_PATH="${EXPENSE_SAAS_DIR}/.claude/worktrees/${NAME}"
 BRANCH="${NAME}"
 

@@ -32,7 +32,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash /root-project/.claude/hooks/agent-worktree-cleanup.sh"
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/agent-worktree-cleanup.sh\""
           }
         ]
       }
@@ -42,7 +42,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash /root-project/.claude/hooks/worktree-create.sh"
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/worktree-create.sh\""
           }
         ]
       }
@@ -52,7 +52,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash /root-project/.claude/hooks/worktree-remove.sh"
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/worktree-remove.sh\""
           }
         ]
       }
